@@ -100,8 +100,8 @@ public class ChordDisplay extends AppCompatActivity {
     Guideline[] verticalGuidelineMargins;
 
     Guideline topMargin;
-    Guideline left;
-    Guideline right;
+    Guideline leftMargin;
+    Guideline rightMargin;
 
     int guidelineMarginA;
     int guidelineMarginB;
@@ -159,6 +159,7 @@ public class ChordDisplay extends AppCompatActivity {
         //getSupportActionBar().setCustomView(R.layout.chord_display_banner);
 
         String title = getIntent().getStringExtra("title");
+        String author = getIntent().getStringExtra("author");
         ArrayList<String> list = getIntent().getStringArrayListExtra("list");
 
         width = getScreenWidthInPixels();
@@ -337,7 +338,7 @@ public class ChordDisplay extends AppCompatActivity {
         T.setGuidelineBegin(guidelineMarginT);
 
         drawText(r, AQ, AR, AS, title, (guidelineMarginR - guidelineMarginAR), true);
-        drawText(S, AQ, r, AS, list.get(0), (guidelineMarginS - guidelineMarginR),false);
+        drawText(S, AQ, r, AS, author, (guidelineMarginS - guidelineMarginR),false);
 
         Guideline[] lowerGuidelines = {V, X, Z, AB, AD, AF, AH, AJ, AL, AN, AP};
         Guideline[] leftGuidelines = {A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q};

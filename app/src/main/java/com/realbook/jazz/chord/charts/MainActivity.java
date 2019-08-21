@@ -1,12 +1,23 @@
 package com.realbook.jazz.chord.charts;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -25,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     HashMap<String, ArrayList<String>> titlesToChords = new HashMap<>();
     ArrayList<String> titles = new ArrayList<>();
+    ArrayList<String> authors = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.main_banner);
-
-        final Button hell_btn = (Button) findViewById(R.id.hell_btn);
-        hell_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openChordDisplayForTesting();
-            }
-        });
 
 
         InputStream input = null;
@@ -67,30 +71,97 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(e);
         }
 
+        for (String t : titles) {
+            authors.add(titlesToChords.get(t).get(0));
+        }
+
+
+        final EditText searchBar = (EditText) findViewById(R.id.search_bar);
+
+        searchBar.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                reloadData();
+            }
+        });
+
+        searchBar.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                searchBar.setCursorVisible(true);
+                return false;
+            }
+        });
+
 
     }
 
-    public void openChordDisplayForTesting() {
-        String title = titles.get(0);
-        ArrayList<String> listOfChords = titlesToChords.get(title);
-
+    public void openChordDisplayAcivity(String title, String author, ArrayList<String> listOfChords) {
         Intent intent = new Intent(this, ChordDisplay.class);
         intent.putExtra("title", title);
+        intent.putExtra("author", author);
         intent.putStringArrayListExtra("list", listOfChords);
         startActivity(intent);
     }
 
-    public void openChordDisplayAcivity(Integer listPosition) {
-        String title = titles.get(listPosition);
-        ArrayList<String> listOfChords = titlesToChords.get(title);
+    public void reloadData() {
 
-        Intent intent = new Intent(this, ChordDisplay.class);
-        intent.putExtra("title", title);
-        intent.putStringArrayListExtra("list", listOfChords);
-        startActivity(intent);
+        ListView listView = (ListView) findViewById(R.id.resultsListView);
+        EditText searchBar = (EditText) findViewById(R.id.search_bar);
+        final ArrayList<String> titlesToShow = new ArrayList<>();
+        final ArrayList<String> authorsToShow = new ArrayList<>();
+
+        String currentText = searchBar.getText().toString();
+
+        for (int i = 0; i < titles.size(); i++) {
+            if (titles.get(i).toLowerCase().contains(currentText.toLowerCase()) || authors.get(i).toLowerCase().contains(currentText.toLowerCase())) {
+                titlesToShow.add(titles.get(i));
+                authorsToShow.add(authors.get(i));
+            }
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_2, android.R.id.text1, titlesToShow) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+                text1.setText(titlesToShow.get(position));
+                text2.setText(authorsToShow.get(position));
+                return view;
+            }
+        };
+
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openChordDisplayAcivity(titlesToShow.get(position), authorsToShow.get(position), titlesToChords.get(titlesToShow.get(position)));
+            }
+        });
     }
 
-    public void reloadData(ArrayList<String> titles) {
-        //TODO
+    // Screen tapped anywhere
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            EditText searchBar = findViewById(R.id.search_bar);
+            searchBar.setCursorVisible(false);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 }

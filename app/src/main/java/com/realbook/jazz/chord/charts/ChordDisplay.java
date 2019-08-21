@@ -36,6 +36,16 @@ public class ChordDisplay extends AppCompatActivity {
     int lineTopAndBottomMargins;
     int chordFontSize;
 
+    Guideline titleBottom;
+    Guideline authorBottom;
+    Guideline[] lineTops;
+    Guideline[] lineBottoms;
+    Guideline[] verticalGuidelines;
+
+    Guideline top;
+    Guideline left;
+    Guideline right;
+
     Guideline A;
     Guideline B;
     Guideline C;
@@ -81,6 +91,17 @@ public class ChordDisplay extends AppCompatActivity {
     Guideline AQ;
     Guideline AR;
     Guideline AS;
+
+
+    int titleBottomMargin;
+    int authorBottomMargin;
+    int[] LineTopMargins;
+    Guideline[] lineBottomMargins;
+    Guideline[] verticalGuidelineMargins;
+
+    Guideline topMargin;
+    Guideline left;
+    Guideline right;
 
     int guidelineMarginA;
     int guidelineMarginB;
@@ -265,6 +286,8 @@ public class ChordDisplay extends AppCompatActivity {
         U.setGuidelineBegin(guidelineMarginU);
         V = findViewById(R.id.V);
         V.setGuidelineBegin(guidelineMarginV);
+        W = findViewById(R.id.W);
+        W.setGuidelineBegin(guidelineMarginW);
         X = findViewById(R.id.X);
         X.setGuidelineBegin(guidelineMarginX);
         Y = findViewById(R.id.Y);
@@ -313,24 +336,17 @@ public class ChordDisplay extends AppCompatActivity {
         T = findViewById(R.id.T);
         T.setGuidelineBegin(guidelineMarginT);
 
-        drawTextFromGuidelines(r, AQ, AR, AS, title, (guidelineMarginR - guidelineMarginAR), true);
-        drawTextFromGuidelines(S, AQ, r, AS, list.get(0), (guidelineMarginS - guidelineMarginR),false);
-/*
-        TextView titleDisplay = findViewById(R.id.titleDisplay);
-        titleDisplay.setText(title);
-        titleDisplay.setTextSize(17);
-        titleDisplay.setTextColor(Color.parseColor("#000000"));
+        drawText(r, AQ, AR, AS, title, (guidelineMarginR - guidelineMarginAR), true);
+        drawText(S, AQ, r, AS, list.get(0), (guidelineMarginS - guidelineMarginR),false);
 
-        TextView authorDisplay = findViewById(R.id.authorDisplay);
-        authorDisplay.setText(list.get(0));
-        authorDisplay.setTextSize(13);
-        authorDisplay.setTextColor(Color.parseColor("#000000"));
-*/
         Guideline[] lowerGuidelines = {V, X, Z, AB, AD, AF, AH, AJ, AL, AN, AP};
         Guideline[] leftGuidelines = {A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q};
+        System.out.println(guidelineMarginU);
+        System.out.println(guidelineMarginW);
+        Guideline[] upperGuidelines = {U, W, Y, AA, AC, AE, AG, AI, AK, AM, AO};
 
         for(int i = 1; i < numLines + 1; i++) {
-            drawLine(list.get(i+1), i, lowerGuidelines, leftGuidelines);
+            drawLine(list.get(i+1), i, lowerGuidelines, upperGuidelines, leftGuidelines);
         }
 
 
@@ -381,24 +397,25 @@ public class ChordDisplay extends AppCompatActivity {
         return result;
     }
 
-    public void drawBarFromGuidelines(Guideline lowerGuideline, Guideline leftGuideline) {
+    public void drawBar(Guideline lowerGuideline, Guideline upperGuideline, Guideline leftGuideline) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
 
         TextView barDisplay= new TextView(getApplicationContext());
         barDisplay.setTextSize(TypedValue.COMPLEX_UNIT_PX, lineHeight);
-        barDisplay.setText(Character.toString((char) 0xff5c));
+        barDisplay.setText("|");
         barDisplay.setTextColor(Color.parseColor("#000000"));
-        barDisplay.setBackgroundColor(Color.GREEN);
+        //barDisplay.setBackgroundColor(Color.GREEN);
 
         params.leftToRight = leftGuideline.getId();
+        params.topToBottom = upperGuideline.getId();
         params.bottomToTop = lowerGuideline.getId();
         barDisplay.setLayoutParams(params);
         constraintLayout.addView(barDisplay);
     }
 
-    public void drawTextFromGuidelines(Guideline lowerGuideline, Guideline leftGuideline, Guideline
+    public void drawText(Guideline lowerGuideline, Guideline leftGuideline, Guideline
                                    upperGuideline, Guideline rightGuideline, String text, int height,
                                        boolean bold) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
@@ -413,7 +430,7 @@ public class ChordDisplay extends AppCompatActivity {
             display.setTypeface(null, Typeface.BOLD);
         }
         display.setGravity(Gravity.CENTER);
-        display.setBackgroundColor(Color.RED);
+        //display.setBackgroundColor(Color.RED);
 
         params.leftToRight = leftGuideline.getId();
         params.rightToLeft = rightGuideline.getId();
@@ -424,17 +441,16 @@ public class ChordDisplay extends AppCompatActivity {
         constraintLayout.addView(display);
     }
 
-    public void drawBarsFromGuidelines(Guideline[] lowerGuidelines, Guideline[] leftGuidelines) {
-        if(lowerGuidelines.length != leftGuidelines.length) {
-            System.out.println("error");
-        }
-        for(int i = 0; i < lowerGuidelines.length; i++) {
-            drawBarFromGuidelines(lowerGuidelines[i], leftGuidelines[i]);
+    public void drawALineOfBars(Guideline lowerGuideline, Guideline upperGuideline,
+                                              Guideline[] leftGuidelines) {
+        for(int i = 0; i < leftGuidelines.length; i++) {
+            drawBar(lowerGuideline, upperGuideline, leftGuidelines[i]);
         }
     }
 
     //linenumbers starting at 1
-    public void drawLine(String line, int lineNumber, Guideline[] lowerBarGuidelines, Guideline[] leftGuidelines) {
+    public void drawLine(String line, int lineNumber, Guideline[] lowerBarGuidelines,
+                         Guideline[] upperBarGuidelines, Guideline[] leftGuidelines) {
         String delim = "[|]";
         String[] stringBars = line.split(delim);
         Bar[] bars = new Bar[stringBars.length];
@@ -443,30 +459,47 @@ public class ChordDisplay extends AppCompatActivity {
         }
 
         Guideline lowerGuideline = lowerBarGuidelines[lineNumber - 1];
+        Guideline upperGuideline = upperBarGuidelines[lineNumber - 1];
+
+        boolean eightBars = false;
+        if(bars.length == 8) {
+            eightBars = true;
+        }
 
         if(bars.length >= 4) {
             Guideline[] leftGuidelineArray = {leftGuidelines[0], leftGuidelines[4], leftGuidelines[8],
                     leftGuidelines[12], leftGuidelines[16]};
-            Guideline[] lowerGuidelineArray = {lowerGuideline, lowerGuideline, lowerGuideline,
-            lowerGuideline, lowerGuideline};
-            drawBarsFromGuidelines(lowerGuidelineArray, leftGuidelineArray);
+            drawALineOfBars(lowerGuideline, upperGuideline, leftGuidelineArray);
         }
 
         if(bars.length == 8) {
-            Guideline[] lowerGuidelinesArray = {lowerGuideline, lowerGuideline, lowerGuideline, lowerGuideline};
             Guideline[] leftGuidelineArray = {leftGuidelines[2], leftGuidelines[6], leftGuidelines[10],
                     leftGuidelines[14]};
-            drawBarsFromGuidelines(lowerGuidelinesArray, leftGuidelineArray);
+            drawALineOfBars(lowerGuideline, upperGuideline, leftGuidelineArray);
         }
 
         for(int i = 0; i < bars.length; i++) {
             if(bars[i].fourFour) {
-                //drawTextFromGuidelines(T, AQ, U, A, "4", (int)((guidelineMarginT - guidelineMarginU) * 0.8),
-               //         true);
-                //drawTextFromGuidelines(V, AQ, T, A, "4", (int)((guidelineMarginV - guidelineMarginT) * 0.8),
-                //        true);
-                drawTextFromGuidelines(V, AQ, U, A, "-", (int)((guidelineMarginV - guidelineMarginU) * 0.8),
-                        false);
+                drawText(T, AQ, U, A, "4", (int)((guidelineMarginT - guidelineMarginU) * 0.8),
+                        true);
+                drawText(V, AQ, T, A, "4", (int)((guidelineMarginV - guidelineMarginT) * 0.8),
+                        true);
+            }
+            if(bars[i].threeFour) {
+                drawText(T, AQ, U, A, "3", (int)((guidelineMarginT - guidelineMarginU) * 0.8),
+                        true);
+                drawText(V, AQ, T, A, "4", (int)((guidelineMarginV - guidelineMarginT) * 0.8),
+                        true);
+            }
+            if(bars[i].leftRepeat) {
+                String text = Character.toString((char) 0x1D106);
+                if(!eightBars) {
+                    if(i == 0) {
+                        drawText(V, AQ, T, A, text, (int)((guidelineMarginV - guidelineMarginT) * 0.8),
+                                true);
+                    }
+                }
+
             }
         }
     }

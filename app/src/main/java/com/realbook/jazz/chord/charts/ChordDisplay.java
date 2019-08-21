@@ -138,6 +138,7 @@ public class ChordDisplay extends AppCompatActivity {
         //getSupportActionBar().setCustomView(R.layout.chord_display_banner);
 
         String title = getIntent().getStringExtra("title");
+        String author = getIntent().getStringExtra("author");
         ArrayList<String> list = getIntent().getStringArrayListExtra("list");
 
         width = getScreenWidthInPixels();
@@ -314,7 +315,7 @@ public class ChordDisplay extends AppCompatActivity {
         T.setGuidelineBegin(guidelineMarginT);
 
         drawTextFromGuidelines(r, AQ, AR, AS, title, (guidelineMarginR - guidelineMarginAR), true);
-        drawTextFromGuidelines(S, AQ, r, AS, list.get(0), (guidelineMarginS - guidelineMarginR),false);
+        drawTextFromGuidelines(S, AQ, r, AS, author, (guidelineMarginS - guidelineMarginR),false);
 /*
         TextView titleDisplay = findViewById(R.id.titleDisplay);
         titleDisplay.setText(title);

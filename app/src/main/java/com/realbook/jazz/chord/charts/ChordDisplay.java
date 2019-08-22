@@ -1,5 +1,7 @@
 package com.realbook.jazz.chord.charts;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Color;
@@ -13,9 +15,12 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
@@ -24,6 +29,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ChordDisplay extends AppCompatActivity {
+
+    int clickCount = 0;
 
     int width;
     int height;
@@ -350,6 +357,25 @@ public class ChordDisplay extends AppCompatActivity {
             drawLine(list.get(i+1), i, lowerGuidelines, upperGuidelines, leftGuidelines);
         }
 
+        Button backBtn = (Button) findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (clickCount > 1) { // user needs to have already clicked twice for button to work. Once to show buttons, and once for the actual click
+                    finish();
+                }
+            }
+        });
+
+        Button transposeBtn = (Button) findViewById(R.id.transposeBtn);
+        transposeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (clickCount > 1) {
+                    //TODO
+                }
+            }
+        });
 
     }
 
@@ -503,6 +529,64 @@ public class ChordDisplay extends AppCompatActivity {
 
             }
         }
+    }
+
+    // Screen tapped anywhere
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+
+        // called before OnClickListeners
+
+        final LinearLayout topView = findViewById(R.id.topView);
+        float density = getResources().getDisplayMetrics().density;
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int screenHeight = (int) (displayMetrics.heightPixels / density); // screenheight in dp
+
+        int clickDistanceFromBottom = (int) (screenHeight - (ev.getRawY() / density)); // distance in dp
+        float heightOfView = topView.getHeight() / density;
+
+
+
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+
+            if (topView.getVisibility() == View.VISIBLE && clickDistanceFromBottom > heightOfView) {
+                clickCount = 0;
+                topView.animate().translationY(topView.getHeight()).setDuration(300)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        topView.setVisibility(View.INVISIBLE);
+                    }
+                });
+            } else {
+                topView.bringToFront();
+                clickCount += 1;
+
+                if (topView.getVisibility() == View.INVISIBLE) {
+
+                    topView.animate().translationY(topView.getHeight()).setDuration(0)
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    super.onAnimationEnd(animation);
+                                    topView.setVisibility(View.VISIBLE);
+
+                                    topView.animate().translationY(0).setDuration(300)
+                                            .setListener(new AnimatorListenerAdapter() {
+                                                @Override
+                                                public void onAnimationEnd(Animator animation) {
+                                                    super.onAnimationEnd(animation);
+                                                }
+                                            });
+                                }
+                            });
+                }
+            }
+        }
+
+        return super.dispatchTouchEvent(ev);
     }
 
 

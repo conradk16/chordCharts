@@ -1,6 +1,7 @@
 package com.realbook.jazz.chord.charts;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,8 @@ import java.io.InputStreamReader;
 import java.sql.Array;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -71,12 +75,16 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(e);
         }
 
+        Collections.sort(titles, new AlphabeticalComparator());
+
         for (String t : titles) {
             authors.add(titlesToChords.get(t).get(0));
         }
 
 
         final EditText searchBar = (EditText) findViewById(R.id.search_bar);
+        searchBar.setSingleLine();
+
 
         searchBar.addTextChangedListener(new TextWatcher() {
 
@@ -102,6 +110,22 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        searchBar.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    hideKeyboard(MainActivity.this);
+                    searchBar.setCursorVisible(false);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        reloadData();
 
 
     }
@@ -163,5 +187,16 @@ public class MainActivity extends AppCompatActivity {
             searchBar.setCursorVisible(false);
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

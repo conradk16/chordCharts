@@ -17,6 +17,7 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -331,26 +332,8 @@ public class ChordDisplay extends AppCompatActivity {
         for(int i = 1; i < numLines + 1; i++) {
             drawLine(list.get(i+1), i);
         }
-        
-        Button backBtn = (Button) findViewById(R.id.backBtn);
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clickCount > 1) { // user needs to have already clicked twice for button to work. Once to show buttons, and once for the actual click
-                    finish();
-                }
-            }
-        });
 
-        Button transposeBtn = (Button) findViewById(R.id.transposeBtn);
-        transposeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clickCount > 1) {
-                    //TODO
-                }
-            }
-        });
+        setupSideView();
     }
 
     private static int getPixelsFromDP(int dp, Context applicationContext) {
@@ -511,43 +494,46 @@ public class ChordDisplay extends AppCompatActivity {
 
         // called before OnClickListeners
 
-        final LinearLayout topView = findViewById(R.id.topView);
+        final LinearLayout sideView = findViewById(R.id.sideView);
         float density = getResources().getDisplayMetrics().density;
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenHeight = (int) (displayMetrics.heightPixels / density); // screenheight in dp
 
-        int clickDistanceFromBottom = (int) (screenHeight - (ev.getRawY() / density)); // distance in dp
-        float heightOfView = topView.getHeight() / density;
+        int clickDistanceFromLeft = (int) (ev.getRawX() / density); // distance in dp
+        float widthOfView = sideView.getWidth() / density;
+
+        System.out.println("CLICK DISTANVE");
+        System.out.println(clickDistanceFromLeft);
 
 
 
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
 
-            if (topView.getVisibility() == View.VISIBLE && clickDistanceFromBottom > heightOfView) {
+            if (sideView.getVisibility() == View.VISIBLE && clickDistanceFromLeft > widthOfView) {
                 clickCount = 0;
-                topView.animate().translationY(topView.getHeight()).setDuration(300)
+                sideView.animate().translationX(-sideView.getWidth()).setDuration(300) // animate left to hide
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
-                        topView.setVisibility(View.INVISIBLE);
+                        sideView.setVisibility(View.INVISIBLE);
                     }
                 });
             } else {
-                topView.bringToFront();
+                sideView.bringToFront();
                 clickCount += 1;
 
-                if (topView.getVisibility() == View.INVISIBLE) {
+                if (sideView.getVisibility() == View.INVISIBLE) {
 
-                    topView.animate().translationY(topView.getHeight()).setDuration(0)
+                    sideView.animate().translationX(-sideView.getWidth()).setDuration(0) // first animate left instantly, then animate back out visibly
                             .setListener(new AnimatorListenerAdapter() {
                                 @Override
                                 public void onAnimationEnd(Animator animation) {
                                     super.onAnimationEnd(animation);
-                                    topView.setVisibility(View.VISIBLE);
+                                    sideView.setVisibility(View.VISIBLE);
 
-                                    topView.animate().translationY(0).setDuration(300)
+                                    sideView.animate().translationX(0).setDuration(300)
                                             .setListener(new AnimatorListenerAdapter() {
                                                 @Override
                                                 public void onAnimationEnd(Animator animation) {
@@ -561,6 +547,86 @@ public class ChordDisplay extends AppCompatActivity {
         }
 
         return super.dispatchTouchEvent(ev);
+    }
+
+    public void setupSideView() {
+        Button backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (clickCount > 1) { // user needs to have already clicked twice for button to work. Once to show buttons, and once for the actual click
+                    finish();
+                }
+            }
+        });
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int screenHeight = displayMetrics.heightPixels - getStatusBarHeight(); // screenheight in pixels
+        int constraintMarginsHeight = 112; // in pixels
+
+        int heightOfButtons = (screenHeight - constraintMarginsHeight) / 13;
+
+        String text;
+
+        Button CButton = findViewById(R.id.CButton);
+        Button DFlat = findViewById(R.id.DFlatButton);
+        text = "D" + (char) 0x266D;
+        DFlat.setText(text);
+        Button DButton = findViewById(R.id.DButton);
+        Button EFlatButton = findViewById(R.id.EFlatButton);
+        text = "E" + (char) 0x266D;
+        EFlatButton.setText(text);
+        Button EButton = findViewById(R.id.EButton);
+        Button FButton = findViewById(R.id.FButton);
+        Button FSharpButton =findViewById(R.id.FSharpButton);
+        text = "F" + (char) 0x266F;
+        FSharpButton.setText(text);
+        Button GButton = findViewById(R.id.GButton);
+        Button AFlatButton = findViewById(R.id.AFlatButton);
+        text = "A" + (char) 0x266D;
+        AFlatButton.setText(text);
+        Button AButton = findViewById(R.id.AButton);
+        Button BFlatButton = findViewById(R.id.BFlatButton);
+        text = "B" + (char) 0x266F;
+        BFlatButton.setText(text);
+        Button BButton = findViewById(R.id.BButton);
+
+        ArrayList<Button> sideViewButtons = new ArrayList<>();
+        sideViewButtons.add(backBtn);
+        sideViewButtons.add(CButton);
+        sideViewButtons.add(DFlat);
+        sideViewButtons.add(EFlatButton);
+        sideViewButtons.add(DButton);
+        sideViewButtons.add(EFlatButton);
+        sideViewButtons.add(EButton);
+        sideViewButtons.add(FButton);
+        sideViewButtons.add(FSharpButton);
+        sideViewButtons.add(GButton);
+        sideViewButtons.add(AFlatButton);
+        sideViewButtons.add(AButton);
+        sideViewButtons.add(BFlatButton);
+        sideViewButtons.add(BButton);
+
+        for (Button b : sideViewButtons) {
+            int top;
+            int bottom;
+            if (b.equals(R.id.backBtn)) {
+                top = 8;
+            } else {
+                top = 4;
+            }
+            if (b.equals(R.id.BButton)) {
+                bottom = 8;
+            } else {
+                bottom = 4;
+            }
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, heightOfButtons);
+            params.setMargins(8, top, 8, bottom);
+            b.setLayoutParams(params);
+        }
+
+
     }
 
 

@@ -38,13 +38,11 @@ public class ChordDisplay extends AppCompatActivity {
     int height;
     String defaultMusicalKey;
     String currentMusicalKey;
-    int titleAndAuthorHeight;
-    int leftMarginSize;
-    int rightMarginSize;
+    String title;
+    String author;
     int numLines;
     int lineHeight;
-    int lineTopAndBottomMargins;
-    int chordFontSize;
+    ArrayList<String> list;
 
     Guideline A;
     Guideline B;
@@ -154,9 +152,9 @@ public class ChordDisplay extends AppCompatActivity {
         //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //getSupportActionBar().setCustomView(R.layout.chord_display_banner);
 
-        String title = getIntent().getStringExtra("title");
-        String author = getIntent().getStringExtra("author");
-        ArrayList<String> list = getIntent().getStringArrayListExtra("list");
+        title = getIntent().getStringExtra("title");
+        author = getIntent().getStringExtra("author");
+        list = getIntent().getStringArrayListExtra("list");
 
         width = getScreenWidthInPixels();
         height = getScreenHeightInPixels() - getStatusBarHeight();
@@ -164,6 +162,13 @@ public class ChordDisplay extends AppCompatActivity {
         defaultMusicalKey = list.get(1);
         currentMusicalKey = list.get(1);
 
+        setGuidelines();
+        loadChords();
+
+        setupSideView();
+    }
+
+    public void setGuidelines() {
         guidelineMarginA = (int) width * 3 / 64;
         guidelineMarginB = guidelineMarginA + (int) ((double)width * 3.7 / 64);
         guidelineMarginC = guidelineMarginA + (int) ((double)width * 3.7 / 64 * 2);
@@ -331,7 +336,9 @@ public class ChordDisplay extends AppCompatActivity {
         lineTops = new Guideline[]{U, W, Y, AA, AC, AE, AG, AI, AK, AM, AO};
         lineBottoms = new  Guideline[]{V, X, Z, AB, AD, AF, AH, AJ, AL, AN, AP};
         verticalGuidelines = new Guideline[]{A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q};
+    }
 
+    public void loadChords() {
         drawText(titleBottom, Left, Top, Right,
                 title, guidelineMarginTitleBottom, true,
                 0,0,0,0);
@@ -342,8 +349,6 @@ public class ChordDisplay extends AppCompatActivity {
         for(int i = 1; i < numLines + 1; i++) {
             drawLine(list.get(i+1), i);
         }
-
-        setupSideView();
     }
 
     private static int getPixelsFromDP(int dp, Context applicationContext) {
@@ -675,37 +680,3 @@ public class ChordDisplay extends AppCompatActivity {
 
 
 }
-
-/*
-        lineHeight = (height - titleAndAuthorHeight) / numLines * 2 / 3;
-        lineTopAndBottomMargins = lineHeight / 4;
-        chordFontSize = lineHeight * 2 / 3;
-        LinearLayout verticalBarLayout = findViewById(R.id.verticalBarLayout);
-        LinearLayout.LayoutParams verticalParams = new LinearLayout.LayoutParams(
-                LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        verticalParams.setMargins(getPixelsFromDP(leftMarginSize, getApplicationContext()),
-                getPixelsFromDP(lineTopAndBottomMargins,getApplicationContext()), 0,
-                getPixelsFromDP(lineTopAndBottomMargins, getApplicationContext()));
-        LinearLayout[] horizontalBarLayouts = new LinearLayout[numLines];
-        for (int i = 0; i < numLines; i++) {
-            String delim = "[|]";
-            String[] stringBars = list.get(i + 2).split(delim);
-            Bar[] bars = new Bar[stringBars.length];
-            for (int j = 0; j < bars.length; j++) {
-                bars[j] = new Bar(stringBars[j]);
-            }
-            int barWidth = (width - (leftMarginSize + rightMarginSize)) / bars.length;
-            horizontalBarLayouts[i] = new LinearLayout(getApplicationContext());
-            LinearLayout.LayoutParams horizontalParams = new LinearLayout.LayoutParams(
-                    LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            horizontalParams.setMargins(0, 0, getPixelsFromDP(barWidth, getApplicationContext()), 0);
-            TextView[] barDisplays = new TextView[bars.length];
-            for (int j = 0; j < bars.length; j++) {
-                barDisplays[j] = new TextView(getApplicationContext());
-                barDisplays[j].setTextSize(TypedValue.COMPLEX_UNIT_PX, lineHeight);
-                barDisplays[j].setText("|");
-                barDisplays[j].setTextColor(Color.parseColor("#000000"));
-                horizontalBarLayouts[i].addView(barDisplays[j], horizontalParams);
-            }
-            verticalBarLayout.addView(horizontalBarLayouts[i], verticalParams);
-        }*/

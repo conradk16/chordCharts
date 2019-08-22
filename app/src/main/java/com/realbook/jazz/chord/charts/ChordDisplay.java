@@ -36,16 +36,6 @@ public class ChordDisplay extends AppCompatActivity {
     int lineTopAndBottomMargins;
     int chordFontSize;
 
-    Guideline titleBottom;
-    Guideline authorBottom;
-    Guideline[] lineTops;
-    Guideline[] lineBottoms;
-    Guideline[] verticalGuidelines;
-
-    Guideline top;
-    Guideline left;
-    Guideline right;
-
     Guideline A;
     Guideline B;
     Guideline C;
@@ -63,8 +53,8 @@ public class ChordDisplay extends AppCompatActivity {
     Guideline O;
     Guideline P;
     Guideline Q;
-    Guideline r;
-    Guideline S;
+    Guideline titleBottom;
+    Guideline authorBottom;
     Guideline T;
     Guideline U;
     Guideline V;
@@ -88,20 +78,13 @@ public class ChordDisplay extends AppCompatActivity {
     Guideline AN;
     Guideline AO;
     Guideline AP;
-    Guideline AQ;
-    Guideline AR;
-    Guideline AS;
+    Guideline Left;
+    Guideline Top;
+    Guideline Right;
 
-
-    int titleBottomMargin;
-    int authorBottomMargin;
-    int[] LineTopMargins;
-    Guideline[] lineBottomMargins;
-    Guideline[] verticalGuidelineMargins;
-
-    Guideline topMargin;
-    Guideline leftMargin;
-    Guideline rightMargin;
+    Guideline[] lineTops;
+    Guideline[] lineBottoms;
+    Guideline[] verticalGuidelines;
 
     int guidelineMarginA;
     int guidelineMarginB;
@@ -120,8 +103,8 @@ public class ChordDisplay extends AppCompatActivity {
     int guidelineMarginO;
     int guidelineMarginP;
     int guidelineMarginQ;
-    int guidelineMarginR;
-    int guidelineMarginS;
+    int guidelineMarginTitleBottom;
+    int guidelineMarginAuthorBottom;
     int guidelineMarginT;
     int guidelineMarginU;
     int guidelineMarginV;
@@ -145,10 +128,20 @@ public class ChordDisplay extends AppCompatActivity {
     int guidelineMarginAN;
     int guidelineMarginAO;
     int guidelineMarginAP;
-    int guidelineMarginAQ;
-    int guidelineMarginAR;
-    int guidelineMarginAS;
+    int guidelineMarginLeft;
+    int guidelineMarginTop;
+    int guidelineMarginRight;
 
+    int[] lineTopMargins = {guidelineMarginU, guidelineMarginW, guidelineMarginY, guidelineMarginAA,
+            guidelineMarginAC, guidelineMarginAE, guidelineMarginAG, guidelineMarginAI,
+            guidelineMarginAK, guidelineMarginAM, guidelineMarginAO};
+    int[] lineBottomMargins = {guidelineMarginV, guidelineMarginX, guidelineMarginZ, guidelineMarginAB,
+            guidelineMarginAD, guidelineMarginAF, guidelineMarginAH, guidelineMarginAJ,
+            guidelineMarginAL, guidelineMarginAN, guidelineMarginAP};
+    int[] verticalGuidelineMargins = {guidelineMarginA, guidelineMarginB, guidelineMarginC,
+            guidelineMarginD, guidelineMarginE, guidelineMarginF, guidelineMarginG, guidelineMarginH,
+            guidelineMarginI, guidelineMarginJ, guidelineMarginK, guidelineMarginL, guidelineMarginM,
+            guidelineMarginN, guidelineMarginO,guidelineMarginP, guidelineMarginQ};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,10 +159,6 @@ public class ChordDisplay extends AppCompatActivity {
         height = getScreenHeightInPixels() - getStatusBarHeight();
         numLines = list.size() - 2;
         musicalKey = list.get(1);
-
-        guidelineMarginAQ = 0;
-        guidelineMarginAR = 0;
-        guidelineMarginAS = width;
 
         guidelineMarginA = (int) width * 3 / 64;
         guidelineMarginB = guidelineMarginA + (int) ((double)width * 3.7 / 64);
@@ -189,57 +178,44 @@ public class ChordDisplay extends AppCompatActivity {
         guidelineMarginP = guidelineMarginA + (int) ((double)width * 3.7 / 64 * 15);
         guidelineMarginQ = guidelineMarginA + (int) ((double)width * 3.7 / 64 * 16);
 
-        guidelineMarginR = (int) width * 4 / 64;
-        guidelineMarginS = (int) width * 7 / 64;
+        guidelineMarginLeft = 0;
+        guidelineMarginTop = 0;
+        guidelineMarginRight = width;
+
+        guidelineMarginTitleBottom = width * 4 / 64;
+        guidelineMarginAuthorBottom = width * 7 / 64;
 
         if(numLines <= 6) {
-            lineHeight = (int) width * 8 / 64;
-            guidelineMarginU = (int) width * 9 / 64;
-
-            guidelineMarginW = guidelineMarginU + (int) (width * 12 / 64);
-            guidelineMarginY = guidelineMarginU + (int) (width * 12 / 64 * 2);
-            guidelineMarginAA = guidelineMarginU + (int) (width * 12 / 64 * 3);
-            guidelineMarginAC = guidelineMarginU + (int) (width * 12 / 64 * 4);
-            guidelineMarginAE = guidelineMarginU + (int) (width * 12 / 64 * 5);
-
-            guidelineMarginV = guidelineMarginU + (int) (width * 8 / 64);
-
-            guidelineMarginX = guidelineMarginV + (int) (width * 12 / 64);
-            guidelineMarginZ = guidelineMarginV + (int) (width * 12 / 64 * 2);
-            guidelineMarginAB = guidelineMarginV + (int) (width * 12 / 64 * 3);
-            guidelineMarginAD = guidelineMarginV + (int) (width * 12 / 64 * 4);
-            guidelineMarginAF = guidelineMarginV + (int) (width * 12 / 64 * 5);
+            lineHeight = width * 8 / 64;
         }
-
         else {
-            lineHeight = (int) ((height - guidelineMarginS) / numLines * 2 / 3);
-            guidelineMarginU = guidelineMarginS + (int) (lineHeight / 4);
-
-            guidelineMarginW = guidelineMarginU + (int) (lineHeight * 3 / 2);
-            guidelineMarginY = guidelineMarginU + (int) (lineHeight * 3 / 2 * 2);
-            guidelineMarginAA = guidelineMarginU + (int) (lineHeight * 3 / 2 * 3);
-            guidelineMarginAC = guidelineMarginU + (int) (lineHeight * 3 / 2 * 4);
-            guidelineMarginAE = guidelineMarginU + (int) (lineHeight * 3 / 2 * 5);
-            guidelineMarginAG = guidelineMarginU + (int) (lineHeight * 3 / 2 * 6);
-            guidelineMarginAI = guidelineMarginU + (int) (lineHeight * 3 / 2 * 7);
-            guidelineMarginAK = guidelineMarginU + (int) (lineHeight * 3 / 2 * 8);
-            guidelineMarginAM = guidelineMarginU + (int) (lineHeight * 3 / 2 * 9);
-            guidelineMarginAO = guidelineMarginU + (int) (lineHeight * 3 / 2 * 10);
-
-            guidelineMarginV = guidelineMarginU + lineHeight;
-
-            guidelineMarginX = guidelineMarginV + (int) (lineHeight * 3 / 2);
-            guidelineMarginZ = guidelineMarginV + (int) (lineHeight * 3 / 2 * 2);
-            guidelineMarginAB = guidelineMarginV + (int) (lineHeight * 3 / 2 * 3);
-            guidelineMarginAD = guidelineMarginV + (int) (lineHeight * 3 / 2 * 4);
-            guidelineMarginAF = guidelineMarginV + (int) (lineHeight * 3 / 2 * 5);
-            guidelineMarginAH = guidelineMarginV + (int) (lineHeight * 3 / 2 * 6);
-            guidelineMarginAJ = guidelineMarginV + (int) (lineHeight * 3 / 2 * 7);
-            guidelineMarginAL = guidelineMarginV + (int) (lineHeight * 3 / 2 * 8);
-            guidelineMarginAN = guidelineMarginV + (int) (lineHeight * 3 / 2 * 9);
-            guidelineMarginAP = guidelineMarginV + (int) (lineHeight * 3 / 2 * 10);
-
+            lineHeight = (int) ((height - guidelineMarginAuthorBottom) / numLines * 2 / 3);
         }
+        guidelineMarginU = guidelineMarginAuthorBottom + lineHeight / 4;
+
+        guidelineMarginW = guidelineMarginU + (int) (lineHeight * 3 / 2);
+        guidelineMarginY = guidelineMarginU + (int) (lineHeight * 3 / 2 * 2);
+        guidelineMarginAA = guidelineMarginU + (int) (lineHeight * 3 / 2 * 3);
+        guidelineMarginAC = guidelineMarginU + (int) (lineHeight * 3 / 2 * 4);
+        guidelineMarginAE = guidelineMarginU + (int) (lineHeight * 3 / 2 * 5);
+        guidelineMarginAG = guidelineMarginU + (int) (lineHeight * 3 / 2 * 6);
+        guidelineMarginAI = guidelineMarginU + (int) (lineHeight * 3 / 2 * 7);
+        guidelineMarginAK = guidelineMarginU + (int) (lineHeight * 3 / 2 * 8);
+        guidelineMarginAM = guidelineMarginU + (int) (lineHeight * 3 / 2 * 9);
+        guidelineMarginAO = guidelineMarginU + (int) (lineHeight * 3 / 2 * 10);
+
+        guidelineMarginV = guidelineMarginU + lineHeight;
+
+        guidelineMarginX = guidelineMarginV + (int) (lineHeight * 3 / 2);
+        guidelineMarginZ = guidelineMarginV + (int) (lineHeight * 3 / 2 * 2);
+        guidelineMarginAB = guidelineMarginV + (int) (lineHeight * 3 / 2 * 3);
+        guidelineMarginAD = guidelineMarginV + (int) (lineHeight * 3 / 2 * 4);
+        guidelineMarginAF = guidelineMarginV + (int) (lineHeight * 3 / 2 * 5);
+        guidelineMarginAH = guidelineMarginV + (int) (lineHeight * 3 / 2 * 6);
+        guidelineMarginAJ = guidelineMarginV + (int) (lineHeight * 3 / 2 * 7);
+        guidelineMarginAL = guidelineMarginV + (int) (lineHeight * 3 / 2 * 8);
+        guidelineMarginAN = guidelineMarginV + (int) (lineHeight * 3 / 2 * 9);
+        guidelineMarginAP = guidelineMarginV + (int) (lineHeight * 3 / 2 * 10);
 
         guidelineMarginT = (int) ((guidelineMarginU + guidelineMarginV) / 2);
 
@@ -278,10 +254,10 @@ public class ChordDisplay extends AppCompatActivity {
         Q = findViewById(R.id.Q);
         Q.setGuidelineBegin(guidelineMarginQ);
 
-        r = findViewById(R.id.R);
-        r.setGuidelineBegin(guidelineMarginR);
-        S = findViewById(R.id.S);
-        S.setGuidelineBegin(guidelineMarginS);
+        titleBottom = findViewById(R.id.titleBottom);
+        titleBottom.setGuidelineBegin(guidelineMarginTitleBottom);
+        authorBottom = findViewById(R.id.authorBottom);
+        authorBottom.setGuidelineBegin(guidelineMarginAuthorBottom);
 
         U = findViewById(R.id.U);
         U.setGuidelineBegin(guidelineMarginU);
@@ -327,29 +303,27 @@ public class ChordDisplay extends AppCompatActivity {
         AO.setGuidelineBegin(guidelineMarginAO);
         AP = findViewById(R.id.AP);
         AP.setGuidelineBegin(guidelineMarginAP);
-        AQ = findViewById(R.id.AQ);
-        AQ.setGuidelineBegin(guidelineMarginAQ);
-        AR = findViewById(R.id.AR);
-        AR.setGuidelineBegin(guidelineMarginAR);
-        AS = findViewById(R.id.AS);
-        AS.setGuidelineBegin(guidelineMarginAS);
+        Left = findViewById(R.id.Left);
+        Left.setGuidelineBegin(guidelineMarginLeft);
+        Top = findViewById(R.id.Top);
+        Top.setGuidelineBegin(guidelineMarginTop);
+        Right = findViewById(R.id.Right);
+        Right.setGuidelineBegin(guidelineMarginRight);
 
         T = findViewById(R.id.T);
         T.setGuidelineBegin(guidelineMarginT);
 
-        drawText(r, AQ, AR, AS, title, (guidelineMarginR - guidelineMarginAR), true);
-        drawText(S, AQ, r, AS, author, (guidelineMarginS - guidelineMarginR),false);
+        lineTops = new Guideline[]{U, W, Y, AA, AC, AE, AG, AI, AK, AM, AO};
+        lineBottoms = new  Guideline[]{V, X, Z, AB, AD, AF, AH, AJ, AL, AN, AP};
+        verticalGuidelines = new Guideline[]{A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q};
 
-        Guideline[] lowerGuidelines = {V, X, Z, AB, AD, AF, AH, AJ, AL, AN, AP};
-        Guideline[] leftGuidelines = {A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q};
-        System.out.println(guidelineMarginU);
-        System.out.println(guidelineMarginW);
-        Guideline[] upperGuidelines = {U, W, Y, AA, AC, AE, AG, AI, AK, AM, AO};
+        drawText(titleBottom, Left, Top, Right, title, guidelineMarginTitleBottom, true);
+        drawText(authorBottom, Left, titleBottom, Right, author,
+                (guidelineMarginAuthorBottom - guidelineMarginTitleBottom), false);
 
         for(int i = 1; i < numLines + 1; i++) {
-            drawLine(list.get(i+1), i, lowerGuidelines, upperGuidelines, leftGuidelines);
+            drawLine(list.get(i+1), i);
         }
-
 
     }
 
@@ -417,8 +391,8 @@ public class ChordDisplay extends AppCompatActivity {
     }
 
     public void drawText(Guideline lowerGuideline, Guideline leftGuideline, Guideline
-                                   upperGuideline, Guideline rightGuideline, String text, int height,
-                                       boolean bold) {
+            upperGuideline, Guideline rightGuideline, String text, int height,
+                         boolean bold) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
@@ -443,15 +417,14 @@ public class ChordDisplay extends AppCompatActivity {
     }
 
     public void drawALineOfBars(Guideline lowerGuideline, Guideline upperGuideline,
-                                              Guideline[] leftGuidelines) {
+                                Guideline[] leftGuidelines) {
         for(int i = 0; i < leftGuidelines.length; i++) {
             drawBar(lowerGuideline, upperGuideline, leftGuidelines[i]);
         }
     }
 
     //linenumbers starting at 1
-    public void drawLine(String line, int lineNumber, Guideline[] lowerBarGuidelines,
-                         Guideline[] upperBarGuidelines, Guideline[] leftGuidelines) {
+    public void drawLine(String line, int lineNumber) {
         String delim = "[|]";
         String[] stringBars = line.split(delim);
         Bar[] bars = new Bar[stringBars.length];
@@ -459,8 +432,8 @@ public class ChordDisplay extends AppCompatActivity {
             bars[j] = new Bar(stringBars[j]);
         }
 
-        Guideline lowerGuideline = lowerBarGuidelines[lineNumber - 1];
-        Guideline upperGuideline = upperBarGuidelines[lineNumber - 1];
+        Guideline lowerGuideline = lineBottoms[lineNumber - 1];
+        Guideline upperGuideline = lineTops[lineNumber - 1];
 
         boolean eightBars = false;
         if(bars.length == 8) {
@@ -468,40 +441,41 @@ public class ChordDisplay extends AppCompatActivity {
         }
 
         if(bars.length >= 4) {
-            Guideline[] leftGuidelineArray = {leftGuidelines[0], leftGuidelines[4], leftGuidelines[8],
-                    leftGuidelines[12], leftGuidelines[16]};
+            Guideline[] leftGuidelineArray = {verticalGuidelines[0], verticalGuidelines[4],
+                    verticalGuidelines[8], verticalGuidelines[12], verticalGuidelines[16]};
             drawALineOfBars(lowerGuideline, upperGuideline, leftGuidelineArray);
         }
 
         if(bars.length == 8) {
-            Guideline[] leftGuidelineArray = {leftGuidelines[2], leftGuidelines[6], leftGuidelines[10],
-                    leftGuidelines[14]};
+            Guideline[] leftGuidelineArray = {verticalGuidelines[2], verticalGuidelines[6],
+                    verticalGuidelines[10], verticalGuidelines[14]};
             drawALineOfBars(lowerGuideline, upperGuideline, leftGuidelineArray);
         }
 
         for(int i = 0; i < bars.length; i++) {
             if(bars[i].fourFour) {
-                drawText(T, AQ, U, A, "4", (int)((guidelineMarginT - guidelineMarginU) * 0.8),
+                drawText(T, Left, U, A, "4", (int)((guidelineMarginT - guidelineMarginU) * 0.8),
                         true);
-                drawText(V, AQ, T, A, "4", (int)((guidelineMarginV - guidelineMarginT) * 0.8),
+                drawText(V, Left, T, A, "4", (int)((guidelineMarginV - guidelineMarginT) * 0.8),
                         true);
             }
             if(bars[i].threeFour) {
-                drawText(T, AQ, U, A, "3", (int)((guidelineMarginT - guidelineMarginU) * 0.8),
+                drawText(T, Left, U, A, "3", (int)((guidelineMarginT - guidelineMarginU) * 0.8),
                         true);
-                drawText(V, AQ, T, A, "4", (int)((guidelineMarginV - guidelineMarginT) * 0.8),
+                drawText(V, Left, T, A, "4", (int)((guidelineMarginV - guidelineMarginT) * 0.8),
                         true);
             }
-            if(bars[i].leftRepeat) {
-                String text = Character.toString((char) 0x1D106);
+            /*if(bars[i].leftRepeat) {
+                String text = "\u1D103";
+                System.out.println(text);
                 if(!eightBars) {
                     if(i == 0) {
-                        drawText(V, AQ, T, A, text, (int)((guidelineMarginV - guidelineMarginT) * 0.8),
+                        drawText(V, Left, T, A, text, (int)((guidelineMarginV - guidelineMarginT) * 0.8),
                                 true);
                     }
                 }
 
-            }
+            }*/
         }
     }
 
@@ -512,14 +486,12 @@ public class ChordDisplay extends AppCompatActivity {
         lineHeight = (height - titleAndAuthorHeight) / numLines * 2 / 3;
         lineTopAndBottomMargins = lineHeight / 4;
         chordFontSize = lineHeight * 2 / 3;
-
         LinearLayout verticalBarLayout = findViewById(R.id.verticalBarLayout);
         LinearLayout.LayoutParams verticalParams = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         verticalParams.setMargins(getPixelsFromDP(leftMarginSize, getApplicationContext()),
                 getPixelsFromDP(lineTopAndBottomMargins,getApplicationContext()), 0,
                 getPixelsFromDP(lineTopAndBottomMargins, getApplicationContext()));
-
         LinearLayout[] horizontalBarLayouts = new LinearLayout[numLines];
         for (int i = 0; i < numLines; i++) {
             String delim = "[|]";
@@ -530,11 +502,9 @@ public class ChordDisplay extends AppCompatActivity {
             }
             int barWidth = (width - (leftMarginSize + rightMarginSize)) / bars.length;
             horizontalBarLayouts[i] = new LinearLayout(getApplicationContext());
-
             LinearLayout.LayoutParams horizontalParams = new LinearLayout.LayoutParams(
                     LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             horizontalParams.setMargins(0, 0, getPixelsFromDP(barWidth, getApplicationContext()), 0);
-
             TextView[] barDisplays = new TextView[bars.length];
             for (int j = 0; j < bars.length; j++) {
                 barDisplays[j] = new TextView(getApplicationContext());

@@ -129,14 +129,14 @@
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/R"
+        android:id="@+id/titleBottom"
         app:layout_constraintGuide_begin="100dp"
         android:orientation="horizontal"/>
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/S"
+        android:id="@+id/authorBottom"
         app:layout_constraintGuide_begin="100dp"
         android:orientation="horizontal"/>
 
@@ -304,21 +304,21 @@
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/AQ"
+        android:id="@+id/Left"
         app:layout_constraintGuide_begin="100dp"
         android:orientation="vertical"/>
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/AR"
+        android:id="@+id/Top"
         app:layout_constraintGuide_begin="100dp"
         android:orientation="horizontal"/>
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/AS"
+        android:id="@+id/Right"
         app:layout_constraintGuide_begin="100dp"
         android:orientation="vertical"/>
 

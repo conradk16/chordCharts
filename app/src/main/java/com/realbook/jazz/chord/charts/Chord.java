@@ -12,8 +12,8 @@ public class Chord {
     public String overNote = null;
     public int locationInBar; //quarters are 0,1,2,3; halfs are 4,5; wholes are 6, -1 is a substitute
 
-    public Chord(int locationInBar, String chord) {
-        locationInBar = locationInBar;
+    public Chord(int locationInBarArg, String chord) {
+        locationInBar = locationInBarArg;
         String delims = "[()&]";
         String[] parts = chord.split(delims);
         int[] keyAndType = getKeyAndType(parts[0]);

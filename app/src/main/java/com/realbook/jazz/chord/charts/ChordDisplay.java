@@ -28,6 +28,8 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,6 +70,16 @@ public class ChordDisplay extends AppCompatActivity {
     Guideline titleBottom;
     Guideline authorBottom;
     Guideline T;
+    Guideline T2;
+    Guideline T3;
+    Guideline T4;
+    Guideline T5;
+    Guideline T6;
+    Guideline T7;
+    Guideline T8;
+    Guideline T9;
+    Guideline T10;
+    Guideline T11;
     Guideline U;
     Guideline V;
     Guideline W;
@@ -96,6 +108,7 @@ public class ChordDisplay extends AppCompatActivity {
 
     Guideline[] lineTops;
     Guideline[] lineBottoms;
+    Guideline[] lineCenters;
     Guideline[] verticalGuidelines;
 
     int guidelineMarginA;
@@ -118,6 +131,16 @@ public class ChordDisplay extends AppCompatActivity {
     int guidelineMarginTitleBottom;
     int guidelineMarginAuthorBottom;
     int guidelineMarginT;
+    int guidelineMarginT2;
+    int guidelineMarginT3;
+    int guidelineMarginT4;
+    int guidelineMarginT5;
+    int guidelineMarginT6;
+    int guidelineMarginT7;
+    int guidelineMarginT8;
+    int guidelineMarginT9;
+    int guidelineMarginT10;
+    int guidelineMarginT11;
     int guidelineMarginU;
     int guidelineMarginV;
     int guidelineMarginW;
@@ -146,6 +169,7 @@ public class ChordDisplay extends AppCompatActivity {
 
     int[] lineTopMargins;
     int[] lineBottomMargins;
+    int[] lineCenterMargins;
     int[] verticalGuidelineMargins;
 
     @Override
@@ -236,6 +260,16 @@ public class ChordDisplay extends AppCompatActivity {
         guidelineMarginAP = guidelineMarginV + (int) (lineHeight * 3 / 2 * 10);
 
         guidelineMarginT = (int) ((guidelineMarginU + guidelineMarginV) / 2);
+        guidelineMarginT2 = (int) ((guidelineMarginW + guidelineMarginX) / 2);
+        guidelineMarginT3 = (int) ((guidelineMarginY + guidelineMarginZ) / 2);
+        guidelineMarginT4 = (int) ((guidelineMarginAA + guidelineMarginAB) / 2);
+        guidelineMarginT5 = (int) ((guidelineMarginAC + guidelineMarginAD) / 2);
+        guidelineMarginT6 = (int) ((guidelineMarginAE + guidelineMarginAF) / 2);
+        guidelineMarginT7 = (int) ((guidelineMarginAG + guidelineMarginAH) / 2);
+        guidelineMarginT8 = (int) ((guidelineMarginAI + guidelineMarginAJ) / 2);
+        guidelineMarginT9 = (int) ((guidelineMarginAK + guidelineMarginAL) / 2);
+        guidelineMarginT10 = (int) ((guidelineMarginAM + guidelineMarginAN) / 2);
+        guidelineMarginT11 = (int) ((guidelineMarginAO + guidelineMarginAP) / 2);
 
         lineTopMargins = new int[]{guidelineMarginU, guidelineMarginW, guidelineMarginY, guidelineMarginAA,
                 guidelineMarginAC, guidelineMarginAE, guidelineMarginAG, guidelineMarginAI,
@@ -243,6 +277,9 @@ public class ChordDisplay extends AppCompatActivity {
         lineBottomMargins = new int[]{guidelineMarginV, guidelineMarginX, guidelineMarginZ, guidelineMarginAB,
                 guidelineMarginAD, guidelineMarginAF, guidelineMarginAH, guidelineMarginAJ,
                 guidelineMarginAL, guidelineMarginAN, guidelineMarginAP};
+        lineCenterMargins = new int[]{guidelineMarginT, guidelineMarginT2, guidelineMarginT3, guidelineMarginT4,
+                guidelineMarginT5, guidelineMarginT6, guidelineMarginT7, guidelineMarginT8,
+                guidelineMarginT9, guidelineMarginT10, guidelineMarginT11};
         verticalGuidelineMargins = new int[]{guidelineMarginA, guidelineMarginB, guidelineMarginC,
                 guidelineMarginD, guidelineMarginE, guidelineMarginF, guidelineMarginG, guidelineMarginH,
                 guidelineMarginI, guidelineMarginJ, guidelineMarginK, guidelineMarginL, guidelineMarginM,
@@ -341,19 +378,41 @@ public class ChordDisplay extends AppCompatActivity {
 
         T = findViewById(R.id.T);
         T.setGuidelineBegin(guidelineMarginT);
+        T2 = findViewById(R.id.T2);
+        T2.setGuidelineBegin(guidelineMarginT2);
+        T3 = findViewById(R.id.T3);
+        T3.setGuidelineBegin(guidelineMarginT3);
+        T4 = findViewById(R.id.T4);
+        T4.setGuidelineBegin(guidelineMarginT4);
+        T5 = findViewById(R.id.T5);
+        T5.setGuidelineBegin(guidelineMarginT5);
+        T6 = findViewById(R.id.T6);
+        T6.setGuidelineBegin(guidelineMarginT6);
+        T7 = findViewById(R.id.T7);
+        T7.setGuidelineBegin(guidelineMarginT7);
+        T8 = findViewById(R.id.T8);
+        T8.setGuidelineBegin(guidelineMarginT8);
+        T9 = findViewById(R.id.T9);
+        T9.setGuidelineBegin(guidelineMarginT9);
+        T10 = findViewById(R.id.T10);
+        T10.setGuidelineBegin(guidelineMarginT10);
+        T11 = findViewById(R.id.T11);
+        T11.setGuidelineBegin(guidelineMarginT11);
+
 
         lineTops = new Guideline[]{U, W, Y, AA, AC, AE, AG, AI, AK, AM, AO};
         lineBottoms = new  Guideline[]{V, X, Z, AB, AD, AF, AH, AJ, AL, AN, AP};
+        lineCenters = new Guideline[]{T,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11};
         verticalGuidelines = new Guideline[]{A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q};
     }
 
     public void loadChords() {
         drawText(titleBottom, Left, Top, Right,
                 title, (int)(guidelineMarginTitleBottom * 0.8), true,
-                0,0,0,0);
+                0,0,0,0, true);
         drawText(authorBottom, Left, titleBottom, Right, author,
                 (int)((guidelineMarginAuthorBottom - guidelineMarginTitleBottom) * 0.8), false,
-                0,0,0,0);
+                0,0,0,0, true);
 
         for(int i = 1; i < numLines + 1; i++) {
             drawLine(list.get(i+1), i);
@@ -405,10 +464,10 @@ public class ChordDisplay extends AppCompatActivity {
         return result;
     }
 
-    public void drawText(Guideline lowerGuideline, Guideline leftGuideline, Guideline
-            upperGuideline, Guideline rightGuideline, String text, int height,
+    public TextView drawText(View lowerGuideline, View leftGuideline, View
+            upperGuideline, View rightGuideline, String text, int height,
                          boolean bold, int leftMargin, int topMargin, int rightMargin,
-                         int bottomMargin) {
+                         int bottomMargin, boolean draw) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
@@ -429,7 +488,8 @@ public class ChordDisplay extends AppCompatActivity {
         params.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
 
         display.setLayoutParams(params);
-        constraintLayout.addView(display);
+        if(draw) {constraintLayout.addView(display);}
+        return display;
     }
 
     public void drawALineOfBars(Guideline lowerGuideline, Guideline upperGuideline,
@@ -438,12 +498,77 @@ public class ChordDisplay extends AppCompatActivity {
             //drawBar(lowerGuideline, upperGuideline, leftGuidelines[i]);
             drawText(lowerGuideline, leftGuidelines[i], upperGuideline, leftGuidelines[i],
                     Character.toString((char) 0xFF5C), lineHeight,
-                    false, 0,0,0,0);
+                    false, 0,0,0,0, true);
         }
     }
 
-    //the indices are locations of the beginning and end of the bar
-    public void drawChord(Chord chord, int leftBarGuidelineIndex, int rightBarGuidelineIndex) {
+    //the arg indices are locations of the beginning and end of the bar
+    public void drawChord(Chord chord, int leftBarGuidelineIndex, int rightBarGuidelineIndex,
+                          int lineNumber) {
+        boolean eightBars;
+        if(rightBarGuidelineIndex - leftBarGuidelineIndex == 4) { eightBars = false;}
+        else {eightBars = true;}
+
+        int leftGuidelineIndex = 0;
+        int rightGuidelineIndex = 0;
+
+        if(chord.locationInBar == 0) {
+            leftGuidelineIndex = leftBarGuidelineIndex;
+            rightGuidelineIndex = leftBarGuidelineIndex + 1;
+        }
+        else if(chord.locationInBar == 1) {
+            leftGuidelineIndex = leftBarGuidelineIndex + 1;
+            rightGuidelineIndex = leftBarGuidelineIndex + 2;
+        }
+        else if(chord.locationInBar == 2) {
+            leftGuidelineIndex = leftBarGuidelineIndex + 2;
+            rightGuidelineIndex = leftBarGuidelineIndex + 3;
+        }
+        else if(chord.locationInBar == 3) {
+            leftGuidelineIndex = leftBarGuidelineIndex + 3;
+            rightGuidelineIndex = leftBarGuidelineIndex + 4;
+        }
+        else if(chord.locationInBar == 4) {
+            if(eightBars) {
+                leftGuidelineIndex = leftBarGuidelineIndex;
+                rightGuidelineIndex = leftBarGuidelineIndex + 1;
+            }
+            else {
+                leftGuidelineIndex = leftBarGuidelineIndex;
+                rightGuidelineIndex = leftBarGuidelineIndex + 2;
+            }
+        }
+        else if(chord.locationInBar == 5) {
+            if(eightBars) {
+                leftGuidelineIndex = leftBarGuidelineIndex + 1;
+                rightGuidelineIndex = leftBarGuidelineIndex + 2;
+            }
+            else {
+                leftGuidelineIndex = leftBarGuidelineIndex + 2;
+                rightGuidelineIndex = leftBarGuidelineIndex + 4;
+            }
+        }
+        else if(chord.locationInBar == 6) {
+            if(eightBars) {
+                leftGuidelineIndex = leftBarGuidelineIndex;
+                rightGuidelineIndex = leftBarGuidelineIndex + 2;
+            }
+            else {
+                leftGuidelineIndex = leftBarGuidelineIndex;
+                rightGuidelineIndex = leftBarGuidelineIndex + 4;
+            }
+        }
+
+        System.out.println(leftGuidelineIndex);
+
+        Guideline leftGuideline = verticalGuidelines[leftGuidelineIndex];
+        Guideline rightGuideline = verticalGuidelines[rightGuidelineIndex];
+        Guideline lowerGuideline = lineBottoms[lineNumber-1];
+        Guideline centerGuideline = lineCenters[lineNumber-1];
+        Guideline upperGuideline = lineTops[lineNumber-1];
+        int leftGuidelineMargin = verticalGuidelineMargins[leftGuidelineIndex];
+        int rightGuidelineMargin = verticalGuidelineMargins[rightGuidelineIndex];
+
         String keyText = "";
         String lowerText = "";
         String upperText = "";
@@ -454,24 +579,24 @@ public class ChordDisplay extends AppCompatActivity {
         else if(chord.key == Global.D) { keyText = "D";}
         else if(chord.key == Global.EFLAT) { keyText = "E"; upperText = Character.toString((char)0x266d);}
         else if(chord.key == Global.E) { keyText = "E";}
-        else if(chord.key == Global.F) { keyText = "F"; upperText = Character.toString((char)0x266f);}
-        else if(chord.key == Global.FSHARP) { keyText = "F"; upperText = Character.toString((char)0x266d);}
-        else if(chord.key == Global.GFLAT) { keyText = "G";}
-        else if(chord.key == Global.G) { keyText = "G"; upperText = Character.toString((char)0x266d);}
-        else if(chord.key == Global.GSHARP) { keyText = "G#";}
-        else if(chord.key == Global.AFLAT) { keyText = "A"; upperText = Character.toString((char)0x266f);}
-        else if(chord.key == Global.A) { keyText = "A"; upperText = Character.toString((char)0x266d);}
-        else if(chord.key == Global.ASHARP) { keyText = "A";}
+        else if(chord.key == Global.F) { keyText = "F";}
+        else if(chord.key == Global.FSHARP) { keyText = "F"; upperText = Character.toString((char)0x266f);}
+        else if(chord.key == Global.GFLAT) { keyText = "G"; upperText = Character.toString((char)0x266d);}
+        else if(chord.key == Global.G) { keyText = "G";}
+        else if(chord.key == Global.GSHARP) { keyText = "G"; upperText = Character.toString((char)0x266f);}
+        else if(chord.key == Global.AFLAT) { keyText = "A"; upperText = Character.toString((char)0x266d);}
+        else if(chord.key == Global.A) { keyText = "A";}
+        else if(chord.key == Global.ASHARP) { keyText = "A"; upperText = Character.toString((char)0x266f);}
         else if(chord.key == Global.BFLAT) { keyText = "B"; upperText = Character.toString((char)0x266d);}
         else if(chord.key == Global.B) { keyText = "B";}
 
-        if(chord.type == Global.MAJOR7) {lowerText = Character.toString((char) 0x25b2) + "7";}
+        if(chord.type == Global.MAJOR7) {lowerText = Character.toString((char) 0x25b3) + "7";}
         if(chord.type == Global.MINOR7) {lowerText = "-7";}
         if(chord.type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00d8) + "7";}
         if(chord.type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x004f) + "7";}
         if(chord.type == Global.DOMINANT) {lowerText = "7";}
         if(chord.type == Global.AUGMENTED7) {lowerText = Character.toString((char) 0x002b) + "7";}
-        if(chord.type == Global.MINMAJ7) {lowerText = "-" + Character.toString((char) 0x25b2) + "7";}
+        if(chord.type == Global.MINMAJ7) {lowerText = "-" + Character.toString((char) 0x25b3) + "7";}
         if(chord.type == Global.MAJOR) {lowerText = "";}
         if(chord.type == Global.MINOR) {lowerText = "-";}
         if(chord.type == Global.DIMINISHED) {lowerText = Character.toString((char) 0x004f);}
@@ -479,10 +604,55 @@ public class ChordDisplay extends AppCompatActivity {
 
         for(int i = 0; i < chord.modifiers.size(); i++) {
             String modifier = chord.modifiers.get(i);
-            if(modifier.equals("b9")) { lowerText = lowerText + Character.toString((char)0x266f) + "9";}
+            if(modifier.equals("b9")) { lowerText = lowerText + Character.toString((char)0x266d) + "9";}
+            else if(modifier.equals("b13")) { lowerText = lowerText + Character.toString((char)0x266d) + "13";}
             else if(modifier.equals("#11")) {lowerText = lowerText + Character.toString((char)0x266f) + "11";}
+            else if(modifier.equals("#9")) {lowerText = lowerText + Character.toString((char)0x266f) + "9";}
+            else if(modifier.equals("#5")) {lowerText = lowerText + Character.toString((char)0x266f) + "5";}
+
         }
+
+        int widthAllowed = rightGuidelineMargin - leftGuidelineMargin;
+
+        TextView keyTextView = drawText(lowerGuideline, leftGuideline, upperGuideline, null,
+                keyText, (int)(lineHeight), true,
+                0,0,0,0, false);
+
+        TextView lowerTextView = drawText(lowerGuideline, leftGuideline, centerGuideline, null,
+                lowerText, (int)(lineHeight / 2), true,
+                0,0,0,0, false);
+
+        TextView upperTextView = drawText(centerGuideline, leftGuideline, upperGuideline, null,
+                upperText, (int)(lineHeight / 2), true,
+                0,0,0,0, false);
+
+        keyTextView.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        int keyTextWidth = keyTextView.getMeasuredWidth();
+        keyTextView.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        int lowerTextWidth = keyTextView.getMeasuredWidth();
+        keyTextView.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        int upperTextWidth = keyTextView.getMeasuredWidth();
+
+        int lettersMarginFromBar = (int)(widthAllowed * 0.05);
+        int totalWidth = keyTextWidth + Math.max(upperTextWidth, lowerTextWidth);
+        double resizeFactor = Math.min(0.8, widthAllowed / totalWidth);
+
+        drawText(lowerGuideline, leftGuideline, upperGuideline, null,
+                keyText, (int)(lineHeight * resizeFactor), true,
+                lettersMarginFromBar,0,0,0, true);
+
+        drawText(lowerGuideline, leftGuideline, centerGuideline, null,
+                lowerText, (int)(lineHeight / 2 * resizeFactor), true,
+                (int)(keyTextWidth * resizeFactor) + lettersMarginFromBar,0,
+                0,0, true);
+
+        drawText(centerGuideline, leftGuideline, upperGuideline, null,
+                upperText, (int)(lineHeight / 2 * resizeFactor), true,
+                (int)(keyTextWidth * resizeFactor) + lettersMarginFromBar,0,
+                0,0, true);
+
     }
+
 
     //linenumbers starting at 1
     public void drawLine(String line, int lineNumber) {
@@ -514,13 +684,13 @@ public class ChordDisplay extends AppCompatActivity {
 
                     drawText(T, Left, lineTops[0],null,
                             topNum, (int)(width * 0.04),
-                            true, (int)(width*0.007),0,0,0);
+                            true, (int)(width*0.007),0,0,0, true);
                     drawText(V, Left, T, null, "4",
                             (int)(width * 0.04), true,
-                            (int)(width*0.007),0,0,0);
+                            (int)(width*0.007),0,0,0, true);
                     drawText(lineBottoms[0], Left, lineTops[0], null, "-",
                             (int)(width * 0.08), true,
-                            (int)(width*0.003),0,0,(int)(lineHeight*0.1));
+                            (int)(width*0.003),0,0,(int)(lineHeight*0.1), true);
                 }
 
                 if(bars[i].leftRepeat) {
@@ -529,11 +699,11 @@ public class ChordDisplay extends AppCompatActivity {
                             null, ":",
                             (int)(lineHeight * 0.7), true,
                             (int)(width * 0.003), 0,0,
-                            (int)(lineHeight * 0.1));
+                            (int)(lineHeight * 0.1), true);
                     drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
                             verticalGuidelines[4*i],
                             Character.toString((char) 0x2997), (int)(lineHeight*1.3), true,
-                            0,0,0,(int)(lineHeight*0.2));
+                            0,0,0,(int)(lineHeight*0.2), true);
                 }
 
                 if(bars[i].rightRepeat) {
@@ -542,11 +712,11 @@ public class ChordDisplay extends AppCompatActivity {
                             verticalGuidelines[4*i + 4],
                             ":", (int)(lineHeight * 0.7), true,
                             0,0,0,
-                            (int)(lineHeight * 0.1));
+                            (int)(lineHeight * 0.1), true);
                     drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline,
                             verticalGuidelines[4*i + 4],
                             Character.toString((char) 0x2998), (int)(lineHeight*1.3), true,
-                            0,0,0,(int)(lineHeight*0.2));
+                            0,0,0,(int)(lineHeight*0.2), true);
                 }
 
                 if(bars[i].toCota) {
@@ -554,18 +724,18 @@ public class ChordDisplay extends AppCompatActivity {
                     drawText(lowerGuideline, null,null,
                             verticalGuidelines[4*i + 4],
                             text, (int)(lineHeight * 0.8), true,
-                            0,0,(int)(lineHeight * 0.2), (int)(lineHeight * 0.6));
+                            0,0,(int)(lineHeight * 0.2), (int)(lineHeight * 0.6), true);
                 }
 
                 if(bars[i].cota) {
                     String text = new StringBuilder().appendCodePoint(0x1D10C).toString();
                     drawText(lowerGuideline, verticalGuidelines[4*i],null,
                             null, text, (int)(lineHeight * 0.8), true,
-                            (int)(lineHeight * 0.2),0,0, (int)(lineHeight * 0.6));
+                            (int)(lineHeight * 0.2),0,0, (int)(lineHeight * 0.6), true);
                 }
 
                 for(int j = 0; j < bars[i].chords.size(); j++) {
-                    drawChord(bars[i].chords.get(j), 4*i, 4*i + 4);
+                    drawChord(bars[i].chords.get(j), 4*i, 4*i + 4, lineNumber);
                 }
 
             }

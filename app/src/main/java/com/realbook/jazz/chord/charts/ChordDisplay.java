@@ -29,6 +29,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ChordDisplay extends AppCompatActivity {
 
@@ -36,13 +37,15 @@ public class ChordDisplay extends AppCompatActivity {
 
     int width;
     int height;
-    String defaultMusicalKey;
-    String currentMusicalKey;
+
+    MusicalKeyEnum defaultMusicalKey;
+    MusicalKeyEnum currentMusicalKey;
     String title;
     String author;
     int numLines;
     int lineHeight;
     ArrayList<String> list;
+    HashMap<String, MusicalKeyEnum> stringKeyToEnumKey;
 
     Guideline A;
     Guideline B;
@@ -149,6 +152,9 @@ public class ChordDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chord_display);
 
+        setupSideView();
+        setupEnumsMap();
+
         //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //getSupportActionBar().setCustomView(R.layout.chord_display_banner);
 
@@ -159,8 +165,10 @@ public class ChordDisplay extends AppCompatActivity {
         width = getScreenWidthInPixels();
         height = getScreenHeightInPixels() - getStatusBarHeight();
         numLines = list.size() - 2;
-        defaultMusicalKey = list.get(1);
-        currentMusicalKey = list.get(1);
+
+        String musicalKeyString = list.get(1);
+        defaultMusicalKey = stringKeyToEnumKey.get(musicalKeyString);
+        currentMusicalKey = stringKeyToEnumKey.get(musicalKeyString);
 
         setGuidelines();
         loadChords();
@@ -611,27 +619,209 @@ public class ChordDisplay extends AppCompatActivity {
         String text;
 
         Button CButton = findViewById(R.id.CButton);
+        text = "C";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        CButton.setText(text);
+        CButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.C_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.C_MINOR;
+                }
+            }
+        });
+
         Button DFlat = findViewById(R.id.DFlatButton);
         text = "D" + (char) 0x266D;
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
         DFlat.setText(text);
+        DFlat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.D_FLAT_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.D_FLAT_MINOR;
+                }
+            }
+        });
+
+
         Button DButton = findViewById(R.id.DButton);
+        text = "D";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        DButton.setText(text);
+        DButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.D_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.D_MINOR;
+                }
+            }
+        });
+
         Button EFlatButton = findViewById(R.id.EFlatButton);
         text = "E" + (char) 0x266D;
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
         EFlatButton.setText(text);
+        EFlatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.E_FLAT_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.E_FLAT_MINOR;
+                }
+            }
+        });
+
         Button EButton = findViewById(R.id.EButton);
+        text = "E";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        EButton.setText(text);
+        EButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.E_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.E_MINOR;
+                }
+            }
+        });
+
         Button FButton = findViewById(R.id.FButton);
+        text = "F";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        FButton.setText(text);
+        FButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.F_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.F_MINOR;
+                }
+            }
+        });
+
         Button FSharpButton =findViewById(R.id.FSharpButton);
         text = "F" + (char) 0x266F;
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
         FSharpButton.setText(text);
+        FSharpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.F_SHARP_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.F_SHARP_MINOR;
+                }
+            }
+        });
+
         Button GButton = findViewById(R.id.GButton);
+        text = "G";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        GButton.setText(text);
+        GButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.G_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.G_MINOR;
+                }
+            }
+        });
+
         Button AFlatButton = findViewById(R.id.AFlatButton);
         text = "A" + (char) 0x266D;
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
         AFlatButton.setText(text);
+        AFlatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.A_FLAT_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.A_FLAT_MINOR;
+                }
+            }
+        });
+
         Button AButton = findViewById(R.id.AButton);
+        text = "A";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        AButton.setText(text);
+        AButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.A_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.A_MINOR;
+                }
+            }
+        });
+
         Button BFlatButton = findViewById(R.id.BFlatButton);
         text = "B" + (char) 0x266F;
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
         BFlatButton.setText(text);
+        BFlatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.B_FLAT_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.B_FLAT_MINOR;
+                }
+            }
+        });
+
         Button BButton = findViewById(R.id.BButton);
+        text = "B";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        BButton.setText(text);
+        BButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.B_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.B_MINOR;
+                }
+            }
+        });
 
         ArrayList<Button> sideViewButtons = new ArrayList<>();
         sideViewButtons.add(backBtn);
@@ -670,5 +860,40 @@ public class ChordDisplay extends AppCompatActivity {
 
     }
 
+    public void setupEnumsMap() {
+        stringKeyToEnumKey = new HashMap<>();
+        stringKeyToEnumKey.put("C Major", MusicalKeyEnum.C_MAJOR);
+        stringKeyToEnumKey.put("C Minor", MusicalKeyEnum.C_MINOR);
+        stringKeyToEnumKey.put("Db Major", MusicalKeyEnum.D_FLAT_MAJOR);
+        stringKeyToEnumKey.put("Db minor", MusicalKeyEnum.D_FLAT_MINOR);
+        stringKeyToEnumKey.put("D Major", MusicalKeyEnum.D_MAJOR);
+        stringKeyToEnumKey.put("D minor", MusicalKeyEnum.D_MINOR);
+        stringKeyToEnumKey.put("Eb Major", MusicalKeyEnum.E_FLAT_MAJOR);
+        stringKeyToEnumKey.put("Eb minor", MusicalKeyEnum.E_FLAT_MINOR);
+        stringKeyToEnumKey.put("E Major", MusicalKeyEnum.E_MAJOR);
+        stringKeyToEnumKey.put("E minor", MusicalKeyEnum.E_MINOR);
+        stringKeyToEnumKey.put("F Major", MusicalKeyEnum.F_MAJOR);
+        stringKeyToEnumKey.put("F minor", MusicalKeyEnum.F_MINOR);
+        stringKeyToEnumKey.put("F# Major", MusicalKeyEnum.F_SHARP_MAJOR);
+        stringKeyToEnumKey.put("F# minor", MusicalKeyEnum.F_SHARP_MINOR);
+        stringKeyToEnumKey.put("G Major", MusicalKeyEnum.G_MAJOR);
+        stringKeyToEnumKey.put("G minor", MusicalKeyEnum.G_MINOR);
+        stringKeyToEnumKey.put("Ab Major", MusicalKeyEnum.A_FLAT_MAJOR);
+        stringKeyToEnumKey.put("Ab minor", MusicalKeyEnum.A_FLAT_MINOR);
+        stringKeyToEnumKey.put("A Major", MusicalKeyEnum.A_MAJOR);
+        stringKeyToEnumKey.put("A minor", MusicalKeyEnum.A_MINOR);
+        stringKeyToEnumKey.put("Bb Major", MusicalKeyEnum.B_FLAT_MAJOR);
+        stringKeyToEnumKey.put("Bb minor", MusicalKeyEnum.B_FLAT_MINOR);
+        stringKeyToEnumKey.put("B Major", MusicalKeyEnum.B_MAJOR);
+        stringKeyToEnumKey.put("B minor", MusicalKeyEnum.B_MINOR);
+    }
+
+    public boolean isMajor(MusicalKeyEnum e) {
+        if (e.equals(MusicalKeyEnum.C_MAJOR) || e.equals(MusicalKeyEnum.D_FLAT_MAJOR) || e.equals(MusicalKeyEnum.D_MAJOR) || e.equals(MusicalKeyEnum.E_FLAT_MAJOR) || e.equals(MusicalKeyEnum.E_MAJOR) || e.equals(MusicalKeyEnum.F_MAJOR) || e.equals(MusicalKeyEnum.F_SHARP_MAJOR) || e.equals(MusicalKeyEnum.G_MAJOR) || e.equals(MusicalKeyEnum.A_FLAT_MAJOR) || e.equals(MusicalKeyEnum.A_MAJOR) || e.equals(MusicalKeyEnum.B_FLAT_MAJOR) || e.equals(MusicalKeyEnum.B_MAJOR)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

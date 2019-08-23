@@ -28,6 +28,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -596,231 +597,28 @@ public class ChordDisplay extends AppCompatActivity {
     }
 
     public void setupSideView() {
-        Button backBtn = findViewById(R.id.backBtn);
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clickCount > 1) { // user needs to have already clicked twice for button to work. Once to show buttons, and once for the actual click
-                    finish();
-                }
-            }
-        });
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int screenHeight = displayMetrics.heightPixels - getStatusBarHeight(); // screenheight in pixels
         int constraintMarginsHeight = 112; // in pixels
-
         int heightOfButtons = (screenHeight - constraintMarginsHeight) / 13;
 
-        String text;
+        final Button backBtn = findViewById(R.id.backBtn);
+        final Button CButton = findViewById(R.id.CButton);
+        final Button DFlat = findViewById(R.id.DFlatButton);
+        final Button DButton = findViewById(R.id.DButton);
+        final Button EFlatButton = findViewById(R.id.EFlatButton);
+        final Button EButton = findViewById(R.id.EButton);
+        final Button FButton = findViewById(R.id.FButton);
+        final Button FSharpButton =findViewById(R.id.FSharpButton);
+        final Button GButton = findViewById(R.id.GButton);
+        final Button AFlatButton = findViewById(R.id.AFlatButton);
+        final Button AButton = findViewById(R.id.AButton);
+        final Button BFlatButton = findViewById(R.id.BFlatButton);
+        final Button BButton = findViewById(R.id.BButton);
 
-        Button CButton = findViewById(R.id.CButton);
-        text = "C";
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        CButton.setText(text);
-        CButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.C_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.C_MINOR;
-                }
-            }
-        });
-
-        Button DFlat = findViewById(R.id.DFlatButton);
-        text = "D" + (char) 0x266D;
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        DFlat.setText(text);
-        DFlat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.D_FLAT_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.D_FLAT_MINOR;
-                }
-            }
-        });
-
-
-        Button DButton = findViewById(R.id.DButton);
-        text = "D";
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        DButton.setText(text);
-        DButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.D_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.D_MINOR;
-                }
-            }
-        });
-
-        Button EFlatButton = findViewById(R.id.EFlatButton);
-        text = "E" + (char) 0x266D;
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        EFlatButton.setText(text);
-        EFlatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.E_FLAT_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.E_FLAT_MINOR;
-                }
-            }
-        });
-
-        Button EButton = findViewById(R.id.EButton);
-        text = "E";
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        EButton.setText(text);
-        EButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.E_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.E_MINOR;
-                }
-            }
-        });
-
-        Button FButton = findViewById(R.id.FButton);
-        text = "F";
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        FButton.setText(text);
-        FButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.F_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.F_MINOR;
-                }
-            }
-        });
-
-        Button FSharpButton =findViewById(R.id.FSharpButton);
-        text = "F" + (char) 0x266F;
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        FSharpButton.setText(text);
-        FSharpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.F_SHARP_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.F_SHARP_MINOR;
-                }
-            }
-        });
-
-        Button GButton = findViewById(R.id.GButton);
-        text = "G";
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        GButton.setText(text);
-        GButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.G_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.G_MINOR;
-                }
-            }
-        });
-
-        Button AFlatButton = findViewById(R.id.AFlatButton);
-        text = "A" + (char) 0x266D;
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        AFlatButton.setText(text);
-        AFlatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.A_FLAT_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.A_FLAT_MINOR;
-                }
-            }
-        });
-
-        Button AButton = findViewById(R.id.AButton);
-        text = "A";
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        AButton.setText(text);
-        AButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.A_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.A_MINOR;
-                }
-            }
-        });
-
-        Button BFlatButton = findViewById(R.id.BFlatButton);
-        text = "B" + (char) 0x266F;
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        BFlatButton.setText(text);
-        BFlatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.B_FLAT_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.B_FLAT_MINOR;
-                }
-            }
-        });
-
-        Button BButton = findViewById(R.id.BButton);
-        text = "B";
-        if (!isMajor(defaultMusicalKey)) {
-            text += "m";
-        }
-        BButton.setText(text);
-        BButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.B_MAJOR;
-                } else {
-                    currentMusicalKey = MusicalKeyEnum.B_MINOR;
-                }
-            }
-        });
-
-        ArrayList<Button> sideViewButtons = new ArrayList<>();
+        final ArrayList<Button> sideViewButtons = new ArrayList<>();
         sideViewButtons.add(backBtn);
         sideViewButtons.add(CButton);
         sideViewButtons.add(DFlat);
@@ -836,7 +634,35 @@ public class ChordDisplay extends AppCompatActivity {
         sideViewButtons.add(BFlatButton);
         sideViewButtons.add(BButton);
 
+
         for (Button b : sideViewButtons) {
+
+            if (defaultMusicalKey == MusicalKeyEnum.C_MAJOR || defaultMusicalKey == MusicalKeyEnum.C_MINOR) {
+                CButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.D_FLAT_MAJOR || defaultMusicalKey == MusicalKeyEnum.D_FLAT_MINOR) {
+                DFlat.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.D_MAJOR || defaultMusicalKey == MusicalKeyEnum.D_MINOR) {
+                DButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.E_FLAT_MAJOR || defaultMusicalKey == MusicalKeyEnum.E_FLAT_MINOR) {
+                EFlatButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.E_MAJOR || defaultMusicalKey == MusicalKeyEnum.E_MINOR) {
+                EButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.F_MAJOR || defaultMusicalKey == MusicalKeyEnum.F_MINOR) {
+                FButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.F_SHARP_MAJOR || defaultMusicalKey == MusicalKeyEnum.F_SHARP_MINOR) {
+                FSharpButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.G_MAJOR || defaultMusicalKey == MusicalKeyEnum.G_MINOR) {
+                GButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.A_FLAT_MAJOR || defaultMusicalKey == MusicalKeyEnum.A_FLAT_MINOR) {
+                AFlatButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.A_MAJOR || defaultMusicalKey == MusicalKeyEnum.A_MINOR) {
+                AButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.B_FLAT_MAJOR || defaultMusicalKey == MusicalKeyEnum.B_FLAT_MINOR) {
+                BFlatButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            } else if (defaultMusicalKey == MusicalKeyEnum.B_MAJOR || defaultMusicalKey == MusicalKeyEnum.B_MINOR) {
+                BButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            }
+
             int top;
             int bottom;
             if (b.equals(R.id.backBtn)) {
@@ -854,6 +680,235 @@ public class ChordDisplay extends AppCompatActivity {
             b.setLayoutParams(params);
         }
 
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (clickCount > 1) { // user needs to have already clicked twice for button to work. Once to show buttons, and once for the actual click
+                    finish();
+                }
+            }
+        });
+
+        sideViewButtons.remove(backBtn);
+
+        String text;
+        text = "C";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        CButton.setText(text);
+        CButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.C_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.C_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, CButton);
+            }
+        });
+
+        text = "D" + (char) 0x266D;
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        DFlat.setText(text);
+        DFlat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.D_FLAT_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.D_FLAT_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, DFlat);
+            }
+        });
+
+
+        text = "D";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        DButton.setText(text);
+        DButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.D_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.D_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, DButton);
+            }
+        });
+
+        text = "E" + (char) 0x266D;
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        EFlatButton.setText(text);
+        EFlatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.E_FLAT_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.E_FLAT_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, EFlatButton);
+            }
+        });
+
+        text = "E";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        EButton.setText(text);
+        EButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.E_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.E_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, EButton);
+            }
+        });
+
+        text = "F";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        FButton.setText(text);
+        FButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.F_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.F_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, FButton);
+            }
+        });
+
+        text = "F" + (char) 0x266F;
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        FSharpButton.setText(text);
+        FSharpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.F_SHARP_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.F_SHARP_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, FSharpButton);
+            }
+        });
+
+        text = "G";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        GButton.setText(text);
+        GButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.G_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.G_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, GButton);
+            }
+        });
+
+        text = "A" + (char) 0x266D;
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        AFlatButton.setText(text);
+        AFlatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.A_FLAT_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.A_FLAT_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, AFlatButton);
+            }
+        });
+
+        text = "A";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        AButton.setText(text);
+        AButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.A_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.A_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, AButton);
+            }
+        });
+
+        text = "B" + (char) 0x266F;
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        BFlatButton.setText(text);
+        BFlatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.B_FLAT_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.B_FLAT_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, BFlatButton);
+            }
+        });
+
+        text = "B";
+        if (!isMajor(defaultMusicalKey)) {
+            text += "m";
+        }
+        BButton.setText(text);
+        BButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isMajor(currentMusicalKey)) {
+                    currentMusicalKey = MusicalKeyEnum.B_MAJOR;
+                } else {
+                    currentMusicalKey = MusicalKeyEnum.B_MINOR;
+                }
+                loadChords();
+                setButtonColors(sideViewButtons, BButton);
+            }
+        });
 
     }
 
@@ -891,6 +946,18 @@ public class ChordDisplay extends AppCompatActivity {
         } else {
             return false;
         }
+    }
+
+    public void setButtonColors(ArrayList<Button> buttons, Button selectedButton) {
+        for (Button b : buttons) {
+            if (b != selectedButton) {
+                b.setBackground(getResources().getDrawable(R.drawable.key_buttons));
+            } else {
+                b.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+            }
+        }
+        LinearLayout sideView = findViewById(R.id.sideView);
+        sideView.bringToFront();
     }
 
 }

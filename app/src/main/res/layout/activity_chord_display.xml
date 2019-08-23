@@ -350,7 +350,6 @@
             android:id="@+id/CButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="C"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -359,7 +358,6 @@
             android:id="@+id/DFlatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="D Flat"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -368,7 +366,6 @@
             android:id="@+id/DButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="D"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -377,7 +374,6 @@
             android:id="@+id/EFlatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E Flat"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -386,7 +382,6 @@
             android:id="@+id/EButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -395,7 +390,6 @@
             android:id="@+id/FButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="F"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -404,7 +398,6 @@
             android:id="@+id/FSharpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="F Sharp"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -413,7 +406,6 @@
             android:id="@+id/GButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="G"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -422,7 +414,6 @@
             android:id="@+id/AFlatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A Flat"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -431,7 +422,6 @@
             android:id="@+id/AButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -440,7 +430,6 @@
             android:id="@+id/BFlatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="B Flat"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -449,7 +438,6 @@
             android:id="@+id/BButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="B"
             android:background="@drawable/key_buttons"
             android:textAllCaps="false"
             android:textSize="18dp" />

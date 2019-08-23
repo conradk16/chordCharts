@@ -152,9 +152,6 @@ public class ChordDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chord_display);
 
-        setupSideView();
-        setupEnumsMap();
-
         //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //getSupportActionBar().setCustomView(R.layout.chord_display_banner);
 
@@ -166,9 +163,13 @@ public class ChordDisplay extends AppCompatActivity {
         height = getScreenHeightInPixels() - getStatusBarHeight();
         numLines = list.size() - 2;
 
+        setupEnumsMap();
+
         String musicalKeyString = list.get(1);
         defaultMusicalKey = stringKeyToEnumKey.get(musicalKeyString);
         currentMusicalKey = stringKeyToEnumKey.get(musicalKeyString);
+
+        setupSideView();
 
         setGuidelines();
         loadChords();

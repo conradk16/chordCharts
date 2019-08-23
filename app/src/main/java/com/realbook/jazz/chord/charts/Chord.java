@@ -1,43 +1,16 @@
 package com.realbook.jazz.chord.charts;
+import com.realbook.jazz.chord.charts.Global;
+
+import java.util.ArrayList;
 
 public class Chord {
-    private static final int MAJOR7 = 0;
-    private static final int MINOR7 = 1;
-    private static final int HALFDIMINISHED7 = 2;
-    private static final int DIMINISHED7 = 3;
-    private static final int DOMINANT = 4;
-    private static final int AUGMENTED7 = 5;
-    private static final int MINMAJ7 = 6;
-    private static final int MAJOR = 7;
-    private static final int MINOR = 8;
-    private static final int DIMINISHED = 9;
-    private static final int AUGMENTED = 10;
 
-    private static final int C = 0;
-    private static final int CSHARP = 1;
-    private static final int DFLAT = 2;
-    private static final int D = 3;
-    private static final int DSHARP = 4;
-    private static final int EFLAT = 5;
-    private static final int E = 6;
-    private static final int F = 7;
-    private static final int FSHARP = 8;
-    private static final int GFLAT = 9;
-    private static final int G = 10;
-    private static final int GSHARP = 11;
-    private static final int AFLAT = 12;
-    private static final int A = 13;
-    private static final int ASHARP = 14;
-    private static final int BFLAT = 15;
-    private static final int B = 16;
-
-    private int key;
-    private int type;
-    private Chord chordSubstitute = null;
-    private String modifier1 = null;
-    private String modifier2 = null;
-    private String overNote = null;
-    private int locationInBar; //quarters are 0,1,2,3; halfs are 4,5; wholes are 6, -1 is a substitute
+    public int key;
+    public int type;
+    public Chord chordSubstitute = null;
+    public ArrayList<String> modifiers = new ArrayList<>();
+    public String overNote = null;
+    public int locationInBar; //quarters are 0,1,2,3; halfs are 4,5; wholes are 6, -1 is a substitute
 
     public Chord(int locationInBar, String chord) {
         locationInBar = locationInBar;
@@ -56,14 +29,8 @@ public class Chord {
             else if(parts[i].charAt(0) == '/') {
                 overNote = parts[i];
             }
-            else if(modifier1 != null) {
-                modifier1 = parts[i];
-            }
-            else if(modifier1 == null) {
-                modifier2 = parts[i];
-            }
             else {
-                System.out.println("maybe too many modifiers?");
+                modifiers.add(parts[i]);
             }
             i++;
         }
@@ -75,83 +42,83 @@ public class Chord {
         int key = -1;
         int type = -1;
         if ((firstPart.charAt(0)) == 'C' && firstPart.charAt(1) != 'b' && firstPart.charAt(1) != '#') {
-            key = C;
+            key = Global.C;
             charsEaten = 1;
         } else if ((firstPart.charAt(0)) == 'C' && firstPart.charAt(1) == '#') {
-            key = CSHARP;
+            key = Global.CSHARP;
             charsEaten = 2;
         } else if ((firstPart.charAt(0)) == 'D' && firstPart.charAt(1) == 'b') {
-            key = DFLAT;
+            key = Global.DFLAT;
             charsEaten = 2;
         } else if ((firstPart.charAt(0)) == 'D' && firstPart.charAt(1) != '#' && firstPart.charAt(1) != 'b') {
-            key = D;
+            key = Global.D;
             charsEaten = 1;
         } else if ((firstPart.charAt(0)) == 'D' && firstPart.charAt(1) == '#') {
-            key = DSHARP;
+            key = Global.DSHARP;
             charsEaten = 2;
         } else if ((firstPart.charAt(0)) == 'E' && firstPart.charAt(1) == 'b') {
-            key = EFLAT;
+            key = Global.EFLAT;
             charsEaten = 2;
         } else if ((firstPart.charAt(0)) == 'E' && firstPart.charAt(1) != '#' && firstPart.charAt(1) != 'b') {
-            key = E;
+            key = Global.E;
             charsEaten = 1;
         } else if ((firstPart.charAt(0)) == 'F' && firstPart.charAt(1) != '#' && firstPart.charAt(1) != 'b') {
-            key = F;
+            key = Global.F;
             charsEaten = 1;
         } else if ((firstPart.charAt(0)) == 'F' && firstPart.charAt(1) == '#') {
-            key = FSHARP;
+            key = Global.FSHARP;
             charsEaten = 2;
         } else if ((firstPart.charAt(0)) == 'G' && firstPart.charAt(1) == 'b') {
-            key = GFLAT;
+            key = Global.GFLAT;
             charsEaten = 2;
         } else if ((firstPart.charAt(0)) == 'G' && firstPart.charAt(1) != '#' && firstPart.charAt(1) != 'b') {
-            key = G;
+            key = Global.G;
             charsEaten = 1;
         } else if ((firstPart.charAt(0)) == 'G' && firstPart.charAt(1) == '#') {
-            key = GSHARP;
+            key = Global.GSHARP;
             charsEaten = 2;
         } else if ((firstPart.charAt(0)) == 'A' && firstPart.charAt(1) == 'b') {
-            key = AFLAT;
+            key = Global.AFLAT;
             charsEaten = 2;
         } else if ((firstPart.charAt(0)) == 'A' && firstPart.charAt(1) != '#' && firstPart.charAt(1) != 'b') {
-            key = A;
+            key = Global.A;
             charsEaten = 1;
         } else if ((firstPart.charAt(0)) == 'A' && firstPart.charAt(1) == '#') {
-            key = ASHARP;
+            key = Global.ASHARP;
             charsEaten = 2;
         } else if ((firstPart.charAt(0)) == 'B' && firstPart.charAt(1) == 'b') {
-            key = BFLAT;
+            key = Global.BFLAT;
             charsEaten = 2;
         } else if ((firstPart.charAt(0)) == 'B' && firstPart.charAt(1) != '#' && firstPart.charAt(1) != 'b') {
-            key = B;
+            key = Global.B;
             charsEaten = 1;
         }
 
         if (firstPart.length() == charsEaten + 1) {
             if (firstPart.charAt(charsEaten) == 'M') {
-                type = MAJOR;
+                type = Global.MAJOR;
             } else if (firstPart.charAt(charsEaten) == 'm') {
-                type = MINOR;
+                type = Global.MINOR;
             } else if (firstPart.charAt(charsEaten) == 'd') {
-                type = DIMINISHED;
+                type = Global.DIMINISHED;
             } else if (firstPart.charAt(charsEaten) == 'a') {
-                type = AUGMENTED;
+                type = Global.AUGMENTED;
             } else if (firstPart.charAt(charsEaten) == '7') {
-                type = DOMINANT;
+                type = Global.DOMINANT;
             }
         } else {
             if (firstPart.charAt(charsEaten) == 'M' && firstPart.charAt(charsEaten + 1) == '7') {
-                type = MAJOR7;
+                type = Global.MAJOR7;
             } else if (firstPart.charAt(charsEaten) == 'm' && firstPart.charAt(charsEaten + 1) == '7') {
-                type = MINOR7;
+                type = Global.MINOR7;
             } else if (firstPart.charAt(charsEaten) == 'h' && firstPart.charAt(charsEaten + 1) == '7') {
-                type = HALFDIMINISHED7;
+                type = Global.HALFDIMINISHED7;
             } else if (firstPart.charAt(charsEaten) == 'd' && firstPart.charAt(charsEaten + 1) == '7') {
-                type = DIMINISHED7;
+                type = Global.DIMINISHED7;
             } else if (firstPart.charAt(charsEaten) == 'a' && firstPart.charAt(charsEaten + 1) == '7') {
-                type = AUGMENTED7;
+                type = Global.AUGMENTED7;
             } else if (firstPart.charAt(charsEaten) == 'n' && firstPart.charAt(charsEaten + 1) == '7') {
-                type = MINMAJ7;
+                type = Global.MINMAJ7;
             }
         }
         int[] toReturn = {key, type};

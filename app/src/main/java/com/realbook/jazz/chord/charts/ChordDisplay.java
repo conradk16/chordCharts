@@ -443,7 +443,44 @@ public class ChordDisplay extends AppCompatActivity {
 
     //the indices are locations of the beginning and end of the bar
     public void drawChord(Chord chord, int leftBarGuidelineIndex, int rightBarGuidelineIndex) {
+        String keyText = "";
+        String lowerText = "";
+        String upperText = "";
 
+        if(chord.key == Global.C) { keyText = "C"; }
+        else if(chord.key == Global.CSHARP) { keyText = "C"; upperText = Character.toString((char)0x266f);}
+        else if(chord.key == Global.DFLAT) { keyText = "D"; upperText = Character.toString((char)0x266d);}
+        else if(chord.key == Global.D) { keyText = "D";}
+        else if(chord.key == Global.EFLAT) { keyText = "E"; upperText = Character.toString((char)0x266d);}
+        else if(chord.key == Global.E) { keyText = "E";}
+        else if(chord.key == Global.F) { keyText = "F"; upperText = Character.toString((char)0x266f);}
+        else if(chord.key == Global.FSHARP) { keyText = "F"; upperText = Character.toString((char)0x266d);}
+        else if(chord.key == Global.GFLAT) { keyText = "G";}
+        else if(chord.key == Global.G) { keyText = "G"; upperText = Character.toString((char)0x266d);}
+        else if(chord.key == Global.GSHARP) { keyText = "G#";}
+        else if(chord.key == Global.AFLAT) { keyText = "A"; upperText = Character.toString((char)0x266f);}
+        else if(chord.key == Global.A) { keyText = "A"; upperText = Character.toString((char)0x266d);}
+        else if(chord.key == Global.ASHARP) { keyText = "A";}
+        else if(chord.key == Global.BFLAT) { keyText = "B"; upperText = Character.toString((char)0x266d);}
+        else if(chord.key == Global.B) { keyText = "B";}
+
+        if(chord.type == Global.MAJOR7) {lowerText = Character.toString((char) 0x25b2) + "7";}
+        if(chord.type == Global.MINOR7) {lowerText = "-7";}
+        if(chord.type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00d8) + "7";}
+        if(chord.type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x004f) + "7";}
+        if(chord.type == Global.DOMINANT) {lowerText = "7";}
+        if(chord.type == Global.AUGMENTED7) {lowerText = Character.toString((char) 0x002b) + "7";}
+        if(chord.type == Global.MINMAJ7) {lowerText = "-" + Character.toString((char) 0x25b2) + "7";}
+        if(chord.type == Global.MAJOR) {lowerText = "";}
+        if(chord.type == Global.MINOR) {lowerText = "-";}
+        if(chord.type == Global.DIMINISHED) {lowerText = Character.toString((char) 0x004f);}
+        if(chord.type == Global.AUGMENTED) {lowerText = Character.toString((char) 0x002b);}
+
+        for(int i = 0; i < chord.modifiers.size(); i++) {
+            String modifier = chord.modifiers.get(i);
+            if(modifier.equals("b9")) { lowerText = lowerText + Character.toString((char)0x266f) + "9";}
+            else if(modifier.equals("#11")) {lowerText = lowerText + Character.toString((char)0x266f) + "11";}
+        }
     }
 
     //linenumbers starting at 1

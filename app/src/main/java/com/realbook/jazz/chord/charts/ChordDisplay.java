@@ -37,15 +37,14 @@ public class ChordDisplay extends AppCompatActivity {
 
     int width;
     int height;
+
     MusicalKeyEnum defaultMusicalKey;
     MusicalKeyEnum currentMusicalKey;
-    int titleAndAuthorHeight;
-    int leftMarginSize;
-    int rightMarginSize;
+    String title;
+    String author;
     int numLines;
     int lineHeight;
-    int lineTopAndBottomMargins;
-    int chordFontSize;
+    ArrayList<String> list;
     HashMap<String, MusicalKeyEnum> stringKeyToEnumKey;
 
     Guideline A;
@@ -159,9 +158,9 @@ public class ChordDisplay extends AppCompatActivity {
         //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //getSupportActionBar().setCustomView(R.layout.chord_display_banner);
 
-        String title = getIntent().getStringExtra("title");
-        String author = getIntent().getStringExtra("author");
-        ArrayList<String> list = getIntent().getStringArrayListExtra("list");
+        title = getIntent().getStringExtra("title");
+        author = getIntent().getStringExtra("author");
+        list = getIntent().getStringArrayListExtra("list");
 
         width = getScreenWidthInPixels();
         height = getScreenHeightInPixels() - getStatusBarHeight();
@@ -171,6 +170,12 @@ public class ChordDisplay extends AppCompatActivity {
         defaultMusicalKey = stringKeyToEnumKey.get(musicalKeyString);
         currentMusicalKey = stringKeyToEnumKey.get(musicalKeyString);
 
+        setGuidelines();
+        loadChords();
+        setupSideView();
+    }
+
+    public void setGuidelines() {
         guidelineMarginA = (int) width * 3 / 64;
         guidelineMarginB = guidelineMarginA + (int) ((double)width * 3.7 / 64);
         guidelineMarginC = guidelineMarginA + (int) ((double)width * 3.7 / 64 * 2);
@@ -338,12 +343,14 @@ public class ChordDisplay extends AppCompatActivity {
         lineTops = new Guideline[]{U, W, Y, AA, AC, AE, AG, AI, AK, AM, AO};
         lineBottoms = new  Guideline[]{V, X, Z, AB, AD, AF, AH, AJ, AL, AN, AP};
         verticalGuidelines = new Guideline[]{A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q};
+    }
 
+    public void loadChords() {
         drawText(titleBottom, Left, Top, Right,
-                title, guidelineMarginTitleBottom, true,
+                title, (int)(guidelineMarginTitleBottom * 0.8), true,
                 0,0,0,0);
         drawText(authorBottom, Left, titleBottom, Right, author,
-                (guidelineMarginAuthorBottom - guidelineMarginTitleBottom), false,
+                (int)((guidelineMarginAuthorBottom - guidelineMarginTitleBottom) * 0.8), false,
                 0,0,0,0);
 
         for(int i = 1; i < numLines + 1; i++) {
@@ -394,33 +401,6 @@ public class ChordDisplay extends AppCompatActivity {
             result = getResources().getDimensionPixelSize(resourceId);
         }
         return result;
-    }
-
-    public void drawText(Guideline lowerGuideline, Guideline leftGuideline, Guideline
-            upperGuideline, String text, int height, boolean bold, int leftMargin,
-                         int topMargin, int rightMargin,
-                         int bottomMargin) {
-        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
-        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
-                LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-
-        TextView display= new TextView(getApplicationContext());
-        display.setTextSize(TypedValue.COMPLEX_UNIT_PX, height);
-        display.setText(text);
-        display.setTextColor(Color.parseColor("#000000"));
-        if(bold) {
-            display.setTypeface(null, Typeface.BOLD);
-        }
-        //display.setGravity(Gravity.CENTER);
-        //display.setBackgroundColor(Color.GREEN);
-
-        params.leftToRight = leftGuideline.getId();
-        params.bottomToTop = lowerGuideline.getId();
-        params.topToBottom = upperGuideline.getId();
-        params.setMargins(leftMargin,topMargin, rightMargin, bottomMargin);
-
-        display.setLayoutParams(params);
-        constraintLayout.addView(display);
     }
 
     public void drawText(Guideline lowerGuideline, Guideline leftGuideline, Guideline
@@ -513,7 +493,6 @@ public class ChordDisplay extends AppCompatActivity {
                 }
 
                 if(bars[i].rightRepeat) {
-                    System.out.println(i);
                     //String text = new StringBuilder().appendCodePoint(0x1D106).toString();
                     drawText(lowerGuideline, null, upperGuideline,
                             verticalGuidelines[4*i + 4],
@@ -524,8 +503,25 @@ public class ChordDisplay extends AppCompatActivity {
                             verticalGuidelines[4*i + 4],
                             Character.toString((char) 0x2998), (int)(lineHeight*1.3), true,
                             0,0,0,(int)(lineHeight*0.2));
-
                 }
+
+                if(bars[i].toCota) {
+                    String text = new StringBuilder().appendCodePoint(0x1D10C).toString();
+                    drawText(lowerGuideline, null,null,
+                            verticalGuidelines[4*i + 4],
+                            text, (int)(lineHeight * 0.8), true,
+                            0,0,(int)(lineHeight * 0.2), (int)(lineHeight * 0.6));
+                }
+
+                if(bars[i].cota) {
+                    String text = new StringBuilder().appendCodePoint(0x1D10C).toString();
+                    drawText(lowerGuideline, verticalGuidelines[4*i],null,
+                            null, text, (int)(lineHeight * 0.8), true,
+                            (int)(lineHeight * 0.2),0,0, (int)(lineHeight * 0.6));
+                }
+
+
+
             }
         }
 

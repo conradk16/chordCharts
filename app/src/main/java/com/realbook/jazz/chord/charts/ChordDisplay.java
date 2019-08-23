@@ -440,7 +440,8 @@ public class ChordDisplay extends AppCompatActivity {
         }
     }
 
-    public void drawChord(Chord chord) {
+    //the indices are locations of the beginning and end of the bar
+    public void drawChord(Chord chord, int leftBarGuidelineIndex, int rightBarGuidelineIndex) {
 
     }
 
@@ -525,7 +526,7 @@ public class ChordDisplay extends AppCompatActivity {
                 }
 
                 for(int j = 0; j < bars[i].chords.size(); j++) {
-                    drawChord(bars[i].chords.get(j));
+                    drawChord(bars[i].chords.get(j), 4*i, 4*i + 4);
                 }
 
             }

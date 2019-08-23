@@ -5,6 +5,8 @@
     <color name="colorAccent">#21B122</color>
     <color name="white">#FFFFFF</color>
     <color name="topView">#00FFFFFF</color>
-    <color name="keyBtnColor">#557EE9</color>
+    <color name="keyBtnColor">#7A9FFF</color>
+    <color name="keyBtnColorDepressed">#517BE9</color>
     <color name="backBtnColor">#C2B9B9</color>
+
 </resources>

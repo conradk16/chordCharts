@@ -9,7 +9,7 @@ public class Bar {
     private static final int C = 3;
     private static final int D = 4;
 
-    private ArrayList<Chord> chords = new ArrayList<>();
+    public ArrayList<Chord> chords = new ArrayList<>();
     public boolean fourFour = false;
     public boolean threeFour = false;
     public boolean leftRepeat = false;

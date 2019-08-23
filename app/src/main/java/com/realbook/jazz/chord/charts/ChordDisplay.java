@@ -432,6 +432,10 @@ public class ChordDisplay extends AppCompatActivity {
         }
     }
 
+    public void drawChord(Chord chord) {
+
+    }
+
     //linenumbers starting at 1
     public void drawLine(String line, int lineNumber) {
         String delim = "[|]";
@@ -512,15 +516,15 @@ public class ChordDisplay extends AppCompatActivity {
                             (int)(lineHeight * 0.2),0,0, (int)(lineHeight * 0.6));
                 }
 
-
+                for(int j = 0; j < bars[i].chords.size(); j++) {
+                    drawChord(bars[i].chords.get(j));
+                }
 
             }
         }
 
-        if(bars.length == 8) {
-            Guideline[] leftGuidelineArray = {verticalGuidelines[2], verticalGuidelines[6],
-                    verticalGuidelines[10], verticalGuidelines[14]};
-            drawALineOfBars(lowerGuideline, upperGuideline, leftGuidelineArray);
+        else if(eightBars) {
+            //draw bars and chords
         }
 
     }

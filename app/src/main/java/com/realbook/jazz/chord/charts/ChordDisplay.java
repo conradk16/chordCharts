@@ -408,11 +408,11 @@ public class ChordDisplay extends AppCompatActivity {
 
     public void loadChords() {
         drawText(titleBottom, Left, Top, Right,
-                title, (int)(guidelineMarginTitleBottom * 0.8), true,
+                title, (int)(guidelineMarginTitleBottom * 0.8), true, Color.BLACK,
                 0,0,0,0, true);
         drawText(authorBottom, Left, titleBottom, Right, author,
                 (int)((guidelineMarginAuthorBottom - guidelineMarginTitleBottom) * 0.8), false,
-                0,0,0,0, true);
+                Color.BLACK, 0,0,0,0, true);
 
         for(int i = 1; i < numLines + 1; i++) {
             drawLine(list.get(i+1), i);
@@ -466,7 +466,7 @@ public class ChordDisplay extends AppCompatActivity {
 
     public TextView drawText(View lowerGuideline, View leftGuideline, View
             upperGuideline, View rightGuideline, String text, int height,
-                         boolean bold, int leftMargin, int topMargin, int rightMargin,
+                         boolean bold, int color, int leftMargin, int topMargin, int rightMargin,
                          int bottomMargin, boolean draw) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
@@ -475,7 +475,8 @@ public class ChordDisplay extends AppCompatActivity {
         TextView display= new TextView(getApplicationContext());
         display.setTextSize(TypedValue.COMPLEX_UNIT_PX, height);
         display.setText(text);
-        display.setTextColor(Color.parseColor("#000000"));
+        display.setTextColor(color);
+
         if(bold) {
             display.setTypeface(null, Typeface.BOLD);
         }
@@ -498,7 +499,7 @@ public class ChordDisplay extends AppCompatActivity {
             //drawBar(lowerGuideline, upperGuideline, leftGuidelines[i]);
             drawText(lowerGuideline, leftGuidelines[i], upperGuideline, leftGuidelines[i],
                     Character.toString((char) 0xFF5C), lineHeight,
-                    false, 0,0,0,0, true);
+                    false, Color.BLACK, 0,0,0,0, true);
         }
     }
 
@@ -539,6 +540,7 @@ public class ChordDisplay extends AppCompatActivity {
             }
         }
         else if(chord.locationInBar == 5) {
+
             if(eightBars) {
                 leftGuidelineIndex = leftBarGuidelineIndex + 1;
                 rightGuidelineIndex = leftBarGuidelineIndex + 2;
@@ -559,7 +561,6 @@ public class ChordDisplay extends AppCompatActivity {
             }
         }
 
-        System.out.println(leftGuidelineIndex);
 
         Guideline leftGuideline = verticalGuidelines[leftGuidelineIndex];
         Guideline rightGuideline = verticalGuidelines[rightGuidelineIndex];
@@ -591,15 +592,16 @@ public class ChordDisplay extends AppCompatActivity {
         else if(chord.key == Global.B) { keyText = "B";}
 
         if(chord.type == Global.MAJOR7) {lowerText = Character.toString((char) 0x25b3) + "7";}
-        if(chord.type == Global.MINOR7) {lowerText = "-7";}
-        if(chord.type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00d8) + "7";}
-        if(chord.type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x004f) + "7";}
+        if(chord.type == Global.MINOR7) {lowerText = Character.toString((char) 0x2013) + "7";}
+        if(chord.type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00f8) + "7";}
+        if(chord.type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x006f) + "7";}
         if(chord.type == Global.DOMINANT) {lowerText = "7";}
         if(chord.type == Global.AUGMENTED7) {lowerText = Character.toString((char) 0x002b) + "7";}
-        if(chord.type == Global.MINMAJ7) {lowerText = "-" + Character.toString((char) 0x25b3) + "7";}
+        if(chord.type == Global.MINMAJ7) {lowerText = Character.toString((char) 0x2013) +
+                Character.toString((char) 0x25b3) + "7";}
         if(chord.type == Global.MAJOR) {lowerText = "";}
-        if(chord.type == Global.MINOR) {lowerText = "-";}
-        if(chord.type == Global.DIMINISHED) {lowerText = Character.toString((char) 0x004f);}
+        if(chord.type == Global.MINOR) {lowerText = Character.toString((char) 0x2013);}
+        if(chord.type == Global.DIMINISHED) {lowerText = Character.toString((char) 0x006f);}
         if(chord.type == Global.AUGMENTED) {lowerText = Character.toString((char) 0x002b);}
 
         for(int i = 0; i < chord.modifiers.size(); i++) {
@@ -612,18 +614,20 @@ public class ChordDisplay extends AppCompatActivity {
 
         }
 
-        int widthAllowed = rightGuidelineMargin - leftGuidelineMargin;
+        int fullWidthAvailable = rightGuidelineMargin - leftGuidelineMargin;
+        int marginFromLeftGuideline = (int)(fullWidthAvailable * 0.03);
+        int widthAllowed = fullWidthAvailable - marginFromLeftGuideline;
 
         TextView keyTextView = drawText(lowerGuideline, leftGuideline, upperGuideline, null,
-                keyText, (int)(lineHeight), true,
+                keyText, (int)(lineHeight * 0.8), false, Color.BLACK,
                 0,0,0,0, false);
 
-        TextView lowerTextView = drawText(lowerGuideline, leftGuideline, centerGuideline, null,
-                lowerText, (int)(lineHeight / 2), true,
+        TextView lowerTextView = drawText(null, leftGuideline, centerGuideline, null,
+                lowerText, (int)(lineHeight * 0.8 / 2), true, Color.BLACK,
                 0,0,0,0, false);
 
-        TextView upperTextView = drawText(centerGuideline, leftGuideline, upperGuideline, null,
-                upperText, (int)(lineHeight / 2), true,
+        TextView upperTextView = drawText(centerGuideline, leftGuideline, null, null,
+                upperText, (int)(lineHeight * 0.8 / 1.5), true, Color.BLACK,
                 0,0,0,0, false);
 
         keyTextView.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -633,22 +637,21 @@ public class ChordDisplay extends AppCompatActivity {
         keyTextView.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         int upperTextWidth = keyTextView.getMeasuredWidth();
 
-        int lettersMarginFromBar = (int)(widthAllowed * 0.05);
         int totalWidth = keyTextWidth + Math.max(upperTextWidth, lowerTextWidth);
-        double resizeFactor = Math.min(0.8, widthAllowed / totalWidth);
+        double resizeFactor = Math.min(1.0, ((double)widthAllowed / (double)totalWidth));
 
         drawText(lowerGuideline, leftGuideline, upperGuideline, null,
-                keyText, (int)(lineHeight * resizeFactor), true,
-                lettersMarginFromBar,0,0,0, true);
+                keyText, (int)(lineHeight * 0.8 * resizeFactor), false, Color.BLACK,
+                marginFromLeftGuideline,0,0,0, true);
 
-        drawText(lowerGuideline, leftGuideline, centerGuideline, null,
-                lowerText, (int)(lineHeight / 2 * resizeFactor), true,
-                (int)(keyTextWidth * resizeFactor) + lettersMarginFromBar,0,
+        drawText(null, leftGuideline, centerGuideline, null,
+                lowerText, (int)(lineHeight * 0.8 / 2 * resizeFactor), true, Color.BLACK,
+                (int)(keyTextWidth * resizeFactor) + marginFromLeftGuideline,0,
                 0,0, true);
 
-        drawText(centerGuideline, leftGuideline, upperGuideline, null,
-                upperText, (int)(lineHeight / 2 * resizeFactor), true,
-                (int)(keyTextWidth * resizeFactor) + lettersMarginFromBar,0,
+        drawText(centerGuideline, leftGuideline, null, null,
+                upperText, (int)(lineHeight * 0.8 / 1.5 * resizeFactor), true, Color.BLACK,
+                (int)(keyTextWidth * resizeFactor) + marginFromLeftGuideline,0,
                 0,0, true);
 
     }
@@ -684,38 +687,45 @@ public class ChordDisplay extends AppCompatActivity {
 
                     drawText(T, Left, lineTops[0],null,
                             topNum, (int)(width * 0.04),
-                            true, (int)(width*0.007),0,0,0, true);
+                            true, Color.BLACK,
+                            (int)(width*0.007),0,0,0, true);
                     drawText(V, Left, T, null, "4",
-                            (int)(width * 0.04), true,
+                            (int)(width * 0.04), true, Color.BLACK,
                             (int)(width*0.007),0,0,0, true);
                     drawText(lineBottoms[0], Left, lineTops[0], null, "-",
-                            (int)(width * 0.08), true,
+                            (int)(width * 0.08), true, Color.BLACK,
                             (int)(width*0.003),0,0,(int)(lineHeight*0.1), true);
                 }
 
                 if(bars[i].leftRepeat) {
                     //String text = new StringBuilder().appendCodePoint(0x1D106).toString();
+                    drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline, verticalGuidelines[4*i],
+                            Character.toString((char) 0xFF5C), lineHeight,
+                            false, Color.WHITE, 0,0,0,0, true);
                     drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
-                            null, ":",
-                            (int)(lineHeight * 0.7), true,
-                            (int)(width * 0.003), 0,0,
+                            verticalGuidelines[4*i], ":",
+                            (int)(lineHeight * 0.7), true, Color.BLACK,
+                            0, 0,0,
                             (int)(lineHeight * 0.1), true);
                     drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
                             verticalGuidelines[4*i],
-                            Character.toString((char) 0x2997), (int)(lineHeight*1.3), true,
+                            Character.toString((char) 0x2772), (int)(lineHeight*1.3), true,Color.BLACK,
                             0,0,0,(int)(lineHeight*0.2), true);
                 }
 
                 if(bars[i].rightRepeat) {
                     //String text = new StringBuilder().appendCodePoint(0x1D106).toString();
-                    drawText(lowerGuideline, null, upperGuideline,
+                    drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline, verticalGuidelines[4*i + 4],
+                            Character.toString((char) 0xFF5C), lineHeight,
+                            false, Color.WHITE, 0,0,0,0, true);
+                    drawText(lowerGuideline, verticalGuidelines[4*i+4], upperGuideline,
                             verticalGuidelines[4*i + 4],
-                            ":", (int)(lineHeight * 0.7), true,
+                            ":", (int)(lineHeight * 0.7), true,Color.BLACK,
                             0,0,0,
                             (int)(lineHeight * 0.1), true);
                     drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline,
                             verticalGuidelines[4*i + 4],
-                            Character.toString((char) 0x2998), (int)(lineHeight*1.3), true,
+                            Character.toString((char) 0x2773), (int)(lineHeight*1.3), true,Color.BLACK,
                             0,0,0,(int)(lineHeight*0.2), true);
                 }
 
@@ -723,17 +733,18 @@ public class ChordDisplay extends AppCompatActivity {
                     String text = new StringBuilder().appendCodePoint(0x1D10C).toString();
                     drawText(lowerGuideline, null,null,
                             verticalGuidelines[4*i + 4],
-                            text, (int)(lineHeight * 0.8), true,
+                            text, (int)(lineHeight * 0.8), true,Color.BLACK,
                             0,0,(int)(lineHeight * 0.2), (int)(lineHeight * 0.6), true);
                 }
 
                 if(bars[i].cota) {
                     String text = new StringBuilder().appendCodePoint(0x1D10C).toString();
                     drawText(lowerGuideline, verticalGuidelines[4*i],null,
-                            null, text, (int)(lineHeight * 0.8), true,
+                            null, text, (int)(lineHeight * 0.8), true,Color.BLACK,
                             (int)(lineHeight * 0.2),0,0, (int)(lineHeight * 0.6), true);
                 }
 
+                System.out.println(bars[i].chords.size());
                 for(int j = 0; j < bars[i].chords.size(); j++) {
                     drawChord(bars[i].chords.get(j), 4*i, 4*i + 4, lineNumber);
                 }
@@ -761,10 +772,6 @@ public class ChordDisplay extends AppCompatActivity {
 
         int clickDistanceFromLeft = (int) (ev.getRawX() / density); // distance in dp
         float widthOfView = sideView.getWidth() / density;
-
-        System.out.println("CLICK DISTANVE");
-        System.out.println(clickDistanceFromLeft);
-
 
 
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {

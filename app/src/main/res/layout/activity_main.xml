@@ -17,8 +17,24 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="20dp"
+        app:layout_constraintRight_toLeftOf="@id/clearButton"
+        android:layout_marginRight="4dp"/>
+
+    <Button
+        android:id="@+id/clearButton"
+        android:text="Clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/stefans_buttons"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="20dp"/>
+        app:layout_constraintLeft_toRightOf="@id/search_bar"
+        android:layout_marginLeft="4dp"
+        android:textAllCaps="false"
+        android:textStyle="normal"
+        android:textSize="18dp" />
 
     <ListView
         android:id="@+id/resultsListView"

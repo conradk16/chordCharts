@@ -36,6 +36,8 @@ import java.util.HashMap;
 
 public class ChordDisplay extends AppCompatActivity {
 
+    Button currentSelectedButton = null;
+
     int clickCount = 0;
 
     int width;
@@ -185,6 +187,8 @@ public class ChordDisplay extends AppCompatActivity {
         title = getIntent().getStringExtra("title");
         author = getIntent().getStringExtra("author");
         list = getIntent().getStringArrayListExtra("list");
+
+        System.out.println(list);
 
         width = getScreenWidthInPixels();
         height = getScreenHeightInPixels() - getStatusBarHeight();
@@ -919,30 +923,32 @@ public class ChordDisplay extends AppCompatActivity {
         for (Button b : sideViewButtons) {
 
             if (defaultMusicalKey == MusicalKeyEnum.C_MAJOR || defaultMusicalKey == MusicalKeyEnum.C_MINOR) {
-                CButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = CButton;
             } else if (defaultMusicalKey == MusicalKeyEnum.D_FLAT_MAJOR || defaultMusicalKey == MusicalKeyEnum.D_FLAT_MINOR) {
-                DFlat.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = DFlat;
             } else if (defaultMusicalKey == MusicalKeyEnum.D_MAJOR || defaultMusicalKey == MusicalKeyEnum.D_MINOR) {
-                DButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = DButton;
             } else if (defaultMusicalKey == MusicalKeyEnum.E_FLAT_MAJOR || defaultMusicalKey == MusicalKeyEnum.E_FLAT_MINOR) {
-                EFlatButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = EFlatButton;
             } else if (defaultMusicalKey == MusicalKeyEnum.E_MAJOR || defaultMusicalKey == MusicalKeyEnum.E_MINOR) {
-                EButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = EButton;
             } else if (defaultMusicalKey == MusicalKeyEnum.F_MAJOR || defaultMusicalKey == MusicalKeyEnum.F_MINOR) {
-                FButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = FButton;
             } else if (defaultMusicalKey == MusicalKeyEnum.F_SHARP_MAJOR || defaultMusicalKey == MusicalKeyEnum.F_SHARP_MINOR) {
-                FSharpButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = FSharpButton;
             } else if (defaultMusicalKey == MusicalKeyEnum.G_MAJOR || defaultMusicalKey == MusicalKeyEnum.G_MINOR) {
-                GButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = GButton;
             } else if (defaultMusicalKey == MusicalKeyEnum.A_FLAT_MAJOR || defaultMusicalKey == MusicalKeyEnum.A_FLAT_MINOR) {
-                AFlatButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = AFlatButton;
             } else if (defaultMusicalKey == MusicalKeyEnum.A_MAJOR || defaultMusicalKey == MusicalKeyEnum.A_MINOR) {
-                AButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = AButton;
             } else if (defaultMusicalKey == MusicalKeyEnum.B_FLAT_MAJOR || defaultMusicalKey == MusicalKeyEnum.B_FLAT_MINOR) {
-                BFlatButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = BFlatButton;
             } else if (defaultMusicalKey == MusicalKeyEnum.B_MAJOR || defaultMusicalKey == MusicalKeyEnum.B_MINOR) {
-                BButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+                currentSelectedButton = BButton;
             }
+
+            currentSelectedButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
 
             int top;
             int bottom;
@@ -982,13 +988,16 @@ public class ChordDisplay extends AppCompatActivity {
         CButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.C_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.C_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.C_MINOR;
+                    newMusicalKey = MusicalKeyEnum.C_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, CButton);
+                setButtonColors(CButton);
             }
         });
 
@@ -1000,13 +1009,16 @@ public class ChordDisplay extends AppCompatActivity {
         DFlat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.D_FLAT_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.D_FLAT_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.D_FLAT_MINOR;
+                    newMusicalKey = MusicalKeyEnum.D_FLAT_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, DFlat);
+                setButtonColors(CButton);
             }
         });
 
@@ -1019,13 +1031,16 @@ public class ChordDisplay extends AppCompatActivity {
         DButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.D_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.D_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.D_MINOR;
+                    newMusicalKey = MusicalKeyEnum.D_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, DButton);
+                setButtonColors(CButton);
             }
         });
 
@@ -1037,13 +1052,16 @@ public class ChordDisplay extends AppCompatActivity {
         EFlatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.E_FLAT_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.E_FLAT_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.E_FLAT_MINOR;
+                    newMusicalKey = MusicalKeyEnum.E_FLAT_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, EFlatButton);
+                setButtonColors(EFlatButton);
             }
         });
 
@@ -1055,13 +1073,16 @@ public class ChordDisplay extends AppCompatActivity {
         EButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.E_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.E_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.E_MINOR;
+                    newMusicalKey = MusicalKeyEnum.E_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, EButton);
+                setButtonColors(EButton);
             }
         });
 
@@ -1073,13 +1094,16 @@ public class ChordDisplay extends AppCompatActivity {
         FButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.F_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.F_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.F_MINOR;
+                    newMusicalKey = MusicalKeyEnum.F_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, FButton);
+                setButtonColors(FButton);
             }
         });
 
@@ -1091,13 +1115,16 @@ public class ChordDisplay extends AppCompatActivity {
         FSharpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.F_SHARP_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.F_SHARP_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.F_SHARP_MINOR;
+                    newMusicalKey = MusicalKeyEnum.F_SHARP_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, FSharpButton);
+                setButtonColors(FSharpButton);
             }
         });
 
@@ -1109,13 +1136,16 @@ public class ChordDisplay extends AppCompatActivity {
         GButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.G_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.G_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.G_MINOR;
+                    newMusicalKey = MusicalKeyEnum.G_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, GButton);
+                setButtonColors(GButton);
             }
         });
 
@@ -1127,13 +1157,16 @@ public class ChordDisplay extends AppCompatActivity {
         AFlatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.A_FLAT_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.A_FLAT_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.A_FLAT_MINOR;
+                    newMusicalKey = MusicalKeyEnum.A_FLAT_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, AFlatButton);
+                setButtonColors(AFlatButton);
             }
         });
 
@@ -1145,13 +1178,16 @@ public class ChordDisplay extends AppCompatActivity {
         AButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.A_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.A_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.A_MINOR;
+                    newMusicalKey = MusicalKeyEnum.A_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, AButton);
+                setButtonColors(AButton);
             }
         });
 
@@ -1163,13 +1199,16 @@ public class ChordDisplay extends AppCompatActivity {
         BFlatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.B_FLAT_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.B_FLAT_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.B_FLAT_MINOR;
+                    newMusicalKey = MusicalKeyEnum.B_FLAT_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, BFlatButton);
+                setButtonColors(BFlatButton);
             }
         });
 
@@ -1181,13 +1220,16 @@ public class ChordDisplay extends AppCompatActivity {
         BButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MusicalKeyEnum newMusicalKey;
                 if (isMajor(currentMusicalKey)) {
-                    currentMusicalKey = MusicalKeyEnum.B_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.B_MAJOR;
                 } else {
-                    currentMusicalKey = MusicalKeyEnum.B_MINOR;
+                    newMusicalKey = MusicalKeyEnum.B_MINOR;
                 }
+                transposeChords(currentMusicalKey, newMusicalKey);
+                currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(sideViewButtons, BButton);
+                setButtonColors(BButton);
             }
         });
 
@@ -1229,16 +1271,20 @@ public class ChordDisplay extends AppCompatActivity {
         }
     }
 
-    public void setButtonColors(ArrayList<Button> buttons, Button selectedButton) {
-        for (Button b : buttons) {
-            if (b != selectedButton) {
-                b.setBackground(getResources().getDrawable(R.drawable.key_buttons));
-            } else {
-                b.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
-            }
-        }
+    public void setButtonColors(Button newlySelectedButton) {
+        currentSelectedButton.setBackground(getResources().getDrawable(R.drawable.key_buttons));
+        newlySelectedButton.setBackground(getResources().getDrawable(R.drawable.key_button_depressed));
+        currentSelectedButton = newlySelectedButton;
+
         LinearLayout sideView = findViewById(R.id.sideView);
         sideView.bringToFront();
+    }
+
+    /* alters "ArrayList<String> list", currently in "MusicalKeyEnum currentMusicalKey", to be in the new
+    key of "MusicalKeyEnum newMusicalKey"
+     */
+    public void transposeChords(MusicalKeyEnum currentMusicalKey, MusicalKeyEnum newMusicalKey) {
+        //TODO
     }
 
 }

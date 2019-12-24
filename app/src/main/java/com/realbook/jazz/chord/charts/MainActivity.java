@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -126,6 +127,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button clearBtn = (Button) findViewById(R.id.clearButton);
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchBar.setText("");
+                reloadData();
+                searchBar.setCursorVisible(true);
+                showKeyboard(MainActivity.this);
+            }
+        });
+
+        searchBar.setCursorVisible(false);
         reloadData();
 
 
@@ -155,6 +168,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        if (titlesToShow.size() == 0) {
+            titlesToShow.add("No results");
+            authorsToShow.add("");
+        }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_2, android.R.id.text1, titlesToShow) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -163,7 +181,9 @@ public class MainActivity extends AppCompatActivity {
                 TextView text2 = (TextView) view.findViewById(android.R.id.text2);
 
                 text1.setText(titlesToShow.get(position));
+                text1.setTextColor(Color.BLACK);
                 text2.setText(authorsToShow.get(position));
+                text2.setTextColor(Color.BLACK);
                 return view;
             }
         };
@@ -200,4 +220,16 @@ public class MainActivity extends AppCompatActivity {
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
+    public static void showKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.showSoftInput(view, 0);
+    }
+
 }

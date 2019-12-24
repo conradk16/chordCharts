@@ -1,12 +1,10 @@
 package com.realbook.jazz.chord.charts;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,26 +20,28 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.Constants;
+import com.anjlab.android.iab.v3.TransactionDetails;
+
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.Array;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Scanner;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
 
     HashMap<String, ArrayList<String>> titlesToChords = new HashMap<>();
+    HashMap<String, Boolean> titleIsAllowedOnFreeVersion = new HashMap<>();
     ArrayList<String> titles = new ArrayList<>();
     ArrayList<String> authors = new ArrayList<>();
+    Global global;
+    BillingProcessor bp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +49,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayOptions(androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.main_banner);
 
+        global = (Global) getApplication();
+        global.loadPurchasedStatus();
+        global.loadReviewPoints();
+        global.loadReviewPointsThreshold();
+
+        bp = BillingProcessor.newBillingProcessor(this, "", null); //optionally add license key found in play console
+        bp.initialize();
 
         InputStream input = null;
         AssetManager manager = getAssets();
@@ -63,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(input));
             String mline;
+
             while ((mline = br.readLine()) != null) {
                 String title = mline;
                 ArrayList<String> list = new ArrayList<>();
@@ -78,6 +86,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Collections.sort(titles, new AlphabeticalComparator());
+
+        Boolean isAllowed = true;
+        for (String title : titles) {
+            System.out.println(title);
+            titleIsAllowedOnFreeVersion.put(title, isAllowed);
+            isAllowed = !isAllowed;
+        }
 
         for (String t : titles) {
             authors.add(titlesToChords.get(t).get(0));
@@ -193,9 +208,21 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openChordDisplayAcivity(titlesToShow.get(position), authorsToShow.get(position), titlesToChords.get(titlesToShow.get(position)));
+                if (!global.hasFullVersion && !titleIsAllowedOnFreeVersion.get(titlesToShow.get(position))) { // free version only allows access to every other song
+                    openUpgradeDialogue();
+                }
+                else {
+                    openChordDisplayAcivity(titlesToShow.get(position), authorsToShow.get(position), titlesToChords.get(titlesToShow.get(position)));
+                }
             }
         });
+    }
+
+    public void openUpgradeDialogue() {
+        Dialogues dialogue = new Dialogues();
+        String title = getResources().getString(R.string.upgrade_title);
+        String message = getResources().getString(R.string.upgrade_message);
+        dialogue.showUpgradeDialogue(title, message, MainActivity.this, bp, global);
     }
 
     // Screen tapped anywhere
@@ -231,5 +258,53 @@ public class MainActivity extends AppCompatActivity {
         }
         imm.showSoftInput(view, 0);
     }
+
+    // IAP START
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // Need this method otherwise always crashes after purchase (purchase goes through, everything works, but it crashes once)
+        //No call for super(). Bug on API Level > 11.
+        //On purchase, this is called to refresh activity, and I need to indicate that I can release the activity without saving state
+    }
+    @Override
+    public void onProductPurchased(String productId, TransactionDetails details) {
+        global.giveProduct();
+        Dialogues dialogue = new Dialogues();
+        String title = getResources().getString(R.string.already_purchased_title);
+        String message = getResources().getString(R.string.already_purchased_message);
+        dialogue.showNotificationDialogue(title, message, MainActivity.this);
+    }
+    @Override
+    public void onPurchaseHistoryRestored() {
+
+    }
+    @Override
+    public void onBillingError(int errorCode, Throwable error) {
+        if (errorCode != Constants.BILLING_RESPONSE_RESULT_USER_CANCELED) { // Cancelled not because user hit cancel
+            Dialogues dialogue = new Dialogues();
+            String title = getResources().getString(R.string.error_purchasing_title);
+            String message = getResources().getString(R.string.error_purchasing_message);
+            dialogue.showNotificationDialogue(title, message, MainActivity.this);
+        }
+    }
+    @Override
+    public void onBillingInitialized() {
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+    @Override
+    public void onDestroy() {
+        if (bp != null) {
+            bp.release();
+        }
+        super.onDestroy();
+    }
+
+    // IAP END
 
 }

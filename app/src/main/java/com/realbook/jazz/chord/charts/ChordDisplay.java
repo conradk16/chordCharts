@@ -2,43 +2,33 @@ package com.realbook.jazz.chord.charts;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.Typeface;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
-import android.support.constraint.Guideline;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Guideline;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ChordDisplay extends AppCompatActivity {
 
     Button currentSelectedButton = null;
-
     int clickCount = 0;
+    Global global;
 
     int width;
     int height;
@@ -181,14 +171,22 @@ public class ChordDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chord_display);
 
+        global = (Global) getApplication();
+        global.reviewPoints += global.pointsForViewingSong;
+        global.saveReviewPoints(global.reviewPoints);
+        if (global.timeToAskForReview()) {
+            Dialogues dialogue = new Dialogues();
+            String title = getResources().getString(R.string.rate_title);
+            String message = getResources().getString(R.string.rate_message);
+            dialogue.showRateDialogue(title, message, ChordDisplay.this, global);
+        }
+
         //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         //getSupportActionBar().setCustomView(R.layout.chord_display_banner);
 
         title = getIntent().getStringExtra("title");
         author = getIntent().getStringExtra("author");
         list = getIntent().getStringArrayListExtra("list");
-
-        System.out.println(list);
 
         width = getScreenWidthInPixels();
         height = getScreenHeightInPixels() - getStatusBarHeight();
@@ -1018,7 +1016,7 @@ public class ChordDisplay extends AppCompatActivity {
                 transposeChords(currentMusicalKey, newMusicalKey);
                 currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(CButton);
+                setButtonColors(DFlat);
             }
         });
 
@@ -1040,7 +1038,7 @@ public class ChordDisplay extends AppCompatActivity {
                 transposeChords(currentMusicalKey, newMusicalKey);
                 currentMusicalKey = newMusicalKey;
                 loadChords();
-                setButtonColors(CButton);
+                setButtonColors(DButton);
             }
         });
 

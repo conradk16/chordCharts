@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="already_purchased_title">You\'ve already purchased this</string>
+    <string name="already_purchased_message">Your purchase has been restored</string>
+    <string name="payment_not_supported_title">In-app Billing Services Not Available</string>
+    <string name="payment_not_supported_message">This device does not support in-app billing services</string>
+    <string name="error_purchasing_title">Error Purchasing</string>
+    <string name="error_purchasing_message">You have not been charged. Please try again later.</string>
+    <string name="upgrade_title">Unlock all songs</string>
+    <string name="upgrade_message">Upgrade to the full version to unlock all songs</string>
+    <string name="rate_title">Enjoying the app?</string>
+    <string name="rate_message">Please take a moment to rate it</string>
 </resources>

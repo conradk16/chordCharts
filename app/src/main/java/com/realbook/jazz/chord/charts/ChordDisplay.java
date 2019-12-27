@@ -193,17 +193,14 @@ public class ChordDisplay extends AppCompatActivity {
         author = getIntent().getStringExtra("author");
         list = getIntent().getStringArrayListExtra("list");
 
-        String musicalKeyString = list.get(1);
-        defaultMusicalKey = stringKeyToEnumKey.get(musicalKeyString);
+        String defaultMusicalKeyString = list.get(1);
+        defaultMusicalKey = stringKeyToEnumKey.get(defaultMusicalKeyString);
 
         String newMusicalKeyString = getIntent().getStringExtra("newMusicalKey");
-
         if (newMusicalKeyString != null) {
             currentMusicalKey = stringKeyToEnumKey.get(newMusicalKeyString);
-            System.out.println("new musical key string:");
-            System.out.println(newMusicalKeyString);
         } else {
-            currentMusicalKey = stringKeyToEnumKey.get(musicalKeyString);
+            currentMusicalKey = stringKeyToEnumKey.get(defaultMusicalKeyString);
         }
 
         width = getScreenWidthInPixels();
@@ -934,12 +931,10 @@ public class ChordDisplay extends AppCompatActivity {
 
             if (currentMusicalKey == MusicalKeyEnum.C_MAJOR || currentMusicalKey == MusicalKeyEnum.C_MINOR) {
                 currentSelectedButton = CButton;
-                System.out.println("C button");
             } else if (currentMusicalKey == MusicalKeyEnum.D_FLAT_MAJOR || currentMusicalKey == MusicalKeyEnum.D_FLAT_MINOR) {
                 currentSelectedButton = DFlat;
             } else if (currentMusicalKey == MusicalKeyEnum.D_MAJOR || currentMusicalKey == MusicalKeyEnum.D_MINOR) {
                 currentSelectedButton = DButton;
-                System.out.println("D button");
             } else if (currentMusicalKey == MusicalKeyEnum.E_FLAT_MAJOR || currentMusicalKey == MusicalKeyEnum.E_FLAT_MINOR) {
                 currentSelectedButton = EFlatButton;
             } else if (currentMusicalKey == MusicalKeyEnum.E_MAJOR || currentMusicalKey == MusicalKeyEnum.E_MINOR) {
@@ -1217,7 +1212,7 @@ public class ChordDisplay extends AppCompatActivity {
         intent.putExtra("title", title);
         intent.putExtra("author", author);
         intent.putStringArrayListExtra("list", list);
-        intent.putExtra("newMusicalKey", newMusicalKey);
+        intent.putExtra("newMusicalKey", enumKeyToStringKey.get(newMusicalKey));
         startActivity(intent);
     }
 

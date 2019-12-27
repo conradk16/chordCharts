@@ -14,7 +14,7 @@ public class Global extends Application {
     Boolean hasFullVersion = false;
 
     int reviewPoints = 0;
-    int reviewPointsThreshold = 30;
+    int reviewPointsThreshold = 10;
     int pointsForViewingSong = 1;
 
     public static final int MAJOR7 = 0;

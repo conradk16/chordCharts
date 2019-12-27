@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         global.loadReviewPoints();
         global.loadReviewPointsThreshold();
 
-        bp = BillingProcessor.newBillingProcessor(this, "", null); //optionally add license key found in play console
+        bp = BillingProcessor.newBillingProcessor(this, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkDxNOmqxEFQPV3R0iid/ky/Y6hM7teKX7RtfERgLN6KEFGby88Nx3NQSgXXZfbHIaF0yPH2bngHKoOM24C4T1vISq0R7RTa0oAZn6z3//+SqevlsTgSQqrGfiOJiJspNPTQ5FvIXjieHgPw3VlNMqraGbpHtTcvX2c14YgKO4IdsAuvmpRnxQYDEypN9Rko0Eluh7Z92oRNZblRsGBp2Jc4GW9d8BiMV+3MBzgXlXIK6OJwd1G72nLt9l07V97ZhdbVNoiQ/6laulGbhRj9HHpA+NYDp4NiYV6qT0/L2rKZs4apiwQqT8G/x3jlWQ+7PRWthdj+vWt5Yn/hxssLGFQIDAQAB", null);
         bp.initialize();
 
         InputStream input = null;

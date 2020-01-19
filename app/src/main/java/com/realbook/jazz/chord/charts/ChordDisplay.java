@@ -523,10 +523,12 @@ public class ChordDisplay extends AppCompatActivity {
         String lowerText = "";
         String upperText = "";
 
-        if(chord.key == Global.C) { keyText = "C"; }
+        if(chord.key == Global.CFLAT) { keyText = "C"; upperText = Character.toString((char)0x266d);}
+        else if(chord.key == Global.C) { keyText = "C"; }
         else if(chord.key == Global.CSHARP) { keyText = "C"; upperText = Character.toString((char)0x266f);}
         else if(chord.key == Global.DFLAT) { keyText = "D"; upperText = Character.toString((char)0x266d);}
         else if(chord.key == Global.D) { keyText = "D";}
+        else if(chord.key == Global.DSHARP) { keyText = "D"; upperText = Character.toString((char)0x266f);}
         else if(chord.key == Global.EFLAT) { keyText = "E"; upperText = Character.toString((char)0x266d);}
         else if(chord.key == Global.E) { keyText = "E";}
         else if(chord.key == Global.F) { keyText = "F";}
@@ -541,17 +543,19 @@ public class ChordDisplay extends AppCompatActivity {
         else if(chord.key == Global.B) { keyText = "B";}
 
         if(chord.type == Global.MAJOR7) {lowerText = Character.toString((char) 0x25b3) + "7";}
-        if(chord.type == Global.MINOR7) {lowerText = Character.toString((char) 0x2013) + "7";}
-        if(chord.type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00f8) + "7";}
-        if(chord.type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x006f) + "7";}
-        if(chord.type == Global.DOMINANT) {lowerText = "7";}
-        if(chord.type == Global.AUGMENTED7) {lowerText = Character.toString((char) 0x002b) + "7";}
-        if(chord.type == Global.MINMAJ7) {lowerText = Character.toString((char) 0x2013) +
+        else if(chord.type == Global.MAJOR6) {lowerText = "6";}
+        else if(chord.type == Global.MINOR7) {lowerText = Character.toString((char) 0x2013) + "7";}
+        else if(chord.type == Global.MINOR6) {lowerText = Character.toString((char) 0x2013) + "6";}
+        else if(chord.type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00f8) + "7";}
+        else if(chord.type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x006f) + "7";}
+        else if(chord.type == Global.DOMINANT) {lowerText = "7";}
+        else if(chord.type == Global.AUGMENTED7) {lowerText = Character.toString((char) 0x002b) + "7";}
+        else if(chord.type == Global.MINMAJ7) {lowerText = Character.toString((char) 0x2013) +
                 Character.toString((char) 0x25b3) + "7";}
-        if(chord.type == Global.MAJOR) {lowerText = "";}
-        if(chord.type == Global.MINOR) {lowerText = Character.toString((char) 0x2013);}
-        if(chord.type == Global.DIMINISHED) {lowerText = Character.toString((char) 0x006f);}
-        if(chord.type == Global.AUGMENTED) {lowerText = Character.toString((char) 0x002b);}
+        else if(chord.type == Global.MAJOR) {lowerText = "";}
+        else if(chord.type == Global.MINOR) {lowerText = Character.toString((char) 0x2013);}
+        else if(chord.type == Global.DIMINISHED) {lowerText = Character.toString((char) 0x006f);}
+        else if(chord.type == Global.AUGMENTED) {lowerText = Character.toString((char) 0x002b);}
 
         for(int i = 0; i < chord.modifiers.size(); i++) {
             String modifier = chord.modifiers.get(i);
@@ -560,6 +564,8 @@ public class ChordDisplay extends AppCompatActivity {
             else if(modifier.equals("#11")) {lowerText = lowerText + Character.toString((char)0x266f) + "11";}
             else if(modifier.equals("#9")) {lowerText = lowerText + Character.toString((char)0x266f) + "9";}
             else if(modifier.equals("#5")) {lowerText = lowerText + Character.toString((char)0x266f) + "5";}
+            else if(modifier.equals("alt")) {lowerText = lowerText + "alt";}
+            else if(modifier.equals("sus")) {lowerText = lowerText + "sus";}
 
         }
         String[] toReturn = {keyText, lowerText, upperText};
@@ -931,7 +937,7 @@ public class ChordDisplay extends AppCompatActivity {
 
             if (currentMusicalKey == MusicalKeyEnum.C_MAJOR || currentMusicalKey == MusicalKeyEnum.C_MINOR) {
                 currentSelectedButton = CButton;
-            } else if (currentMusicalKey == MusicalKeyEnum.D_FLAT_MAJOR || currentMusicalKey == MusicalKeyEnum.D_FLAT_MINOR) {
+            } else if (currentMusicalKey == MusicalKeyEnum.D_FLAT_MAJOR || currentMusicalKey == MusicalKeyEnum.C_SHARP_MINOR) {
                 currentSelectedButton = DFlat;
             } else if (currentMusicalKey == MusicalKeyEnum.D_MAJOR || currentMusicalKey == MusicalKeyEnum.D_MINOR) {
                 currentSelectedButton = DButton;
@@ -941,11 +947,11 @@ public class ChordDisplay extends AppCompatActivity {
                 currentSelectedButton = EButton;
             } else if (currentMusicalKey == MusicalKeyEnum.F_MAJOR || currentMusicalKey == MusicalKeyEnum.F_MINOR) {
                 currentSelectedButton = FButton;
-            } else if (currentMusicalKey == MusicalKeyEnum.F_SHARP_MAJOR || currentMusicalKey == MusicalKeyEnum.F_SHARP_MINOR) {
+            } else if (currentMusicalKey == MusicalKeyEnum.G_FLAT_MAJOR || currentMusicalKey == MusicalKeyEnum.F_SHARP_MINOR) {
                 currentSelectedButton = FSharpButton;
             } else if (currentMusicalKey == MusicalKeyEnum.G_MAJOR || currentMusicalKey == MusicalKeyEnum.G_MINOR) {
                 currentSelectedButton = GButton;
-            } else if (currentMusicalKey == MusicalKeyEnum.A_FLAT_MAJOR || currentMusicalKey == MusicalKeyEnum.A_FLAT_MINOR) {
+            } else if (currentMusicalKey == MusicalKeyEnum.A_FLAT_MAJOR || currentMusicalKey == MusicalKeyEnum.G_SHARP_MINOR) {
                 currentSelectedButton = AFlatButton;
             } else if (currentMusicalKey == MusicalKeyEnum.A_MAJOR || currentMusicalKey == MusicalKeyEnum.A_MINOR) {
                 currentSelectedButton = AButton;
@@ -1005,9 +1011,11 @@ public class ChordDisplay extends AppCompatActivity {
             }
         });
 
-        text = "D" + (char) 0x266D;
         if (!isMajor(defaultMusicalKey)) {
-            text += "m";
+            text = "C" + (char) 0x266F + "m";
+        }
+        else {
+            text = "D" + (char) 0x266D;
         }
         DFlat.setText(text);
         DFlat.setOnClickListener(new View.OnClickListener() {
@@ -1016,7 +1024,7 @@ public class ChordDisplay extends AppCompatActivity {
                 if (isMajor(currentMusicalKey)) {
                     newMusicalKey = MusicalKeyEnum.D_FLAT_MAJOR;
                 } else {
-                    newMusicalKey = MusicalKeyEnum.D_FLAT_MINOR;
+                    newMusicalKey = MusicalKeyEnum.C_SHARP_MINOR;
                 }
                 transposeChords(currentMusicalKey, newMusicalKey);
                 reloadAfterTranspose();
@@ -1096,16 +1104,18 @@ public class ChordDisplay extends AppCompatActivity {
             }
         });
 
-        text = "F" + (char) 0x266F;
         if (!isMajor(defaultMusicalKey)) {
-            text += "m";
+            text = "F" + (char) 0x266F + "m";
+        }
+        else {
+            text = "G" + (char) 0x266D;
         }
         FSharpButton.setText(text);
         FSharpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (isMajor(currentMusicalKey)) {
-                    newMusicalKey = MusicalKeyEnum.F_SHARP_MAJOR;
+                    newMusicalKey = MusicalKeyEnum.G_FLAT_MAJOR;
                 } else {
                     newMusicalKey = MusicalKeyEnum.F_SHARP_MINOR;
                 }
@@ -1132,9 +1142,11 @@ public class ChordDisplay extends AppCompatActivity {
             }
         });
 
-        text = "A" + (char) 0x266D;
         if (!isMajor(defaultMusicalKey)) {
-            text += "m";
+            text = "G" + (char) 0x266F + "m";
+        }
+        else {
+            text = "A" + (char) 0x266D;
         }
         AFlatButton.setText(text);
         AFlatButton.setOnClickListener(new View.OnClickListener() {
@@ -1143,7 +1155,7 @@ public class ChordDisplay extends AppCompatActivity {
                 if (isMajor(currentMusicalKey)) {
                     newMusicalKey = MusicalKeyEnum.A_FLAT_MAJOR;
                 } else {
-                    newMusicalKey = MusicalKeyEnum.A_FLAT_MINOR;
+                    newMusicalKey = MusicalKeyEnum.G_SHARP_MINOR;
                 }
                 transposeChords(currentMusicalKey, newMusicalKey);
                 reloadAfterTranspose();
@@ -1168,7 +1180,7 @@ public class ChordDisplay extends AppCompatActivity {
             }
         });
 
-        text = "B" + (char) 0x266F;
+        text = "B" + (char) 0x266D;
         if (!isMajor(defaultMusicalKey)) {
             text += "m";
         }
@@ -1219,9 +1231,9 @@ public class ChordDisplay extends AppCompatActivity {
     public void setupEnumsMap() {
         stringKeyToEnumKey = new HashMap<>();
         stringKeyToEnumKey.put("C Major", MusicalKeyEnum.C_MAJOR);
-        stringKeyToEnumKey.put("C Minor", MusicalKeyEnum.C_MINOR);
+        stringKeyToEnumKey.put("C minor", MusicalKeyEnum.C_MINOR);
         stringKeyToEnumKey.put("Db Major", MusicalKeyEnum.D_FLAT_MAJOR);
-        stringKeyToEnumKey.put("Db minor", MusicalKeyEnum.D_FLAT_MINOR);
+        stringKeyToEnumKey.put("C# minor", MusicalKeyEnum.C_SHARP_MINOR);
         stringKeyToEnumKey.put("D Major", MusicalKeyEnum.D_MAJOR);
         stringKeyToEnumKey.put("D minor", MusicalKeyEnum.D_MINOR);
         stringKeyToEnumKey.put("Eb Major", MusicalKeyEnum.E_FLAT_MAJOR);
@@ -1230,12 +1242,12 @@ public class ChordDisplay extends AppCompatActivity {
         stringKeyToEnumKey.put("E minor", MusicalKeyEnum.E_MINOR);
         stringKeyToEnumKey.put("F Major", MusicalKeyEnum.F_MAJOR);
         stringKeyToEnumKey.put("F minor", MusicalKeyEnum.F_MINOR);
-        stringKeyToEnumKey.put("F# Major", MusicalKeyEnum.F_SHARP_MAJOR);
+        stringKeyToEnumKey.put("Gb Major", MusicalKeyEnum.G_FLAT_MAJOR);
         stringKeyToEnumKey.put("F# minor", MusicalKeyEnum.F_SHARP_MINOR);
         stringKeyToEnumKey.put("G Major", MusicalKeyEnum.G_MAJOR);
         stringKeyToEnumKey.put("G minor", MusicalKeyEnum.G_MINOR);
         stringKeyToEnumKey.put("Ab Major", MusicalKeyEnum.A_FLAT_MAJOR);
-        stringKeyToEnumKey.put("Ab minor", MusicalKeyEnum.A_FLAT_MINOR);
+        stringKeyToEnumKey.put("G# minor", MusicalKeyEnum.G_SHARP_MINOR);
         stringKeyToEnumKey.put("A Major", MusicalKeyEnum.A_MAJOR);
         stringKeyToEnumKey.put("A minor", MusicalKeyEnum.A_MINOR);
         stringKeyToEnumKey.put("Bb Major", MusicalKeyEnum.B_FLAT_MAJOR);
@@ -1245,9 +1257,9 @@ public class ChordDisplay extends AppCompatActivity {
 
         enumKeyToStringKey = new HashMap<>();
         enumKeyToStringKey.put(MusicalKeyEnum.C_MAJOR, "C Major");
-        enumKeyToStringKey.put(MusicalKeyEnum.C_MINOR, "C Minor");
+        enumKeyToStringKey.put(MusicalKeyEnum.C_MINOR, "C minor");
         enumKeyToStringKey.put(MusicalKeyEnum.D_FLAT_MAJOR, "Db Major");
-        enumKeyToStringKey.put(MusicalKeyEnum.D_FLAT_MINOR, "Db minor");
+        enumKeyToStringKey.put(MusicalKeyEnum.C_SHARP_MINOR, "C# minor");
         enumKeyToStringKey.put(MusicalKeyEnum.D_MAJOR, "D Major");
         enumKeyToStringKey.put(MusicalKeyEnum.D_MINOR, "D minor");
         enumKeyToStringKey.put(MusicalKeyEnum.E_FLAT_MAJOR, "Eb Major");
@@ -1256,12 +1268,12 @@ public class ChordDisplay extends AppCompatActivity {
         enumKeyToStringKey.put(MusicalKeyEnum.E_MINOR, "E minor");
         enumKeyToStringKey.put(MusicalKeyEnum.F_MAJOR, "F Major");
         enumKeyToStringKey.put(MusicalKeyEnum.F_MINOR, "F minor");
-        enumKeyToStringKey.put(MusicalKeyEnum.F_SHARP_MAJOR, "F# Major");
+        enumKeyToStringKey.put(MusicalKeyEnum.G_FLAT_MAJOR, "Gb Major");
         enumKeyToStringKey.put(MusicalKeyEnum.F_SHARP_MINOR, "F# minor");
         enumKeyToStringKey.put(MusicalKeyEnum.G_MAJOR, "G Major");
         enumKeyToStringKey.put(MusicalKeyEnum.G_MINOR, "G minor");
         enumKeyToStringKey.put(MusicalKeyEnum.A_FLAT_MAJOR, "Ab Major");
-        enumKeyToStringKey.put(MusicalKeyEnum.A_FLAT_MINOR, "Ab minor");
+        enumKeyToStringKey.put(MusicalKeyEnum.G_SHARP_MINOR, "G# minor");
         enumKeyToStringKey.put(MusicalKeyEnum.A_MAJOR, "A Major");
         enumKeyToStringKey.put(MusicalKeyEnum.A_MINOR, "A minor");
         enumKeyToStringKey.put(MusicalKeyEnum.B_FLAT_MAJOR, "Bb Major");
@@ -1271,7 +1283,7 @@ public class ChordDisplay extends AppCompatActivity {
     }
 
     public boolean isMajor(MusicalKeyEnum e) {
-        if (e.equals(MusicalKeyEnum.C_MAJOR) || e.equals(MusicalKeyEnum.D_FLAT_MAJOR) || e.equals(MusicalKeyEnum.D_MAJOR) || e.equals(MusicalKeyEnum.E_FLAT_MAJOR) || e.equals(MusicalKeyEnum.E_MAJOR) || e.equals(MusicalKeyEnum.F_MAJOR) || e.equals(MusicalKeyEnum.F_SHARP_MAJOR) || e.equals(MusicalKeyEnum.G_MAJOR) || e.equals(MusicalKeyEnum.A_FLAT_MAJOR) || e.equals(MusicalKeyEnum.A_MAJOR) || e.equals(MusicalKeyEnum.B_FLAT_MAJOR) || e.equals(MusicalKeyEnum.B_MAJOR)) {
+        if (e.equals(MusicalKeyEnum.C_MAJOR) || e.equals(MusicalKeyEnum.D_FLAT_MAJOR) || e.equals(MusicalKeyEnum.D_MAJOR) || e.equals(MusicalKeyEnum.E_FLAT_MAJOR) || e.equals(MusicalKeyEnum.E_MAJOR) || e.equals(MusicalKeyEnum.F_MAJOR) || e.equals(MusicalKeyEnum.G_FLAT_MAJOR) || e.equals(MusicalKeyEnum.G_MAJOR) || e.equals(MusicalKeyEnum.A_FLAT_MAJOR) || e.equals(MusicalKeyEnum.A_MAJOR) || e.equals(MusicalKeyEnum.B_FLAT_MAJOR) || e.equals(MusicalKeyEnum.B_MAJOR)) {
             return true;
         } else {
             return false;
@@ -1291,7 +1303,174 @@ public class ChordDisplay extends AppCompatActivity {
     key of "MusicalKeyEnum newMusicalKey"
      */
     public void transposeChords(MusicalKeyEnum currentMusicalKey, MusicalKeyEnum newMusicalKey) {
-        //TODO
+        HashMap<MusicalKeyEnum, Integer> noteToNumber = new HashMap<>();
+        noteToNumber.put(MusicalKeyEnum.C_MAJOR, 0);
+        noteToNumber.put(MusicalKeyEnum.C_MINOR, 0);
+        noteToNumber.put(MusicalKeyEnum.D_FLAT_MAJOR, 1);
+        noteToNumber.put(MusicalKeyEnum.C_SHARP_MINOR, 1);
+        noteToNumber.put(MusicalKeyEnum.D_MAJOR, 2);
+        noteToNumber.put(MusicalKeyEnum.D_MINOR, 2);
+        noteToNumber.put(MusicalKeyEnum.E_FLAT_MAJOR, 3);
+        noteToNumber.put(MusicalKeyEnum.E_FLAT_MINOR, 3);
+        noteToNumber.put(MusicalKeyEnum.E_MAJOR, 4);
+        noteToNumber.put(MusicalKeyEnum.E_MINOR, 4);
+        noteToNumber.put(MusicalKeyEnum.F_MAJOR, 5);
+        noteToNumber.put(MusicalKeyEnum.F_MINOR, 5);
+        noteToNumber.put(MusicalKeyEnum.G_FLAT_MAJOR, 6);
+        noteToNumber.put(MusicalKeyEnum.F_SHARP_MINOR, 6);
+        noteToNumber.put(MusicalKeyEnum.G_MAJOR, 7);
+        noteToNumber.put(MusicalKeyEnum.G_MINOR, 7);
+        noteToNumber.put(MusicalKeyEnum.A_FLAT_MAJOR, 8);
+        noteToNumber.put(MusicalKeyEnum.G_SHARP_MINOR, 8);
+        noteToNumber.put(MusicalKeyEnum.A_MAJOR, 9);
+        noteToNumber.put(MusicalKeyEnum.A_MINOR, 9);
+        noteToNumber.put(MusicalKeyEnum.B_FLAT_MAJOR, 10);
+        noteToNumber.put(MusicalKeyEnum.B_FLAT_MINOR, 10);
+        noteToNumber.put(MusicalKeyEnum.B_MAJOR, 11);
+        noteToNumber.put(MusicalKeyEnum.B_MINOR, 11);
+
+        int currentMusicalKeyNumber = noteToNumber.get(currentMusicalKey);
+        int newMusicalKeyNumber = noteToNumber.get(newMusicalKey);
+        int increase = newMusicalKeyNumber - currentMusicalKeyNumber;
+        if (increase < 0) {
+            increase += 12;
+        }
+
+        ArrayList<String> newList = new ArrayList<>();
+        newList.add(list.get(0));
+        newList.add(list.get(1));
+
+        for(int i = 2; i < list.size(); i++) {
+            String line = list.get(i);
+            String newLine = "";
+            int j = 0;
+            while(j < line.length()) {
+                char letter = line.charAt(j);
+                char next = 0;
+                if (j < line.length() - 1)
+                    next = line.charAt(j+1);
+                if(letter == 'C' && next != 'b' && next != '#'){
+                    newLine = newLine + getNewChordLetter((0 + increase) % 12, newMusicalKey);
+                    j += 1;
+                }
+                else if(letter == 'C' && next == 'b') {
+                    newLine = newLine + getNewChordLetter((11 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else if(letter == 'C' && next == '#') {
+                    newLine = newLine + getNewChordLetter((1 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else if(letter == 'D' && next != 'b' && next != '#'){
+                    newLine = newLine + getNewChordLetter((2 + increase) % 12, newMusicalKey);
+                    j += 1;
+                }
+                else if(letter == 'D' && next == 'b') {
+                    newLine = newLine + getNewChordLetter((1 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else if(letter == 'D' && next == '#') {
+                    newLine = newLine + getNewChordLetter((3 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else if(letter == 'E' && next != 'b' && next != '#'){
+                    newLine = newLine + getNewChordLetter((4 + increase) % 12, newMusicalKey);
+                    j += 1;
+                }
+                else if(letter == 'E' && next == 'b') {
+                    newLine = newLine + getNewChordLetter((3 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else if(letter == 'F' && next != 'b' && next != '#'){
+                    newLine = newLine + getNewChordLetter((5 + increase) % 12, newMusicalKey);
+                    j += 1;
+                }
+                else if(letter == 'F' && next == '#') {
+                    newLine = newLine + getNewChordLetter((6 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else if(letter == 'G' && next != 'b' && next != '#'){
+                    newLine = newLine + getNewChordLetter((7 + increase) % 12, newMusicalKey);
+                    j += 1;
+                }
+                else if(letter == 'G' && next == 'b') {
+                    newLine = newLine + getNewChordLetter((6 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else if(letter == 'G' && next == '#') {
+                    newLine = newLine + getNewChordLetter((8 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else if(letter == 'A' && next != 'b' && next != '#'){
+                    newLine = newLine + getNewChordLetter((9 + increase) % 12, newMusicalKey);
+                    j += 1;
+                }
+                else if(letter == 'A' && next == 'b') {
+                    newLine = newLine + getNewChordLetter((8 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else if(letter == 'A' && next == '#') {
+                    newLine = newLine + getNewChordLetter((10 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else if(letter == 'B' && next != 'b' && next != '#'){
+                    newLine = newLine + getNewChordLetter((11 + increase) % 12, newMusicalKey);
+                    j += 1;
+                }
+                else if(letter == 'B' && next == 'b') {
+                    newLine = newLine + getNewChordLetter((10 + increase) % 12, newMusicalKey);
+                    j += 2;
+                }
+                else {
+                    newLine = newLine + letter;
+                    j += 1;
+                }
+            }
+            newList.add(newLine);
+        }
+        list = newList;
+    }
+
+    //noteNumber is an int from 0-11, where C is 0 and B is 11. noteNumber doesn't care about names, just notes
+    private String getNewChordLetter(int noteNumber, MusicalKeyEnum newMusicalKey) {
+        String [] CMajorNotes = {"C", "Db", "D", "Eb", "E", "F","Gb","G","Ab","A","Bb","B"};
+        String [] DbMajorNotes = {"C", "Db", "D", "Eb", "E", "F","Gb","G","Ab","A","Bb","B"};
+        String [] DMajorNotes = {"C", "C#", "D", "Eb", "E", "F","F#","G","Ab","A","Bb","B"};
+        String [] EbMajorNotes = {"C", "Db", "D", "Eb", "E", "F","Gb","G","Ab","A","Bb","B"};
+        String [] EMajorNotes = {"C", "C#", "D", "D#", "E", "F","F#","G","G#","A","Bb","B"};
+        String [] FMajorNotes = {"C", "Db", "D", "Eb", "E", "F","Gb","G","Ab","A","Bb","B"};
+        String [] GbMajorNotes = {"C", "Db", "D", "Eb", "E", "F","Gb","G","Ab","A","Bb","Cb"};
+        String [] GMajorNotes = {"C", "Db", "D", "Eb", "E", "F","F#","G","Ab","A","Bb","B"};
+        String [] AbMajorNotes = {"C", "Db", "D", "Eb", "E", "F","Gb","G","Ab","A","Bb","B"};
+        String [] AMajorNotes = {"C", "C#", "D", "Eb", "E", "F","F#","G","G#","A","Bb","B"};
+        String [] BbMajorNotes = {"C", "Db", "D", "Eb", "E", "F","Gb","G","Ab","A","Bb","B"};
+        String [] BMajorNotes = {"C", "C#", "D", "D#", "E", "F","F#","G","G#","A","A#","B"};
+
+        if(newMusicalKey == MusicalKeyEnum.C_MAJOR || newMusicalKey == MusicalKeyEnum.A_MINOR)
+            return CMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.D_FLAT_MAJOR || newMusicalKey == MusicalKeyEnum.B_FLAT_MINOR)
+            return DbMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.D_MAJOR || newMusicalKey == MusicalKeyEnum.B_MINOR)
+            return DMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.E_FLAT_MAJOR || newMusicalKey == MusicalKeyEnum.C_MINOR)
+            return EbMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.E_MAJOR || newMusicalKey == MusicalKeyEnum.C_SHARP_MINOR)
+            return EMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.F_MAJOR || newMusicalKey == MusicalKeyEnum.D_MINOR)
+            return FMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.G_FLAT_MAJOR || newMusicalKey == MusicalKeyEnum.E_FLAT_MINOR)
+            return GbMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.G_MAJOR || newMusicalKey == MusicalKeyEnum.E_MINOR)
+            return GMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.A_FLAT_MAJOR || newMusicalKey == MusicalKeyEnum.F_MINOR)
+            return AbMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.A_MAJOR || newMusicalKey == MusicalKeyEnum.F_SHARP_MINOR)
+            return AMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.B_FLAT_MAJOR || newMusicalKey == MusicalKeyEnum.G_MINOR)
+            return BbMajorNotes[noteNumber];
+        if(newMusicalKey == MusicalKeyEnum.B_MAJOR || newMusicalKey == MusicalKeyEnum.G_SHARP_MINOR)
+            return BMajorNotes[noteNumber];
+        else return null;
     }
 
 }

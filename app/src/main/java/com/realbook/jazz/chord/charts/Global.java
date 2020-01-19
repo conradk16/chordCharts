@@ -11,10 +11,10 @@ import java.lang.reflect.Type;
 public class Global extends Application {
 
     String productID = "com.realbook.jazz.chord.charts.fullversion";
-    Boolean hasFullVersion = false;
+    Boolean hasFullVersion = true;
 
     int reviewPoints = 0;
-    int reviewPointsThreshold = 10;
+    int reviewPointsThreshold = 30;
     int pointsForViewingSong = 1;
 
     public static final int MAJOR7 = 0;
@@ -28,7 +28,10 @@ public class Global extends Application {
     public static final int MINOR = 8;
     public static final int DIMINISHED = 9;
     public static final int AUGMENTED = 10;
+    public static final int MAJOR6 = 11;
+    public static final int MINOR6 = 12;
 
+    public static final int CFLAT = 17;
     public static final int C = 0;
     public static final int CSHARP = 1;
     public static final int DFLAT = 2;

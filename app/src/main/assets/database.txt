@@ -204,3 +204,94 @@ EbM7(B)|%|CM7|%|
 EbM7|%|CM7|%|
 F#h7|Fm7|Em7|Ebd7|
 Dm7|G7|C6|%|
+
+Oh, Lady Be Good
+
+George Gershwin
+G Major
+GM7(4/4&A&{)|C7|GM7_C7|Bm7_E7|
+Am7|D7|G6_Em7(firstending)|Am7_D7(})|
+empty|empty|G6(secondending)|Dm7_G7|
+CM7(B)|C#d7|GM7|F#h7_B7(b9)|
+Em7|A7|Am7|D7|
+GM7(A)|C7|GM7_C7|Bm7|E7|
+Am7|D7|G6_Em7|Am7_D7|
+
+On Green Dolphin Street
+
+Bronislau Kaper
+Eb Major
+EbM7(4/4&A)|%|Ebm7|%|
+F7(/Eb)|EM7(\Eb)|EbM7|C7|
+Fm7(B)|Bb7(alt)|EbM7|%|
+Abm7|Db7(alt)|GbM7|Fm7_Bb7|
+EbM7(A)|%|Ebm7|%|
+F7(/Eb)|EM7(\Eb)|EbM7|C7|
+Fm7_Fm7(C&/Eb)|Dh7_G7(b9)|Cm7_Cm7(/Bb)|Ah7_D7(b9)|
+Gm7_C7|Fm7_Bb7|Eb6|Fm7_Bb7|
+
+Out of Nowhere
+
+Johnny Green
+G Major
+GM7(4/4&A)|%|Bbm7|Eb7|
+GM7|%|Bm7|E7(b9)|
+Am7(B)|E7(b9)|Am7|%|
+Eb7|%|Am7|D7|
+GM7(A)|%|Bbm7|Eb7|
+GM7|%|Bm7|E7(b9)|
+Am7(C)|E7(b9)|Am7|Cm6|
+Bm7_Bbd7|Am7_D7|G6|Am7_D7|
+
+Satin Doll
+
+Billy Strayhorn and Duke Ellington
+C Major
+Dm7(4/4&A&{)_G7|Dm7_G7|Em7_A7|Em7_A7|
+Am7_D7|Abm7_Db7|CM7(firstending)_F7|Em7_A7(})|
+empty|empty|CM7(secondending)|%|
+Gm7(B)_C7|Gm7_C7|FM7|%|
+Am7_D7|Am7_D7|G7|%|
+Dm7(A)_G7|Dm7_G7|Em7_A7|Em7_A7|
+Am7_D7|Abm7_Db7|CM7_F7|Em7_A7|
+
+Softly, As In A Morning Sunrise
+
+Sigmund Romberg
+C minor
+Cm7(4/4&A&{)|Dh7_G7(b9)|Cm7|Dh7_G7(b9)|
+Cm7|Dh7_G7(b9)|Cm7(firstending)|Dh7_G7(b9&})|
+empty|empty|Cm7(secondending)|Fm7_Bb7|
+EbM7(B)|%|C7(b9)|%|
+Fm7|F#d7|Dh7|G7(b9)|
+Cm7(A)|Dh7_G7(b9)|Cm7|Dh7_G7(b9)|
+Cm7|Dh7_G7(b9)|Cm7|Dh7_G7(b9)|
+
+Star Eyes
+
+Gene DePaul
+Eb Major
+EbM7(4/4&A&{)|Fm7_Bb7|EbM7|Ebm7_Ab7|
+DbM7|Gm7_C7|FM7|B7_Bb7(})|
+AbM7(B)|%|Abm7|Db7|
+GbM7|%|Fm7|Bb7(sus)_Bb7|
+EbM7(A)|Fm7_Bb7|EbM7|Ebm7_Ab7|
+DbM7|Gm7_C7|FM7|B7_Bb7|
+Eb7(#9)_D7(b9)|Db7(#9)_C7(#9)|Fm7_Bb7(sus)|Eb6_Fm7-Bb7|
+
+Stella By Starlight
+
+Victor Young
+Bb Major
+Eh7(4/4&A)|A7(b9)|Cm7|F7|
+Fm7|Bb7|EbM7|Ab7|
+BbM7|Eh7_A7(b9)|Dm7|Bbm7_Eb7|
+FM7|Eh7|EbM7(#11)|D7(b9)|
+G7(b13&B)|%|Cm7|%|
+Ab7(#11)|%|BbM7|%|
+Eh7(C)|A7(b9)|Dh7|G7(b9)|
+Ch7|F7(b9)|BbM7|%|
+
+Summertime
+
+George Gershwin

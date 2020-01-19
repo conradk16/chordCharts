@@ -105,12 +105,16 @@ public class Chord {
                 type = Global.AUGMENTED;
             } else if (firstPart.charAt(charsEaten) == '7') {
                 type = Global.DOMINANT;
+            } else if (firstPart.charAt(charsEaten) == '6') {
+                type = Global.MAJOR6;
             }
         } else {
             if (firstPart.charAt(charsEaten) == 'M' && firstPart.charAt(charsEaten + 1) == '7') {
                 type = Global.MAJOR7;
             } else if (firstPart.charAt(charsEaten) == 'm' && firstPart.charAt(charsEaten + 1) == '7') {
                 type = Global.MINOR7;
+            } else if (firstPart.charAt(charsEaten) == 'm' && firstPart.charAt(charsEaten + 1) == '6') {
+                type = Global.MINOR6;
             } else if (firstPart.charAt(charsEaten) == 'h' && firstPart.charAt(charsEaten + 1) == '7') {
                 type = Global.HALFDIMINISHED7;
             } else if (firstPart.charAt(charsEaten) == 'd' && firstPart.charAt(charsEaten + 1) == '7') {

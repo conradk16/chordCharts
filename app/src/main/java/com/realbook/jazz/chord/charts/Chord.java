@@ -13,6 +13,7 @@ public class Chord {
     public int locationInBar; //quarters are 0,1,2,3; halfs are 4,5; wholes are 6, -1 is a substitute
 
     public Chord(int locationInBarArg, String chord) {
+        System.out.println("chordString: " + chord);
         locationInBar = locationInBarArg;
         String delims = "[()&]";
         String[] parts = chord.split(delims);
@@ -115,6 +116,8 @@ public class Chord {
                 type = Global.MINOR7;
             } else if (firstPart.charAt(charsEaten) == 'm' && firstPart.charAt(charsEaten + 1) == '6') {
                 type = Global.MINOR6;
+            } else if (firstPart.charAt(charsEaten) == 'm' && firstPart.charAt(charsEaten + 1) == '9') {
+                type = Global.MINOR9;
             } else if (firstPart.charAt(charsEaten) == 'h' && firstPart.charAt(charsEaten + 1) == '7') {
                 type = Global.HALFDIMINISHED7;
             } else if (firstPart.charAt(charsEaten) == 'd' && firstPart.charAt(charsEaten + 1) == '7') {

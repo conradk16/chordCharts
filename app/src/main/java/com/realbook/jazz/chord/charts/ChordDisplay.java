@@ -246,7 +246,7 @@ public class ChordDisplay extends AppCompatActivity {
         else {
             lineHeight = (int) ((height - guidelineMarginAuthorBottom) / numLines * 2 / 3);
         }
-        largestFontSize = (int)(lineHeight * 0.8);
+        largestFontSize = (int)(lineHeight * 0.6);
         guidelineMarginU = guidelineMarginAuthorBottom + lineHeight / 4;
 
         guidelineMarginW = guidelineMarginU + (int) (lineHeight * 3 / 2);
@@ -487,6 +487,10 @@ public class ChordDisplay extends AppCompatActivity {
                 LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
 
         TextView display= new TextView(getApplicationContext());
+        /*Typeface face = Typeface.createFromAsset(getAssets(),
+                "Bravura.ttf");
+        display.setTypeface(face);*/
+
         display.setTextSize(TypedValue.COMPLEX_UNIT_PX, height);
         display.setText(text);
         display.setTextColor(color);
@@ -546,6 +550,7 @@ public class ChordDisplay extends AppCompatActivity {
         else if(chord.type == Global.MAJOR6) {lowerText = "6";}
         else if(chord.type == Global.MINOR7) {lowerText = Character.toString((char) 0x2013) + "7";}
         else if(chord.type == Global.MINOR6) {lowerText = Character.toString((char) 0x2013) + "6";}
+        else if(chord.type == Global.MINOR9) {lowerText = Character.toString((char) 0x2013) + "9";}
         else if(chord.type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00f8) + "7";}
         else if(chord.type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x006f) + "7";}
         else if(chord.type == Global.DOMINANT) {lowerText = "7";}
@@ -728,6 +733,7 @@ public class ChordDisplay extends AppCompatActivity {
 
     //linenumbers starting at 1
     public void drawLine(String line, int lineNumber) {
+        System.out.println("line: " + line);
         String delim = "[|]";
         String[] stringBars = line.split(delim);
         Bar[] bars = new Bar[stringBars.length];

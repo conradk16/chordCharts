@@ -42,7 +42,7 @@ public class ChordDisplay extends AppCompatActivity {
     int numLines;
     int lineHeight;
     int largestFontSize;
-    double marginFromGuidelinesAsFractionOfAvailableWidth = 0.03;
+    double marginFromGuidelinesAsFractionOfAvailableWidth = 0.05;
     ArrayList<String> list;
     HashMap<String, MusicalKeyEnum> stringKeyToEnumKey;
     HashMap<MusicalKeyEnum, String> enumKeyToStringKey;
@@ -246,7 +246,7 @@ public class ChordDisplay extends AppCompatActivity {
         else {
             lineHeight = (int) ((height - guidelineMarginAuthorBottom) / numLines * 2 / 3);
         }
-        largestFontSize = (int)(lineHeight * 0.6);
+        largestFontSize = (int)(lineHeight * 0.5);
         guidelineMarginU = guidelineMarginAuthorBottom + lineHeight / 4;
 
         guidelineMarginW = guidelineMarginU + (int) (lineHeight * 3 / 2);
@@ -775,35 +775,83 @@ public class ChordDisplay extends AppCompatActivity {
                 }
 
                 if(bars[i].leftRepeat) {
-                    //String text = new StringBuilder().appendCodePoint(0x1D106).toString();
+                    //erases the old bar
                     drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline, verticalGuidelines[4*i],
                             Character.toString((char) 0xFF5C), lineHeight,
                             false, Color.WHITE, 0,0,0,0, true, "");
+
+                    //draw main vertical bar
+                    drawText(lowerGuideline, null, upperGuideline,
+                            verticalGuidelines[4*i + 1],
+                            Character.toString((char)   0x2502), (int)(lineHeight * 0.92), false,Color.BLACK,
+                            0,0,(int)(lineHeight * 0.08),0, true, "");
+
+                    //erases the middle section so a colon can fit
+                    drawText(lowerGuideline, null, upperGuideline,
+                            verticalGuidelines[4*i + 1],
+                            Character.toString((char) 0x131), (int)(lineHeight * 0.58), false,Color.WHITE,
+                            0,0,(int)(lineHeight * 0.3),(int)(lineHeight * 0.13), true, "");
+
+                    //adding the colon
                     drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
                             verticalGuidelines[4*i], ":",
-                            (int)(lineHeight * 0.7), true, Color.BLACK,
+                            (int)(lineHeight * 0.45), true, Color.BLACK,
                             0, 0,0,
                             (int)(lineHeight * 0.1), true, "");
-                    drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
-                            verticalGuidelines[4*i],
-                            Character.toString((char) 0x2772), (int)(lineHeight*1.3), false,Color.BLACK,
-                            0,0,0,(int)(lineHeight*0.2), true, "");
+
+                    //adding the top diag
+                    drawText(lowerGuideline, null, null,
+                            verticalGuidelines[4*i + 1], "⸍" ,
+                            (int)(lineHeight * 0.55), true, Color.BLACK,
+                            0, 0,(int)(lineHeight * 0.195),
+                            (int)(lineHeight * 0.65), true, "");
+
+                    //adding the bottom diag
+                    drawText(null, null, upperGuideline,
+                            verticalGuidelines[4*i + 1], "⸌" ,
+                            (int)(lineHeight * 0.55), true, Color.BLACK,
+                            0, (int)(lineHeight * 0.84), (int)(lineHeight * 0.195),
+                            0, true, "");
                 }
 
                 if(bars[i].rightRepeat) {
-                    //String text = new StringBuilder().appendCodePoint(0x1D106).toString();
+                    //erases the old bar
                     drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline, verticalGuidelines[4*i + 4],
                             Character.toString((char) 0xFF5C), lineHeight,
                             false, Color.WHITE, 0,0,0,0, true, "");
-                    drawText(lowerGuideline, verticalGuidelines[4*i+4], upperGuideline,
-                            verticalGuidelines[4*i + 4],
-                            ":", (int)(lineHeight * 0.7), true,Color.BLACK,
-                            0,0,0,
-                            (int)(lineHeight * 0.1), true, "");
+
+                    //draw main vertical bar
+                    drawText(lowerGuideline, verticalGuidelines[4*i + 3], upperGuideline,
+                            null,
+                            Character.toString((char)   0x2502), (int)(lineHeight * 0.92), false,Color.BLACK,
+                            (int)(lineHeight * 0.08),0,0,0, true, "");
+
+                    //erases the middle section so a colon can fit
+                    drawText(lowerGuideline, verticalGuidelines[4*i + 3], upperGuideline,
+                            null,
+                            Character.toString((char) 0x131), (int)(lineHeight * 0.58), false,Color.WHITE,
+                            (int)(lineHeight * 0.3),0,0,(int)(lineHeight * 0.13), true, "");
+
+                    //adding the colon
                     drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline,
-                            verticalGuidelines[4*i + 4],
-                            Character.toString((char) 0x2773), (int)(lineHeight*1.3), false,Color.BLACK,
-                            0,0,0,(int)(lineHeight*0.2), true, "");
+                            verticalGuidelines[4*i + 4], ":",
+                            (int)(lineHeight * 0.45), true, Color.BLACK,
+                            0, 0,0,
+                            (int)(lineHeight * 0.1), true, "");
+
+                    //adding the top diag
+                    drawText(lowerGuideline, verticalGuidelines[4*i + 3], null,
+                            null, "⸌" ,
+                            (int)(lineHeight * 0.55), true, Color.BLACK,
+                            (int)(lineHeight * 0.195), 0,0,
+                            (int)(lineHeight * 0.65), true, "");
+
+                    //adding the bottom diag
+                    drawText(null, verticalGuidelines[4*i + 3], upperGuideline,
+                            null, "⸍" ,
+                            (int)(lineHeight * 0.55), true, Color.BLACK,
+                            (int)(lineHeight * 0.195), (int)(lineHeight * 0.84), 0,
+                            0, true, "");
                 }
 
                 if(bars[i].toCota) {

@@ -246,7 +246,7 @@ public class ChordDisplay extends AppCompatActivity {
         else {
             lineHeight = (int) ((height - guidelineMarginAuthorBottom) / numLines * 2 / 3);
         }
-        largestFontSize = (int)(lineHeight * 0.5);
+        largestFontSize = (int)(lineHeight * 0.55);
         guidelineMarginU = guidelineMarginAuthorBottom + lineHeight / 4;
 
         guidelineMarginW = guidelineMarginU + (int) (lineHeight * 3 / 2);
@@ -523,62 +523,6 @@ public class ChordDisplay extends AppCompatActivity {
         }
     }
 
-    //return: String[0] is the main symbol, String[1] is the lower text, String[2] is the upper text
-    public String[] getChordText(Chord chord) {
-        String keyText = "";
-        String lowerText = "";
-        String upperText = "";
-
-        if(chord.key == Global.CFLAT) { keyText = "C"; upperText = Character.toString((char)0x266d);}
-        else if(chord.key == Global.C) { keyText = "C"; }
-        else if(chord.key == Global.CSHARP) { keyText = "C"; upperText = Character.toString((char)0x266f);}
-        else if(chord.key == Global.DFLAT) { keyText = "D"; upperText = Character.toString((char)0x266d);}
-        else if(chord.key == Global.D) { keyText = "D";}
-        else if(chord.key == Global.DSHARP) { keyText = "D"; upperText = Character.toString((char)0x266f);}
-        else if(chord.key == Global.EFLAT) { keyText = "E"; upperText = Character.toString((char)0x266d);}
-        else if(chord.key == Global.E) { keyText = "E";}
-        else if(chord.key == Global.F) { keyText = "F";}
-        else if(chord.key == Global.FSHARP) { keyText = "F"; upperText = Character.toString((char)0x266f);}
-        else if(chord.key == Global.GFLAT) { keyText = "G"; upperText = Character.toString((char)0x266d);}
-        else if(chord.key == Global.G) { keyText = "G";}
-        else if(chord.key == Global.GSHARP) { keyText = "G"; upperText = Character.toString((char)0x266f);}
-        else if(chord.key == Global.AFLAT) { keyText = "A"; upperText = Character.toString((char)0x266d);}
-        else if(chord.key == Global.A) { keyText = "A";}
-        else if(chord.key == Global.ASHARP) { keyText = "A"; upperText = Character.toString((char)0x266f);}
-        else if(chord.key == Global.BFLAT) { keyText = "B"; upperText = Character.toString((char)0x266d);}
-        else if(chord.key == Global.B) { keyText = "B";}
-
-        if(chord.type == Global.MAJOR7) {lowerText = Character.toString((char) 0x25b3) + "7";}
-        else if(chord.type == Global.MAJOR6) {lowerText = "6";}
-        else if(chord.type == Global.MINOR7) {lowerText = Character.toString((char) 0x2013) + "7";}
-        else if(chord.type == Global.MINOR6) {lowerText = Character.toString((char) 0x2013) + "6";}
-        else if(chord.type == Global.MINOR9) {lowerText = Character.toString((char) 0x2013) + "9";}
-        else if(chord.type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00f8) + "7";}
-        else if(chord.type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x006f) + "7";}
-        else if(chord.type == Global.DOMINANT) {lowerText = "7";}
-        else if(chord.type == Global.AUGMENTED7) {lowerText = Character.toString((char) 0x002b) + "7";}
-        else if(chord.type == Global.MINMAJ7) {lowerText = Character.toString((char) 0x2013) +
-                Character.toString((char) 0x25b3) + "7";}
-        else if(chord.type == Global.MAJOR) {lowerText = "";}
-        else if(chord.type == Global.MINOR) {lowerText = Character.toString((char) 0x2013);}
-        else if(chord.type == Global.DIMINISHED) {lowerText = Character.toString((char) 0x006f);}
-        else if(chord.type == Global.AUGMENTED) {lowerText = Character.toString((char) 0x002b);}
-
-        for(int i = 0; i < chord.modifiers.size(); i++) {
-            String modifier = chord.modifiers.get(i);
-            if(modifier.equals("b9")) { lowerText = lowerText + Character.toString((char)0x266d) + "9";}
-            else if(modifier.equals("b13")) { lowerText = lowerText + Character.toString((char)0x266d) + "13";}
-            else if(modifier.equals("#11")) {lowerText = lowerText + Character.toString((char)0x266f) + "11";}
-            else if(modifier.equals("#9")) {lowerText = lowerText + Character.toString((char)0x266f) + "9";}
-            else if(modifier.equals("#5")) {lowerText = lowerText + Character.toString((char)0x266f) + "5";}
-            else if(modifier.equals("alt")) {lowerText = lowerText + "alt";}
-            else if(modifier.equals("sus")) {lowerText = lowerText + "sus";}
-
-        }
-        String[] toReturn = {keyText, lowerText, upperText};
-        return toReturn;
-    }
-
     //arg: String[0] is the main symbol, String[1] is the lower text, String[2] is the upper text
     //return: double[0] is the resize Factor, double[1] is the unresized width of the keyText
     public double[] getResizeFactor(Chord chord, int leftBarGuidelineIndex, int rightBarGuidelineIndex) {
@@ -594,7 +538,7 @@ public class ChordDisplay extends AppCompatActivity {
         int leftGuidelineMargin = verticalGuidelineMargins[leftGuidelineIndex];
         int rightGuidelineMargin = verticalGuidelineMargins[rightGuidelineIndex];
 
-        String[] text = getChordText(chord);
+        String[] text = chord.getChordText();
         String keyText = text[0];
         String lowerText = text[1];
         String upperText = text[2];
@@ -706,7 +650,7 @@ public class ChordDisplay extends AppCompatActivity {
         int leftGuidelineMargin = verticalGuidelineMargins[leftGuidelineIndex];
         int rightGuidelineMargin = verticalGuidelineMargins[rightGuidelineIndex];
 
-        String[] text = getChordText(chord);
+        String[] text = chord.getChordText();
         String keyText = text[0];
         String lowerText = text[1];
         String upperText = text[2];

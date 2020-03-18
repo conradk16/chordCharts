@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Chord {
 
+    public boolean empty;
     public int key;
     public int type;
     public Chord chordSubstitute = null;
@@ -15,6 +16,10 @@ public class Chord {
     public Chord(int locationInBarArg, String chord) {
         System.out.println("chordString: " + chord);
         locationInBar = locationInBarArg;
+        if(chord.equals("/")) {
+            empty = true;
+            return;
+        }
         String delims = "[()&]";
         String[] parts = chord.split(delims);
         int[] keyAndType = getKeyAndType(parts[0]);
@@ -42,7 +47,10 @@ public class Chord {
         int charsEaten = 0;
         int key = -1;
         int type = -1;
-        if ((firstPart.charAt(0)) == 'C' && firstPart.charAt(1) != 'b' && firstPart.charAt(1) != '#') {
+        if((firstPart.charAt(0)) == 'C' && firstPart.charAt(1) == 'b') {
+            key = Global.CFLAT;
+            charsEaten = 2;
+        }else if ((firstPart.charAt(0)) == 'C' && firstPart.charAt(1) != 'b' && firstPart.charAt(1) != '#') {
             key = Global.C;
             charsEaten = 1;
         } else if ((firstPart.charAt(0)) == 'C' && firstPart.charAt(1) == '#') {
@@ -129,6 +137,65 @@ public class Chord {
             }
         }
         int[] toReturn = {key, type};
+        return toReturn;
+    }
+
+    //return: String[0] is the main symbol, String[1] is the lower text, String[2] is the upper text
+    public String[] getChordText() {
+        if(empty)
+            return new String[] {" /", "", ""};
+
+        String keyText = "";
+        String lowerText = "";
+        String upperText = "";
+
+        if(key == Global.CFLAT) { keyText = "C"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.C) { keyText = "C"; }
+        else if(key == Global.CSHARP) { keyText = "C"; upperText = Character.toString((char)0x266f);}
+        else if(key == Global.DFLAT) { keyText = "D"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.D) { keyText = "D";}
+        else if(key == Global.DSHARP) { keyText = "D"; upperText = Character.toString((char)0x266f);}
+        else if(key == Global.EFLAT) { keyText = "E"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.E) { keyText = "E";}
+        else if(key == Global.F) { keyText = "F";}
+        else if(key == Global.FSHARP) { keyText = "F"; upperText = Character.toString((char)0x266f);}
+        else if(key == Global.GFLAT) { keyText = "G"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.G) { keyText = "G";}
+        else if(key == Global.GSHARP) { keyText = "G"; upperText = Character.toString((char)0x266f);}
+        else if(key == Global.AFLAT) { keyText = "A"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.A) { keyText = "A";}
+        else if(key == Global.ASHARP) { keyText = "A"; upperText = Character.toString((char)0x266f);}
+        else if(key == Global.BFLAT) { keyText = "B"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.B) { keyText = "B";}
+
+        if(type == Global.MAJOR7) {lowerText = Character.toString((char) 0x25b3) + "7";}
+        else if(type == Global.MAJOR6) {lowerText = "6";}
+        else if(type == Global.MINOR7) {lowerText = Character.toString((char) 0x2013) + "7";}
+        else if(type == Global.MINOR6) {lowerText = Character.toString((char) 0x2013) + "6";}
+        else if(type == Global.MINOR9) {lowerText = Character.toString((char) 0x2013) + "9";}
+        else if(type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00f8) + "7";}
+        else if(type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x006f) + "7";}
+        else if(type == Global.DOMINANT) {lowerText = "7";}
+        else if(type == Global.AUGMENTED7) {lowerText = Character.toString((char) 0x002b) + "7";}
+        else if(type == Global.MINMAJ7) {lowerText = Character.toString((char) 0x2013) +
+                Character.toString((char) 0x25b3) + "7";}
+        else if(type == Global.MAJOR) {lowerText = "";}
+        else if(type == Global.MINOR) {lowerText = Character.toString((char) 0x2013);}
+        else if(type == Global.DIMINISHED) {lowerText = Character.toString((char) 0x006f);}
+        else if(type == Global.AUGMENTED) {lowerText = Character.toString((char) 0x002b);}
+
+        for(int i = 0; i < modifiers.size(); i++) {
+            String modifier = modifiers.get(i);
+            if(modifier.equals("b9")) { lowerText = lowerText + Character.toString((char)0x266d) + "9";}
+            else if(modifier.equals("b13")) { lowerText = lowerText + Character.toString((char)0x266d) + "13";}
+            else if(modifier.equals("#11")) {lowerText = lowerText + Character.toString((char)0x266f) + "11";}
+            else if(modifier.equals("#9")) {lowerText = lowerText + Character.toString((char)0x266f) + "9";}
+            else if(modifier.equals("#5")) {lowerText = lowerText + Character.toString((char)0x266f) + "5";}
+            else if(modifier.equals("alt")) {lowerText = lowerText + "alt";}
+            else if(modifier.equals("sus")) {lowerText = lowerText + "sus";}
+
+        }
+        String[] toReturn = {keyText, lowerText, upperText};
         return toReturn;
     }
 

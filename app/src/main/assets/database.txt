@@ -295,3 +295,79 @@ Ch7|F7(b9)|BbM7|%|
 Summertime
 
 George Gershwin
+A minor
+Am7(4/4)|/-/_E7(b13)|Am7|/-/_A7(b9)|
+Dm7|F7|B7(#5)|E7(b9)|
+Am7|/-/_E7(b13)|Am7|D7_G7(b9)|
+CM7_Am7|Bh7_E7(b13)|Am7|Bh7_E7(b13)|
+
+Sweet Georgia Brown
+
+Ben Bernie and Maceo Pinkard
+A minor
+F7(4/4&A&{)|%|%|%|
+Bb7|%|%|%|
+Eb7(firstending)|%|%|%|
+AbM7|Bbm7_Eb7|AbM7|Gh7(})_C7(b9)|
+Fm(secondending)|Gh7_C7(b9)|Fm|Bbm7_Eb7|
+Ab7_G7|Gb7_F7|Bb7_Eb7|Ab6|
+
+Take The A Train
+
+Billy Strayhorn
+Eb Major
+Eb6(A&{)|%|F7(#11)|%|
+Fm7|Bb7|Eb6(firstending)|Fm7_Bb7(})|
+empty|empty|Eb6(secondending)|Bbm7_Eb7|
+AbM7(B)|%|%|%|
+F7|%|Fm7|Bb7_Bb7(b9)|
+Eb6(A)|%|F7(#11)|%|
+Fm7|Bb7|Eb6|Fm7_Bb7|
+
+There Will Never Be Another You
+
+Harry Warren
+Eb Major
+EbM7(4/4&A)|%|Dh7|G7(b9)|
+Cm7|%|Bbm7|Eb7|
+AbM7(B)|Db7(#11)|EbM7|Cm7|
+F7|%|Fm7|Bb7|
+EbM7(A)|%|Dh7|G7(b9)|
+Cm7|%|Bbm7|Eb7|
+AbM7(C)|Db7(#11)|EbM7|Ah7_D7|
+EbM7_Ab7|Gm7_C7|Fm7_Bb7|Eb6_Bb7|
+
+What Is This Thing Called Love
+
+Cole Porter
+C Major
+Gh7(4/4&A&{)|C7(b9)|Fm6|%|
+Dh7|G7(#5)|CM7|%(})|
+Cm7(B)|F7|BbM7|%|
+Ab7|%|Dh7|G7|
+Gh7(A)|C7(b9)|Fm6|%|
+Dh7|G7(#5)|CM7|%|
+
+Willow Weep For Me
+
+Ann Ronell
+G Major
+GM7(4/4&{&A)_C7|GM7_C7|GM7_Am7-D7|G6-Am7_Bbd-Bm7|
+C7|Ah7_D7(b13)|GM7(firstending)_E7|Am7_D7(})|
+empty|empty|GM7(secondending)|Dm7_G7|
+Cm7(B)|Gm7_G7(b9)|Cm7_Bb7|Ab7_G7(b9)|
+Cm7|Gm7_G7(b9)|Cm7_Bb7|Ab7_Am7-D7|
+GM7(A)_C7|GM7_C7|GM7_Am7-D7|G6-Am7_Bbd-Bbm7|
+C7|Ah7_D7(b13)|GM7_E7|Am7_D7|
+
+Yardbird Suite
+
+Charlie Parker
+C Major
+C6(4/4&{&A)|Fm7_Bb7|C7_Bb7|A7|
+D7|G7|Em7(firstending)_A7|Dm7_G7(})|
+empty|empty|C6(secondending)|F#h7_B7(b9)|
+Em7(B)|F#h7_B7(b9)|Em7|A7|
+Dm7|Eh7_A7|D7|Dm7_G7|
+C6(A)|Fm7_Bb7|C7_Bb7|A7|
+D7|G7|C6|Dm7_G7|

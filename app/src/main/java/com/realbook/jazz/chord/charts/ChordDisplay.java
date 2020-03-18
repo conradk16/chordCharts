@@ -763,18 +763,15 @@ public class ChordDisplay extends AppCompatActivity {
                 }
 
                 if(bars[i].toCota) {
-                    String text = new StringBuilder().appendCodePoint(0x1D10C).toString();
                     drawText(lowerGuideline, null,null,
-                            verticalGuidelines[4*i + 4],
-                            text, (int)(lineHeight * 0.8), true,Color.BLACK,
-                            0,0,(int)(lineHeight * 0.2), (int)(lineHeight * 0.6), true, "");
+                            verticalGuidelines[4*i + 4], "\uD834\uDD0C", (int)(lineHeight * 0.5), false,Color.BLACK,
+                            0,0,0, 0, true, "Bravura.ttf");
                 }
 
                 if(bars[i].cota) {
-                    String text = new StringBuilder().appendCodePoint(0x1D10C).toString();
                     drawText(lowerGuideline, verticalGuidelines[4*i],null,
-                            null, text, (int)(lineHeight * 0.8), true,Color.BLACK,
-                            (int)(lineHeight * 0.2),0,0, (int)(lineHeight * 0.6), true, "");
+                           null, "\uD834\uDD0C", (int)(lineHeight * 0.5), false,Color.BLACK,
+                            0,0,0, 0, true, "Bravura.ttf");
                 }
 
                 if(bars[i].firstEnding) {
@@ -806,9 +803,9 @@ public class ChordDisplay extends AppCompatActivity {
                 }
 
                 if(bars[i].isBlank) {
-                    drawText(null, verticalGuidelines[4*i],upperGuideline,
+                    drawText(lowerGuideline, verticalGuidelines[4*i],upperGuideline,
                             verticalGuidelines[4*i + 4], "\uD834\uDD0E", (int)(lineHeight * 0.7), false,Color.BLACK,
-                            0,(int)(lineHeight * 0.15),0, 0, true, "");
+                            0,0,0, 0, true, "Bravura.ttf");
                 }
 
                 double smallestResizeFactor = 1.0;

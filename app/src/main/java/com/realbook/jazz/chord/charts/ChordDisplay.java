@@ -624,7 +624,7 @@ public class ChordDisplay extends AppCompatActivity {
         int upperTextWidth = upperTextView.getMeasuredWidth();
 
         int totalWidth = keyTextWidth + Math.max(upperTextWidth, lowerTextWidth);
-        double[] toReturn = {Math.min(1.0, ((double)widthAllowed / (double)totalWidth)), (double) keyTextWidth};
+        double[] toReturn = {Math.min(1.0, (1.05 * (double)widthAllowed / (double)totalWidth)), (double) keyTextWidth};
         return toReturn;
 
     }
@@ -863,8 +863,8 @@ public class ChordDisplay extends AppCompatActivity {
 
                 if(bars[i].isBlank) {
                     drawText(null, verticalGuidelines[4*i],upperGuideline,
-                            verticalGuidelines[4*i + 4], "\uD834\uDD0E", (int)(lineHeight * 1.0), false,Color.BLACK,
-                            (int)(lineHeight * 0.045),(int)(lineHeight * 0),0, 0, true, "");
+                            verticalGuidelines[4*i + 4], "\uD834\uDD0E", (int)(lineHeight * 0.7), false,Color.BLACK,
+                            0,(int)(lineHeight * 0.15),0, 0, true, "");
                 }
 
                 double smallestResizeFactor = 1.0;

@@ -775,83 +775,47 @@ public class ChordDisplay extends AppCompatActivity {
                 }
 
                 if(bars[i].leftRepeat) {
+                    int barWidth = guidelineMarginE - guidelineMarginA;
+
                     //erases the old bar
                     drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline, verticalGuidelines[4*i],
                             Character.toString((char) 0xFF5C), lineHeight,
                             false, Color.WHITE, 0,0,0,0, true, "");
 
                     //draw main vertical bar
-                    drawText(lowerGuideline, null, upperGuideline,
-                            verticalGuidelines[4*i + 1],
-                            Character.toString((char)   0x2502), (int)(lineHeight * 0.92), false,Color.BLACK,
-                            0,0,(int)(lineHeight * 0.08),0, true, "");
-
-                    //erases the middle section so a colon can fit
-                    drawText(lowerGuideline, null, upperGuideline,
-                            verticalGuidelines[4*i + 1],
-                            Character.toString((char) 0x131), (int)(lineHeight * 0.58), false,Color.WHITE,
-                            0,0,(int)(lineHeight * 0.3),(int)(lineHeight * 0.13), true, "");
+                    drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
+                            verticalGuidelines[4*i],
+                            Character.toString((char) 0x2772), (int)(lineHeight*0.9), false,Color.BLACK,
+                            0,0,0,(int)(lineHeight*0.1), true, "");
 
                     //adding the colon
                     drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
                             verticalGuidelines[4*i], ":",
-                            (int)(lineHeight * 0.45), true, Color.BLACK,
+                            (int)(lineHeight * 0.4), true, Color.BLACK,
                             0, 0,0,
-                            (int)(lineHeight * 0.1), true, "");
+                            (int)(lineHeight * 0.05), true, "");
 
-                    //adding the top diag
-                    drawText(lowerGuideline, null, null,
-                            verticalGuidelines[4*i + 1], "⸍" ,
-                            (int)(lineHeight * 0.55), true, Color.BLACK,
-                            0, 0,(int)(lineHeight * 0.195),
-                            (int)(lineHeight * 0.65), true, "");
-
-                    //adding the bottom diag
-                    drawText(null, null, upperGuideline,
-                            verticalGuidelines[4*i + 1], "⸌" ,
-                            (int)(lineHeight * 0.55), true, Color.BLACK,
-                            0, (int)(lineHeight * 0.84), (int)(lineHeight * 0.195),
-                            0, true, "");
                 }
 
                 if(bars[i].rightRepeat) {
+                    int barWidth = guidelineMarginE - guidelineMarginA;
                     //erases the old bar
                     drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline, verticalGuidelines[4*i + 4],
                             Character.toString((char) 0xFF5C), lineHeight,
                             false, Color.WHITE, 0,0,0,0, true, "");
 
                     //draw main vertical bar
-                    drawText(lowerGuideline, verticalGuidelines[4*i + 3], upperGuideline,
-                            null,
-                            Character.toString((char)   0x2502), (int)(lineHeight * 0.92), false,Color.BLACK,
-                            (int)(lineHeight * 0.08),0,0,0, true, "");
-
-                    //erases the middle section so a colon can fit
-                    drawText(lowerGuideline, verticalGuidelines[4*i + 3], upperGuideline,
-                            null,
-                            Character.toString((char) 0x131), (int)(lineHeight * 0.58), false,Color.WHITE,
-                            (int)(lineHeight * 0.3),0,0,(int)(lineHeight * 0.13), true, "");
+                    drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline,
+                            verticalGuidelines[4*i + 4],
+                            Character.toString((char) 0x2773), (int)(lineHeight*0.9), false,Color.BLACK,
+                            0,0,0,(int)(lineHeight*0.1), true, "");
 
                     //adding the colon
                     drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline,
                             verticalGuidelines[4*i + 4], ":",
-                            (int)(lineHeight * 0.45), true, Color.BLACK,
+                            (int)(lineHeight * 0.4), true, Color.BLACK,
                             0, 0,0,
-                            (int)(lineHeight * 0.1), true, "");
-
-                    //adding the top diag
-                    drawText(lowerGuideline, verticalGuidelines[4*i + 3], null,
-                            null, "⸌" ,
-                            (int)(lineHeight * 0.55), true, Color.BLACK,
-                            (int)(lineHeight * 0.195), 0,0,
-                            (int)(lineHeight * 0.65), true, "");
-
-                    //adding the bottom diag
-                    drawText(null, verticalGuidelines[4*i + 3], upperGuideline,
-                            null, "⸍" ,
-                            (int)(lineHeight * 0.55), true, Color.BLACK,
-                            (int)(lineHeight * 0.195), (int)(lineHeight * 0.84), 0,
-                            0, true, "");
+                            (int)(lineHeight * 0.05), true, "");
                 }
 
                 if(bars[i].toCota) {
@@ -897,6 +861,12 @@ public class ChordDisplay extends AppCompatActivity {
                             0,0,0, (int)(lineHeight * 0.65), true, "");
                 }
 
+                if(bars[i].isBlank) {
+                    drawText(null, verticalGuidelines[4*i],upperGuideline,
+                            verticalGuidelines[4*i + 4], "\uD834\uDD0E", (int)(lineHeight * 1.0), false,Color.BLACK,
+                            (int)(lineHeight * 0.045),(int)(lineHeight * 0),0, 0, true, "");
+                }
+
                 double smallestResizeFactor = 1.0;
                 for(int j = 0; j < bars[i].chords.size(); j++) {
                     double resizeFactor = getResizeFactor(bars[i].chords.get(j), 4*i,
@@ -910,8 +880,28 @@ public class ChordDisplay extends AppCompatActivity {
                     drawChord(bars[i].chords.get(j), 4*i, 4*i + 4, lineNumber,
                             smallestResizeFactor);
                 }
-
             }
+
+            if(bars[0].isEmpty)
+                drawText(lowerGuideline, verticalGuidelines[0], upperGuideline, verticalGuidelines[0],
+                        Character.toString((char) 0xFF5C), lineHeight,
+                        false, Color.WHITE, 0,0,0,0, true, "");
+            if(bars[0].isEmpty && bars[1].isEmpty)
+                drawText(lowerGuideline, verticalGuidelines[4], upperGuideline, verticalGuidelines[4],
+                        Character.toString((char) 0xFF5C), lineHeight,
+                        false, Color.WHITE, 0,0,0,0, true, "");
+            if(bars[1].isEmpty && bars[2].isEmpty)
+                drawText(lowerGuideline, verticalGuidelines[8], upperGuideline, verticalGuidelines[8],
+                        Character.toString((char) 0xFF5C), lineHeight,
+                        false, Color.WHITE, 0,0,0,0, true, "");
+            if(bars[2].isEmpty && bars[3].isEmpty)
+                drawText(lowerGuideline, verticalGuidelines[12], upperGuideline, verticalGuidelines[12],
+                        Character.toString((char) 0xFF5C), lineHeight,
+                        false, Color.WHITE, 0,0,0,0, true, "");
+            if(bars[3].isEmpty)
+                drawText(lowerGuideline, verticalGuidelines[16], upperGuideline, verticalGuidelines[16],
+                        Character.toString((char) 0xFF5C), lineHeight,
+                        false, Color.WHITE, 0,0,0,0, true, "");
         }
 
         else if(eightBars) {

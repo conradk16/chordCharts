@@ -662,7 +662,7 @@ public class ChordDisplay extends AppCompatActivity {
 
         drawText(lowerGuideline, leftGuideline, upperGuideline, null,
                 keyText, (int)(largestFontSize * resizeFactor), false, Color.BLACK,
-                marginFromGuideline,0,0,0, true, "");
+                marginFromGuideline,0,0,0, true, "MyFont.ttf");
 
         drawText(null, leftGuideline, centerGuideline, null,
                 lowerText, (int)(largestFontSize / 2 * resizeFactor), true, Color.BLACK,

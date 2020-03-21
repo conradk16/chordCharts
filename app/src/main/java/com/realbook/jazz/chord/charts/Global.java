@@ -31,6 +31,7 @@ public class Global extends Application {
     public static final int MAJOR6 = 11;
     public static final int MINOR6 = 12;
     public static final int MINOR9 = 13;
+    public static final int DOMINANT9 = 14;
 
     public static final int CFLAT = 17;
     public static final int C = 0;

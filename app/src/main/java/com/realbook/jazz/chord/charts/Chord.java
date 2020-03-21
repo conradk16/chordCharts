@@ -116,6 +116,8 @@ public class Chord {
                 type = Global.DOMINANT;
             } else if (firstPart.charAt(charsEaten) == '6') {
                 type = Global.MAJOR6;
+            } else if (firstPart.charAt(charsEaten) == '9') {
+                type = Global.DOMINANT9;
             }
         } else {
             if (firstPart.charAt(charsEaten) == 'M' && firstPart.charAt(charsEaten + 1) == '7') {
@@ -152,23 +154,23 @@ public class Chord {
         if(key == Global.CFLAT) { keyText = "C"; upperText = Character.toString((char)0x266d);}
         else if(key == Global.C) { keyText = "C"; }
         else if(key == Global.CSHARP) { keyText = "C"; upperText = Character.toString((char)0x266f);}
-        else if(key == Global.DFLAT) { keyText = "D"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.DFLAT) { keyText = "D"; upperText = Character.toString((char) 0x266D);}
         else if(key == Global.D) { keyText = "D";}
         else if(key == Global.DSHARP) { keyText = "D"; upperText = Character.toString((char)0x266f);}
-        else if(key == Global.EFLAT) { keyText = "E"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.EFLAT) { keyText = "E"; upperText = Character.toString((char) 0x266D);}
         else if(key == Global.E) { keyText = "E";}
         else if(key == Global.F) { keyText = "F";}
         else if(key == Global.FSHARP) { keyText = "F"; upperText = Character.toString((char)0x266f);}
-        else if(key == Global.GFLAT) { keyText = "G"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.GFLAT) { keyText = "G"; upperText = Character.toString((char) 0x266D);}
         else if(key == Global.G) { keyText = "G";}
         else if(key == Global.GSHARP) { keyText = "G"; upperText = Character.toString((char)0x266f);}
-        else if(key == Global.AFLAT) { keyText = "A"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.AFLAT) { keyText = "A"; upperText = Character.toString((char) 0x266D);}
         else if(key == Global.A) { keyText = "A";}
         else if(key == Global.ASHARP) { keyText = "A"; upperText = Character.toString((char)0x266f);}
-        else if(key == Global.BFLAT) { keyText = "B"; upperText = Character.toString((char)0x266d);}
+        else if(key == Global.BFLAT) { keyText = "B"; upperText = Character.toString((char) 0x266D);}
         else if(key == Global.B) { keyText = "B";}
 
-        if(type == Global.MAJOR7) {lowerText = Character.toString((char) 0x25b3) + "7";}
+        if(type == Global.MAJOR7) {lowerText = Character.toString((char) 0x25B3) + "7";}
         else if(type == Global.MAJOR6) {lowerText = "6";}
         else if(type == Global.MINOR7) {lowerText = Character.toString((char) 0x2013) + "7";}
         else if(type == Global.MINOR6) {lowerText = Character.toString((char) 0x2013) + "6";}
@@ -176,9 +178,9 @@ public class Chord {
         else if(type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00f8) + "7";}
         else if(type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x006f) + "7";}
         else if(type == Global.DOMINANT) {lowerText = "7";}
+        else if(type == Global.DOMINANT9) {lowerText = "9";}
         else if(type == Global.AUGMENTED7) {lowerText = Character.toString((char) 0x002b) + "7";}
-        else if(type == Global.MINMAJ7) {lowerText = Character.toString((char) 0x2013) +
-                Character.toString((char) 0x25b3) + "7";}
+        else if(type == Global.MINMAJ7) {lowerText = Character.toString((char) 0x2013) + Character.toString((char) 0x25B3) + "7";}
         else if(type == Global.MAJOR) {lowerText = "";}
         else if(type == Global.MINOR) {lowerText = Character.toString((char) 0x2013);}
         else if(type == Global.DIMINISHED) {lowerText = Character.toString((char) 0x006f);}
@@ -186,8 +188,8 @@ public class Chord {
 
         for(int i = 0; i < modifiers.size(); i++) {
             String modifier = modifiers.get(i);
-            if(modifier.equals("b9")) { lowerText = lowerText + Character.toString((char)0x266d) + "9";}
-            else if(modifier.equals("b13")) { lowerText = lowerText + Character.toString((char)0x266d) + "13";}
+            if(modifier.equals("b9")) { lowerText = lowerText + Character.toString((char) 0x266D) + "9";}
+            else if(modifier.equals("b13")) { lowerText = lowerText + Character.toString((char) 0x266D) + "13";}
             else if(modifier.equals("#11")) {lowerText = lowerText + Character.toString((char)0x266f) + "11";}
             else if(modifier.equals("#9")) {lowerText = lowerText + Character.toString((char)0x266f) + "9";}
             else if(modifier.equals("#5")) {lowerText = lowerText + Character.toString((char)0x266f) + "5";}

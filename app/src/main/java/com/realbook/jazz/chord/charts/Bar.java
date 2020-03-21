@@ -27,9 +27,8 @@ public class Bar {
             isEmpty = true;
             return;
         }
-        if(bar.equals("%")) {
+        if(bar.charAt(0) == '%') {
             isBlank = true;
-            return;
         }
         String centerSplitDelim = "[_]";
         String[] firstDivision = bar.split(centerSplitDelim);

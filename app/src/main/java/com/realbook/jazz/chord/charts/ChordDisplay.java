@@ -42,7 +42,7 @@ public class ChordDisplay extends AppCompatActivity {
     int numLines;
     int lineHeight;
     int largestFontSize;
-    double marginFromGuidelinesAsFractionOfAvailableWidth = 0.05;
+    double marginFromGuidelinesAsFractionOfAvailableWidth = 0.02;
     ArrayList<String> list;
     HashMap<String, MusicalKeyEnum> stringKeyToEnumKey;
     HashMap<MusicalKeyEnum, String> enumKeyToStringKey;
@@ -246,7 +246,7 @@ public class ChordDisplay extends AppCompatActivity {
         else {
             lineHeight = (int) ((height - guidelineMarginAuthorBottom) / numLines * 2 / 3);
         }
-        largestFontSize = (int)(lineHeight * 0.55);
+        largestFontSize = (int)(lineHeight * 0.85);
         guidelineMarginU = guidelineMarginAuthorBottom + lineHeight / 4;
 
         guidelineMarginW = guidelineMarginU + (int) (lineHeight * 3 / 2);
@@ -549,16 +549,16 @@ public class ChordDisplay extends AppCompatActivity {
         int widthAllowed = fullWidthAvailable - marginFromLeftGuideline - marginFromRightGuideline;
 
         TextView keyTextView = drawText(lowerGuideline, leftGuideline, upperGuideline, null,
-                keyText, (int)(largestFontSize), false, Color.BLACK,
+                keyText, (int)(largestFontSize), true, Color.BLACK,
                 0,0,0,0, false, "");
 
         TextView lowerTextView = drawText(null, leftGuideline, centerGuideline, null,
-                lowerText, (int)(largestFontSize / 2), true, Color.BLACK,
-                0,0,0,0, false, "");
+                lowerText, (int)(largestFontSize / 2), false, Color.BLACK,
+                0,0,0,0, false, "amodified.ttf");
 
         TextView upperTextView = drawText(centerGuideline, leftGuideline, null, null,
-                upperText, (int)(largestFontSize / 1.5), true, Color.BLACK,
-                0,0,0,0, false, "");
+                upperText, (int)(largestFontSize / 1.5), false, Color.BLACK,
+                0,0,0,0, false, "amodified.ttf");
 
         keyTextView.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         int keyTextWidth = keyTextView.getMeasuredWidth();
@@ -568,7 +568,7 @@ public class ChordDisplay extends AppCompatActivity {
         int upperTextWidth = upperTextView.getMeasuredWidth();
 
         int totalWidth = keyTextWidth + Math.max(upperTextWidth, lowerTextWidth);
-        double[] toReturn = {Math.min(1.0, (1.05 * (double)widthAllowed / (double)totalWidth)), (double) keyTextWidth};
+        double[] toReturn = {Math.min(1.0, (1.0 * (double)widthAllowed / (double)totalWidth)), (double) keyTextWidth};
         return toReturn;
 
     }
@@ -662,17 +662,17 @@ public class ChordDisplay extends AppCompatActivity {
 
         drawText(lowerGuideline, leftGuideline, upperGuideline, null,
                 keyText, (int)(largestFontSize * resizeFactor), false, Color.BLACK,
-                marginFromGuideline,0,0,0, true, "MyFont.ttf");
+                marginFromGuideline,0,0,0, true, "");
 
         drawText(null, leftGuideline, centerGuideline, null,
-                lowerText, (int)(largestFontSize / 2 * resizeFactor), true, Color.BLACK,
+                lowerText, (int)(largestFontSize / 2 * resizeFactor), false, Color.BLACK,
                 (int)(keyTextWidth * resizeFactor) + marginFromGuideline,0,
-                0,0, true, "");
+                0,0, true, "amodified.ttf");
 
         drawText(centerGuideline, leftGuideline, null, null,
-                upperText, (int)(largestFontSize / 1.5 * resizeFactor), true, Color.BLACK,
+                upperText, (int)(largestFontSize / 1.5 * resizeFactor), false, Color.BLACK,
                 (int)(keyTextWidth * resizeFactor) + marginFromGuideline,0,
-                0,0, true, "");
+                0,0, true, "amodified.ttf");
 
     }
 
@@ -726,18 +726,13 @@ public class ChordDisplay extends AppCompatActivity {
                             Character.toString((char) 0xFF5C), lineHeight,
                             false, Color.WHITE, 0,0,0,0, true, "");
 
+
                     //draw main vertical bar
                     drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
                             verticalGuidelines[4*i],
-                            Character.toString((char) 0x2772), (int)(lineHeight*0.9), false,Color.BLACK,
+                            Character.toString((char) 0x2772), (int)(lineHeight*1.4), false,Color.BLACK,
                             0,0,0,(int)(lineHeight*0.1), true, "");
 
-                    //adding the colon
-                    drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
-                            verticalGuidelines[4*i], ":",
-                            (int)(lineHeight * 0.4), true, Color.BLACK,
-                            0, 0,0,
-                            (int)(lineHeight * 0.05), true, "");
 
                 }
 
@@ -751,15 +746,8 @@ public class ChordDisplay extends AppCompatActivity {
                     //draw main vertical bar
                     drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline,
                             verticalGuidelines[4*i + 4],
-                            Character.toString((char) 0x2773), (int)(lineHeight*0.9), false,Color.BLACK,
+                            Character.toString((char) 0x2773), (int)(lineHeight*1.4), false,Color.BLACK,
                             0,0,0,(int)(lineHeight*0.1), true, "");
-
-                    //adding the colon
-                    drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline,
-                            verticalGuidelines[4*i + 4], ":",
-                            (int)(lineHeight * 0.4), true, Color.BLACK,
-                            0, 0,0,
-                            (int)(lineHeight * 0.05), true, "");
                 }
 
                 if(bars[i].toCota) {
@@ -781,7 +769,7 @@ public class ChordDisplay extends AppCompatActivity {
                     String horizBar = new StringBuilder().appendCodePoint(0x2e3b).toString();
                     drawText(upperGuideline, verticalGuidelines[4*i],null,
                             null, horizBar, (int)(lineHeight * 0.4), true,Color.BLACK,
-                            0,0,0, (int)(lineHeight * 0.15), true, "");
+                            0,0,0, (int)(lineHeight * 0.085), true, "");
                     String vertBar = new StringBuilder().appendCodePoint(0x2575).toString();
                     drawText(lowerGuideline, verticalGuidelines[4*i],null,
                             verticalGuidelines[4*i], vertBar, (int)(lineHeight * 0.6), true,Color.BLACK,
@@ -795,7 +783,7 @@ public class ChordDisplay extends AppCompatActivity {
                     String horizBar = new StringBuilder().appendCodePoint(0x2e3b).toString();
                     drawText(upperGuideline, verticalGuidelines[4*i],null,
                             null, horizBar, (int)(lineHeight * 0.4), true,Color.BLACK,
-                            0,0,0, (int)(lineHeight * 0.15), true, "");
+                            0,0,0, (int)(lineHeight * 0.085), true, "");
                     String vertBar = new StringBuilder().appendCodePoint(0x2575).toString();
                     drawText(lowerGuideline, verticalGuidelines[4*i],null,
                             verticalGuidelines[4*i], vertBar, (int)(lineHeight * 0.6), true,Color.BLACK,

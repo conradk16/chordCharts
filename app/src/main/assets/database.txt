@@ -409,3 +409,163 @@ Gm7(C)_Am7|Bb6_C7|FM7_Gm7|Am7_D7-Db7|
 Cm7_Dm7|Ebm6_F7(b13)|Bbm6_Abm7|Gb7|
 Fm7(D)_C7(b9)|Fm7_Ebm7-Ab7|DbM7_Ab7|DbM7_Ab7|
 Gm7_Am7|Bbm6_C7(b9)|Fm|/-/_D7(b9)|
+
+Billie's Bounce
+
+Charlie Parker
+F Major
+F7(4/4)|Bb7|F7|Cm7_F7|
+Bb7|Bd7|F7|Am7_D7|
+Gm7|C7|F7_D7|Gm7_C7|
+
+Blue Bossa
+
+Kenny Dorham
+C minor
+Cm7(4/4)|%|Fm7|%|
+Dh7|G7(b9)|Cm7|%|
+Ebm7|Ab7|DbM7|%|
+Dh7|G7(b9)|Cm7|Dh7_G7(b9)|
+
+Blue Monk
+
+Thelonious Monk
+Bb Major
+Bb7(4/4)|Eb7|Bb7|%|
+Eb7|%|Bb7|%|
+F7|%|Bb7|%|
+
+But Not For Me
+
+George Gershwin
+Eb Major
+F7(4/4&A)|Bb7|EbM7_Ab7|Gm7_C7|
+F7|Bb7|EbM7|Bbm7_Eb7|
+AbM7(B)|Db7|EbM7|Cm7|
+Fm7|%|Fm7|Bb7|
+F7(A)|Bb7|EbM7_Ab7|Gm7_C7|
+F7|Bb7|EbM7|Bbm7_Eb7|
+AbM7(C)|Db7|EbM7_Ab7|Gm7_C7|
+Fm7|Bb7|Eb6|%|
+
+C Jam Blues
+
+Duke Ellington
+C Major
+C7(4/4)|%|%|%|
+F7|%|C7|%|
+G7|%|C7|%|
+
+Cherokee
+
+Ray Noble
+Bb Major
+Bb6(4/4&A&{)|%|Fm7|Bb7|
+EbM7|%|Ab7|%|
+Bb6|%|C7|%|
+Cm7(firstending)|G7(b9)|Cm7|F7(#5&})|
+Cm7(secondending)|F7|Bb6|%|
+C#m7(B)|F#7|BM7|%|
+Bm7|E7|AM7|%|
+Am7|D7|GM7|%|
+Gm7|C7|Cm7|F7(#5&tocota)|
+Cm7(cota)|F7|Bb6|%|
+
+Embraceable You
+
+George Gershwin
+G Major
+GM7(4/4&A)|Bbd7|Am7|D7|
+Am7|Cm6|GM7|F#h7_B7(b9)|
+Em(B)_Em(/D)|C#h7_F#7(#5)|Bm7|Em7_A7|
+DM7_Bm7|Em7_A7|Am7|D7|
+GM7(A)|Bbd7|Am7|D7|
+Am7|Cm6|GM7|Dm7_G7|
+CM7(C)|F#h7_B7(b9)|Em7_Em7(/D)|C#h7_Cm6|
+Bm7_E7|Ah7_D7(b9)|GM7|Am7_D7|
+
+Fly Me To The Moon
+
+Bart Howard
+C Major
+Am7(4/4&A)|Dm7|G7|CM7|
+FM7|Bh7|E7(b9)|Am7_A7|
+Dm7|G7|CM7_F7|Em7_A7|
+Dm7|G7|CM7|Bh7_E7(b9)|
+Am7(B)|Dm7|G7|CM7|
+FM7|Bh7|E7(b9)|Am7_A7|
+Dm7|G7|Em7|A7|
+Dm7|G7|CM7|Bh7_E7(b9)|
+
+The Girl From Ipanema
+
+Antonio-Carlos Jobim
+F Major
+FM7(4/4&A&{)|%|G7(#11)|%|
+Gm7|Gb7(#11)|FM7(firstending)|Gb7(})|
+empty|empty|FM7(secondending)|%|
+F#M7(B)|%|B7|%|
+F#m7|%|D7|%|
+Gm7|%|Eb7|%|
+Am7|D7(b9&b5)|Gm7|C7(b9&b5)|
+FM7(A)|%|G7(#11)|%|
+Gm7|Gb7(#11)|FM7|Gb7|
+
+Groovin' High
+
+Dizzy Gillespie
+Eb Major
+EbM7(4/4&{)|%|Am7|D7|
+EbM7|%|Gm7|C7|
+F7|%|Fm7|Bb7|
+Gm7(firstending)|F#m7|Fm7|Bb7(})|
+Fm7(secondending)|Abm7_Db7|Eb6|Fm7_Bb7|
+
+Have You Met Miss Jones?
+
+Richard Rodgers
+F Major
+FM7(4/4&A&{)|D7|Gm7|C7|
+Am7|Dm7|Gm7(firstending)|C7(})|
+empty|empty|Cm7(secondending)|F7|
+BbM7(B)|Abm7_Db7|GbM7|Em7_A7|
+DM7|Abm7_Db7|GbM7|Gm7_C7|
+FM7(A)_Bb7|Am7_D7|Gm7|C7|
+Am7_D7|Gm7_C7|F6|Gm7_C7|
+
+Here's That Rainy Day
+
+Jimmy Van-Heusen
+G Major
+Gm(GM7&4/4&A)_Gn7(/F#)|Fm6(Bb7)_Bb7|EbM7|AbM7|
+Am7|D7|GM7|Dm7_G7|
+Cm7|F7|BbM7|EbM7|
+Am7|D7|GM7_Em7|Am7_D7|
+Gm(GM7&A)_Gn7(/F#)|Fm6(Bb7)_Bb7|EbM7|AbM7|
+Am7|D7|GM7|Dm7_G7|
+CM7|Am7_D7|Bm7_Em7|A7|
+Am7|D7|G6_Em7|Am7_D7|
+
+I Can't Get Started
+
+Vernon Duke
+C Major
+CM7(4/4&A&{)_Am7|Dm7_G7|Bm7-E7_Bbm7-Eb7|Am7-D7_Abm7-Db7|
+CM7_Am7|Dm7_G7(b9)|E7(firstending)_A7|D7_G7(})|
+empty|empty|CM7(secondending)|%|
+Em7(B)_A7|Em7_A7|DM7|%|
+Dm7_G7|Dm7_G7|Em7_Ebd7|Dm7_G7(sus)|
+CM7(A)_Am7|Dm7_G7|Bm7-E7_Bbm7-Eb7|Am7-D7_Abm7-Db7|
+CM7_A7(#5)|Dm7_G7|C6_A7|D7_G7|
+
+I Got It Bad
+
+Duke Ellington
+G Major
+Gd(4/4&A&{)_GM7|B7(b9)_Em7|A7_Em7|A7|
+Am7|B7-E7_A7-D7|G6(firstending)_Em7|Am7_D7(})|
+empty|empty|G6(secondending)_C#d7|Dm7_G7|
+C6(B)|%|F7|%|
+GM7|Bm7_E7|Am7|D7|
+Gd(A)_GM7|B7(b9)_Em7|A7_Em7|A7|
+Am7|B7-E7_A7-D7|G6_Em7|Am7_D7|

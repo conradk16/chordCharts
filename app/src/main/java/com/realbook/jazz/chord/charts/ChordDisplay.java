@@ -241,7 +241,7 @@ public class ChordDisplay extends AppCompatActivity {
         guidelineMarginTitleBottom = width * 4 / 64;
         guidelineMarginAuthorBottom = width * 7 / 64;
 
-        if(numLines <= 6) {
+        if(numLines <= 8) {
             lineHeight = width * 8 / 64;
         }
         else {

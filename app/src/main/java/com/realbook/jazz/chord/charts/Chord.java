@@ -193,6 +193,7 @@ public class Chord {
             else if(modifier.equals("#11")) {lowerText = lowerText + Character.toString((char)0x266f) + "11";}
             else if(modifier.equals("#9")) {lowerText = lowerText + Character.toString((char)0x266f) + "9";}
             else if(modifier.equals("#5")) {lowerText = lowerText + Character.toString((char)0x266f) + "5";}
+            else if(modifier.equals("b5")) { lowerText = lowerText + Character.toString((char) 0x266D) + "5";}
             else if(modifier.equals("alt")) {lowerText = lowerText + "alt";}
             else if(modifier.equals("sus")) {lowerText = lowerText + "sus";}
 

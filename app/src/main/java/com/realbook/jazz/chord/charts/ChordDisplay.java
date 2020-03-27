@@ -41,6 +41,7 @@ public class ChordDisplay extends AppCompatActivity {
     String author;
     int numLines;
     int lineHeight;
+    int baseFontSize;
     int largestFontSize;
     double marginFromGuidelinesAsFractionOfAvailableWidth = 0.02;
     ArrayList<String> list;
@@ -246,7 +247,8 @@ public class ChordDisplay extends AppCompatActivity {
         else {
             lineHeight = (int) ((height - guidelineMarginAuthorBottom) / numLines * 2 / 3);
         }
-        largestFontSize = (int)(lineHeight * 0.85);
+        baseFontSize = (int)(lineHeight * 0.7);
+        //largestFontSize = (int) (lineHeight * 0.65);
         guidelineMarginU = guidelineMarginAuthorBottom + lineHeight / 4;
 
         guidelineMarginW = guidelineMarginU + (int) (lineHeight * 3 / 2);
@@ -549,15 +551,15 @@ public class ChordDisplay extends AppCompatActivity {
         int widthAllowed = fullWidthAvailable - marginFromLeftGuideline - marginFromRightGuideline;
 
         TextView keyTextView = drawText(lowerGuideline, leftGuideline, upperGuideline, null,
-                keyText, (int)(largestFontSize), true, Color.BLACK,
+                keyText, (int)(baseFontSize), true, Color.BLACK,
                 0,0,0,0, false, "");
 
         TextView lowerTextView = drawText(null, leftGuideline, centerGuideline, null,
-                lowerText, (int)(largestFontSize / 2), false, Color.BLACK,
+                lowerText, (int)(baseFontSize / 1.7), false, Color.BLACK,
                 0,0,0,0, false, "amodified.ttf");
 
         TextView upperTextView = drawText(centerGuideline, leftGuideline, null, null,
-                upperText, (int)(largestFontSize / 1.5), false, Color.BLACK,
+                upperText, (int)(baseFontSize / 1.5), false, Color.BLACK,
                 0,0,0,0, false, "amodified.ttf");
 
         keyTextView.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -661,16 +663,17 @@ public class ChordDisplay extends AppCompatActivity {
         int keyTextWidth = (int) getResizeFactor(chord, leftBarGuidelineIndex, rightBarGuidelineIndex)[1];
 
         drawText(lowerGuideline, leftGuideline, upperGuideline, null,
-                keyText, (int)(largestFontSize * resizeFactor), false, Color.BLACK,
+                keyText, (int)(baseFontSize * resizeFactor), false, Color.BLACK,
                 marginFromGuideline,0,0,0, true, "");
 
-        drawText(null, leftGuideline, centerGuideline, null,
-                lowerText, (int)(largestFontSize / 2 * resizeFactor), false, Color.BLACK,
+        int textSize = (int)(baseFontSize / 1.7 * resizeFactor);
+        drawText(lowerGuideline, leftGuideline, null, null,
+                lowerText, textSize, false, Color.BLACK,
                 (int)(keyTextWidth * resizeFactor) + marginFromGuideline,0,
-                0,0, true, "amodified.ttf");
+                0,(int) (lineHeight / 2) - textSize, true, "amodified.ttf");
 
         drawText(centerGuideline, leftGuideline, null, null,
-                upperText, (int)(largestFontSize / 1.5 * resizeFactor), false, Color.BLACK,
+                upperText, (int)(baseFontSize / 1.5 * resizeFactor), false, Color.BLACK,
                 (int)(keyTextWidth * resizeFactor) + marginFromGuideline,0,
                 0,0, true, "amodified.ttf");
 
@@ -768,7 +771,7 @@ public class ChordDisplay extends AppCompatActivity {
                             (int)(lineHeight * 0.05),0,0, 0, true, "");
                     String horizBar = new StringBuilder().appendCodePoint(0x2e3b).toString();
                     drawText(upperGuideline, verticalGuidelines[4*i],null,
-                            null, horizBar, (int)(lineHeight * 0.4), true,Color.BLACK,
+                            null, horizBar, (int)(lineHeight * 0.45), true,Color.BLACK,
                             0,0,0, (int)(lineHeight * 0.085), true, "");
                     String vertBar = new StringBuilder().appendCodePoint(0x2575).toString();
                     drawText(lowerGuideline, verticalGuidelines[4*i],null,
@@ -782,7 +785,7 @@ public class ChordDisplay extends AppCompatActivity {
                             (int)(lineHeight * 0.05),0,0, 0, true, "");
                     String horizBar = new StringBuilder().appendCodePoint(0x2e3b).toString();
                     drawText(upperGuideline, verticalGuidelines[4*i],null,
-                            null, horizBar, (int)(lineHeight * 0.4), true,Color.BLACK,
+                            null, horizBar, (int)(lineHeight * 0.45), true,Color.BLACK,
                             0,0,0, (int)(lineHeight * 0.085), true, "");
                     String vertBar = new StringBuilder().appendCodePoint(0x2575).toString();
                     drawText(lowerGuideline, verticalGuidelines[4*i],null,

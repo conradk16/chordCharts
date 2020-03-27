@@ -371,3 +371,41 @@ Em7(B)|F#h7_B7(b9)|Em7|A7|
 Dm7|Eh7_A7|D7|Dm7_G7|
 C6(A)|Fm7_Bb7|C7_Bb7|A7|
 D7|G7|C6|Dm7_G7|
+
+Ain't Misbehavin'
+
+Fats Waller
+C Major
+C6(4/4&{&A)_A7|Dm7_G7|C6_C7(/E)|F6_Fm6|
+C6(/E)_A7|Dm7_G7|E7(firstending)_A7|D7_G7(})|
+empty|empty|C6(secondending)_Fm6|C6_E7|
+Am(B)|F7|D7|A7|
+G6_E7|Am7_D7|G6_A7|D7_G7|
+C6_A7|Dm7_G7|C6_C7(/E)|F6_Fm6|
+C6(/E)_A7|Dm7_G7|C6_Am7|Dm7_G7|
+
+Alone Together
+
+Arthur Schwartz
+D minor
+Dm6(4/4&{&A)|Eh7_A7(b9)|Dm6|Eh7_A7(b9)|
+Dm6|Ah7_D7(b9)|Gm7|%|
+Bm7_E7|Gm7_C7|FM7|Eh7_A7(b9)|
+DM7(firstending)|%(})|DM7(secondending)|%|
+Ah7(B)|D7(b9)|Gm6|%|
+Gh7|C7(b9)|FM7|Eh7_A7(b9)|
+Dm6(A)|Eh7_A7(b9)|Dm6|Eh7_A7(b9)|
+Dm6_Bh7|Bb7_A7(b9)|Dm6|Eh7_A7(b9)|
+
+Autumn In New York
+
+Vernon Duke
+F Major
+Gm7(4/4&A)_Am7|Bb6_C7|FM7_Gm7|Am7_D7(b9)|
+Gm7_Am7|Bb6_C7|Ah7|D7(b9)|
+Gm7(B)|Bbm7_Eb7|AbM7|/-/_G7(b9)|
+Cm7_Ah7|Dh7_G7(b9)|CM7|C7_C7(#5)|
+Gm7(C)_Am7|Bb6_C7|FM7_Gm7|Am7_D7-Db7|
+Cm7_Dm7|Ebm6_F7(b13)|Bbm6_Abm7|Gb7|
+Fm7(D)_C7(b9)|Fm7_Ebm7-Ab7|DbM7_Ab7|DbM7_Ab7|
+Gm7_Am7|Bbm6_C7(b9)|Fm|/-/_D7(b9)|

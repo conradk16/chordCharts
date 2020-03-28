@@ -464,12 +464,11 @@ Bb6(4/4&A&{)|%|Fm7|Bb7|
 EbM7|%|Ab7|%|
 Bb6|%|C7|%|
 Cm7(firstending)|G7(b9)|Cm7|F7(#5&})|
-Cm7(secondending)|F7|Bb6|%|
+Cm7(secondending)|F7|Bb6|%(fine)|
 C#m7(B)|F#7|BM7|%|
 Bm7|E7|AM7|%|
 Am7|D7|GM7|%|
-Gm7|C7|Cm7|F7(#5&tocota)|
-Cm7(cota)|F7|Bb6|%|
+Gm7|C7|Cm7|F7(#5&dcal2)|
 
 Embraceable You
 
@@ -569,3 +568,369 @@ C6(B)|%|F7|%|
 GM7|Bm7_E7|Am7|D7|
 Gd(A)_GM7|B7(b9)_Em7|A7_Em7|A7|
 Am7|B7-E7_A7-D7|G6_Em7|Am7_D7|
+
+I Remember Clifford
+
+Benny Golson
+Eb Major
+EbM7(4/4&A&{)_G7|AbM7_Ad7|Bb7_Bd7|Cm7_Cm7(/Bb)|
+Ah7(firstending)_D7(b9)|Gm7_Gm7(/F)|Eh7_A7(b9)|Fm7_Bb7(b9&})|
+Ah7(secondending)_D7(b9)|Gh7_C7(b9)|Fm7_Bb7(#5)|Gm7_AbM7|
+Ah7_D7(b9)|Gm7_C7(b9)|Fm7_Bb7(alt)|EbM7|
+Dh7(B)_G7(b9)|Cm7_Cm7(/Bb)|Ah7_D7(b9)|Gm7-C7_Fm7-Bb7|
+EbM7(A)_G7|AbM7_Ad7|Bb7_Bd7|Cm7_Cm7(/Bb)|
+Ah7_D7(b9)|Gh7_C7(b9)|Fm7_Bb7(alt)|EbM7|
+
+I'll Remember April
+
+Gene de Paul
+G Major
+GM7(4/4&A)|G6|GM7|G6|
+Gm7|Gm6|Gm7|Gm6|
+Ah7|D7(b9)|Bh7|E7(b9)|
+Am7|D7|GM7|%(fine)|
+Cm7|F7|BbM7|Gm7|
+Cm7|F7|BbM7|%|
+Am7|D7|GM7|%|
+F#m7|B7|EM7|Am7_D7(dcalfine)|
+
+Impressions
+
+John Coltrane
+D minor
+Dm11(4/4&A)|%|%|%|
+Dm11|%|%|%|
+Dm11(A)|%|%|%|
+Dm11|%|%|%|
+Ebm11(B)|%|%|%|
+Ebm11|%|%|%|
+Dm11(A)|%|%|%|
+Dm11|%|%|%|
+
+It Could Happen To You
+
+Jimmy Van-Heusen
+Eb Major
+EbM7(4/4&A)|Ed7|Fm7|F#d7|
+EbM7|AbM7|Gh7|C7(b9)|
+Fm7(B)|Bb7(Db7)|EbM7|Dh7_G7(b9)|
+Cm7|F7|Fm7|Bb7|
+EbM7(A)|Ed7|Fm7|F#d7|
+EbM7|AbM7|Gh7|C7(b9)|
+Fm7(C)|Bb7(Db7)|EbM7_Ab7|Gh7_C7(b9)|
+Fm7|Bb7|EbM7_Cm7|Fm7_Bb7|
+
+Jitterbug Waltz
+
+Fats Waller
+Eb Major
+EbM7(3/4&A&{)|%|%|%|
+AbM7|%|%|%|
+EbM7|%|%|%|
+Gm7|C7|Gm7|C7|
+F7(B)|%|%|%|
+Abm7|%|Db7(#11)|%|
+F7|%|Bb7|%|
+Gm7(firstending)|C7|Fm7|Bb7(})|
+Eb6(secondending)|Ab7|Eb6|Bb7|
+
+Like Someone In Love
+
+Jimmy Van-Heusen
+Eb Major
+EbM7(4/4&A&{)_G7(/D)|Cm7_Cm7(/Bb)|Ah7_Ab7|Gm7_C7|
+Fm7|Am7(Bb7)_D7|Gm7|Bbm7_Eb7|
+AbM7(B&firstending)|Dm7_G7|CM7|%|
+Cm7|F7|Fm7|Bb7(#5&})|
+AbM7(secondending&C)|Dm7_G7|CM7|F#d7|
+Gm7_C7|Fm7_Bb7|Eb6|Fm7_Bb7|
+
+Love For Sale
+
+Cole Porter
+Bb minor
+EbM7(4/4&A&{)|%|Bbm7|%|
+EbM7|%|Bbm7|%|
+Ebm7|Ab7|DbM7|Gb7|
+Ch7|F7(b13)|Bbm6|%(}&fine)|
+Ebm7(B)|Ab7|DbM7|Bb7|
+Ebm7|Ab7|DbM7|%|
+Bb7|B7_Bb7|Ebm6|%|
+Gh7_C7(b9)|Gh7_C7(b9)|F#m7_B7|Fh7_Bb7(dcalfine)|
+
+Lover Man
+
+Davis-Ramirez-Sherman
+F Major
+Dm7(4/4&A&{)_G7|Dm7_G7|Gm7_C7|Gm7_C7|
+F7|Bb7|Abm7-Db7_Gm7-C7|FM7(firstending)_Eh7-A7(})|
+empty|empty|empty|FM7(secondending)_E7(b9)|
+Am(B)_An7|Am7_D7|GM7_Am7|Bm7_Am7-D7|
+Gm_Gn7|Gm7_C7|FM7|Eh7_A7(b9)|
+Dm7(A)_G7|Dm7_G7|Gm7_C7|Gm7_C7|
+F7|Bb7|Abm7-Db7_Gm7-C7|FM7|
+
+Lullaby Of Birdland
+
+George Shearing
+Ab Major
+Fm(4/4&A&{)_Dh7|G7_C7|Fm|Bbm7_Eb7|
+Cm7_Fm7|Bbm7_Eb7|AbM7(firstending)|Gh7_C7(b9&})|
+empty|empty|AbM7(secondending)_Eb7|AbM7|
+Ch7_F7(b9&B)|Bbm7|Bbm7_Eb7(b9)|AbM7|
+Ch7_F7(b9)|Bbm7|Bbm7_Eb7(b9)|AbM7_C7(b9)|
+Fm(A)_Dh7|G7_C7|Fm|Bbm7_Eb7|
+Cm7_Fm7|Bbm7_Eb7|AbM7_Eb7|AbM7_Gh7-C7|
+
+Mack The Knife
+
+Weill-Brecht
+Bb Major
+Bb6(4/4)|%|Cm7|%|
+F7|%|Bb6|%|
+Gm7|%|Cm7|%|
+Cm7|Cm7_F7|Bb6|%|
+
+My Funny Valentine
+
+Richard Rodgers
+Eb Major
+Cm6(4/4&A)|Dh7_G7(b9)|Cm7|F7|
+AbM7|Fm7|Dh7|G7(b9)|
+Cm6(A)|Dh7_G7(b9)|Cm7|F7|
+AbM7|Fm7|Fh7(B7)|Bb7|
+EbM7(B)_Fm7|Gm7_Fm7|EbM7_Fm7|Gm7_Fm7|
+EbM7_G7(b9)|Cm7-B7_Bbm7-A7|AbM7|Dh7_G7(b9)|
+Cm6(C)|Dh7_G7(b9)|Cm7|F7|
+AbM7|Dh7_G7(b9)|Cm7_B7|Bbm7_Eb7|
+AbM7|Fm7_Bb7|Eb6|Dh7_G7(b9)|
+
+One Note Samba
+
+Antonio Carlos Jobim
+Bb Major
+Dm7(4/4&A)|Db7|Cm7|B7(#11)|
+Dm7|Db7|Cm7|B7(#11)|
+Fm7|Bb7|EbM7|Ab7|
+Dm7|Db7|Cm7_B7(#11)|Bb6|
+Ebm7(B)|Ab7|DbM7|%|
+C#m7|F#7|BM7|Ch7_F7|
+Dm7(A)|Db7|Cm7|B7(#11)|
+Dm7|Db7|Cm7|B7(#11)|
+Fm7|Bb7|EbM7|Ab7|
+Db6|C7|BbM7|Bb6|
+
+Over The Rainbow
+
+Harold Arlen
+Eb Major
+Eb6(V)_Cm|Fm_Bb7|EbM7_Cm|Fm_Bb7|
+Eb6_EbM7|Fm9_Bb13|Eb6_Cm|Fm_Bb7|
+Eb6_Cm|Ebm_Bb7|EbM7|Cm_G7|
+Cm9_Cm7(/Bb)|F7(sus)_F7|Fm11|Bb9(sus)|
+Fm11|Bb9(sus)|Fm|Bb7|
+Eb6(4/4&A&{)_Cm7|Gm7_EbM7|AbM7_Ad7|Gm7_C7|
+Fm7_Db7|Gm7_C7(b9)|Fm7_Bb7|Eb6_Bb7(})|
+Eb6(B)|Fm7_Bb7|Gm7_C7|Fm7_Bb7|
+Eb6|Ah7_D7(b9)|Gm7_F#d7|Fm7_Bb7|
+Ah7_D7|Gm7_EbM7|AbM7_Ad7|Gm7_C7|
+Fm7_Db7|Gm7_C7(b9)|Fm7_Bb7|Eb6_Bb7|
+
+Pennies From Heaven
+
+Arthur Johnston
+C Major
+C6(4/4&A)_FM7|Em7_Ebd7|Dm7|G7|
+C6_FM7|Em7_Ebd7|Dm7|G7|
+Gm7|C7|FM7|%|
+D7|%|G7|%|
+C6(B)_FM7|Em7_Ebd7|Dm7|G7|
+Gm7|C7|FM7|%|
+Dm7|Bb7(#11)|Em7|A7|
+Dm7|G7|C6|Dm7_G7|
+
+Perdido
+
+Juan Tizol
+Bb Major
+Cm7(4/4&A&{)|F7|Bb6|Dm7_G7|
+Cm7|F7|Bb6(firstending)|Dm7_G7(})|
+empty|empty|Bb6(secondending)|%|
+D7(B)|%|G7|%|
+C7|%|F7|%|
+Cm7(A)|F7|Bb6|Dm7_G7|
+Cm7|F7|Bb6|Dm7_G7|
+
+Prelude To A Kiss
+
+Duke Ellington
+C Major
+D9(4/4&A&{)_G9|C7_FM7|B9_E9|A7_Dm7|
+Dm7_G7-G#d|Am7_D13|Dm7_G7(b9)|CM7(firstending)_Em7-A7(})|
+empty|empty|empty|CM7(secondending)_F#h7-B7|
+EM7(B)_C#m7|F#h7_B7|G#m7_Gd7|F#m7_B7|
+EM7_C#m7|F#h7_B7|E7_A7|Dm7-Ebm7_Em7-Eb7|
+D9(A)_G9|C7_FM7|B9_E9|A7_Dm7|
+Dm7_G7-G#d|Am7_D13|Dm7_G7(b9)|CM7_Em7-A7|
+
+St. Thomas
+
+Sonny Rollins
+C Major
+CM7(4/4)_F7|Em7_A7|Dm7_G7|C6|
+CM7_F7|Em7_A7|Dm7_G7|C6|
+Eh7|A7(b9)|Dm7|G7|
+CM7_C7(/E)|FM7_F#d7|G7|C6|
+
+Scrapple From The Apple
+
+Charlie Parker
+F Major
+Gm7(4/4&A&{)|C7|Gm7|C7|
+FM7_F7(/A)|BbM7_Bd7|FM7(firstending)_Gm7|Am7_D7(})|
+empty|empty|FM7(secondending)_C7|FM7|
+A7(B)|%|D7|%|
+G7|%|C7|%|
+Gm7(A)|C7|Gm7|C7|
+FM7_F7(/A)|BbM7_Bd7|FM7_Gm7|Am7_D7|
+
+Skylark
+
+Hoagy Carmichael
+Eb Major
+EbM7(4/4&A&{)_Fm7|EbM7(/G)_AbM7|EbM7_A7(#11)|AbM7_Gm7-C7|
+F7|Fm7_Bb7|Eb6(firstending)_Cm7|Fm7_Bb7(})|
+empty|empty|Eb6(secondending)_Bb7(#9)|Eb6|
+Cm7(B)_B7|Bbm7_Eb7|AbM7|Gh7_C7(b9)|
+Fm_Db7|Bbm7-Eb7_Ab6|G6_Em7|A7-D7_G6-Bb7|
+EbM7(A)_Fm7|EbM7(/G)_AbM7|EbM7_A7(#11)|AbM7_Gm7-C7|
+F7|Fm7_Bb7|Eb6_Bb7(#9)|Eb6_Bb7|
+
+So What
+
+Miles Davis
+D minor
+Dm11(A&4/4)|%|%|%|
+Dm11|%|%|%|
+Dm11(A)|%|%|%|
+Dm11|%|%|%|
+Ebm11(B)|%|%|%|
+Ebm11|%|%|%|
+Dm11(A)|%|%|%|
+Dm11|%|%|%|
+
+Solar
+
+Miles Davis
+C minor
+Cn7(4/4)|%|Gm7|C7|
+FM7|%|Fm7|Bb7|
+EbM7|Ebm7_Ab7|DbM7|Dh7_G7(b9)|
+
+Someone To Watch Over Me
+
+George Gershwin
+Eb Major
+EbM7(4/4&{&A)_Eb7|AbM7_Abd7|EbM7(/G)_Gbd7|Bb7(/F)_Ed7|
+Fm7_Gd(Gm7)-Ab6(C7)|Ah7(Fm7)_Bb7|G7(#5&firstending)_C9|Fm7_Bb7(})|
+empty|empty|Eb6(secondending)|Eb7|
+AbM7(B)|%|Abm6|Eb6(/G)|
+Ah7_D7(b9)|G7(b9)|C7|Fm7_Bb7|
+EbM7(A)_Eb7|AbM7_Abd7|EbM7(/G)_Gbd7|Bb7(/F)_Ed7|
+Fm7_Gd(Gm7)-Ab6(C7)|Ah7(Fm7)_Bb7|Eb6|Fm7_Bb7|
+
+Song For My Father
+
+Horace Silver
+F minor
+Fm7(4/4&A&{)|%|Eb7|%|
+Db7|C7(sus)|Fm7|%(})|
+Eb7(B)|%|Fm7|%|
+Eb7_Db7|C7|Fm7|%|
+
+Sophisticated Lady
+
+Duke Ellington
+Ab Major
+Bbm7(4/4&A&{)|Gb7-F7_E7-Eb7|AbM7|Ab7-G7_Gb7-F7|
+Bb7|Bbm7_Eb7|Ab6(firstending)|Ch7_F7(b9&})|
+empty|empty|Ab6(secondending)|Ah7_D7|
+GM7(B)_Em7|Am7_D7|Bm7_E7(b9)|Am7_D7(b9)|
+GM7_Em7|Am7_D7|GM7_Cm7|Bbm7_Ch7-F7|
+Bbm7(A)|Gb7-F7_E7-Eb7|AbM7|Ab7-G7_Gb7-F7|
+Bb7|Bbm7_Eb7|Ab6|Ch7_F7(b9)|
+
+Star Dust
+
+Hoagy Carmichael
+Db Major
+DbM7(V&4/4)|Gb7(#11)|F7(b9)|Bb7|
+Ebm7_Ab7|Fm7_Bbm7|Gm7_C7|Ebm7_Ab7|
+DbM7|Gb7(#11)|F7(b9)|Bb7|
+Ebm7_Ab7|Fm7_Bbm7|Ebm7_Ab7|DbM7_Db7(#5)|
+GbM7(A&{)|%|Gbn7|F#m7_B7|
+DbM7|Fm7_Bb7|Ebm7_Bb7|Ebm7|
+Ab7(firstending)|Ebm7_Ab7|DbM7_Ebm7-Ed|Fm7_Bbm7|
+Eb7|Bbm7_Eb7|Ab7_Ebm7|Ab7_Db7(})|
+F#m7(secondending)|B7|DbM7_Bbm7|Fm7_Bb7|
+Ebm7|Ab7|DbM7|Abm7_Db7|
+
+Stormy Weather
+
+Harold Arlen
+G Major
+GM7(4/4&A&{)_G#d7|Am7_D7|GM7_G#d7|Am7_D7|
+G6_G#d7|Am7_D7(#5)|G6(firstending)_E7(#9)|Am7_D7(})|
+G6(secondending)_C9|Bm7_G#d7|Am7_D7(#5)|G6_G7|
+C6(B)_C#d7|G6(/D)_G7|C6_C#d7|G6(/D)_G7|
+C6_C#d7|G6(/D)_E7|G6(/D)-D#d_Em7|A7_D7|
+GM7(A)_G#d7|Am7_D7|GM7_G#d7|Am7_D7|
+G6_G#d7|Am7_D7(#5)|G6_E7(#9)|Am7_D7(#5)|
+G6_E7(#9)|Am7_D7|empty|empty|
+
+Tenderly
+
+Walter Gross
+Eb Major
+EbM7(4/4&A)|Ab7|Ebm7|Ab7|
+Fm7|Db7(#11)|EbM7|Gh7_C7(b9)|
+Fh7(B)|Bb7|Fh7|Bb7_Bd7|
+Cm7|F7|Fm7|Bb7|
+EbM7(A)|Ab7|Ebm7|Ab7|
+Fm7|Db7(#11)|EbM7|Gh7_C7(b9)|
+Fh7(C)|Bb7_Bd7|Cm7|F7_F#d7|
+Gm7_C7|Fm7_Bb7|Eb6|Fm7_Bb7|
+
+There Is No Greater Love
+
+Isham Jones
+Bb Major
+BbM7(4/4&A&{)|Eb7|Ab7|G7|
+C7(firstending)|%|Cm7|F7(})|
+C7(secondending)|Cm7_F7|Bb6|%|
+Ah7(B)_D7(b9)|Gm6|Ah7_D7(b9)|Gm6|
+Ah7_D7(b9)|Gm7|C7|F7|
+BbM7(A)|Eb7|Ab7|G7|
+C7|Cm7_F7|Bb6|Cm7_F7|
+
+Wave
+
+Antonio Carlos Jobim
+D Major
+DM7(4/4&A&{)|Bbd7|Am7|D7(b9)|
+GM7|Gm6|F#13_F#7(b13)|B9_B7(b9)|
+E9|Bb7_A7|Dm7_G7|Dm7_G7(})|
+Gm7(B&/Bb)|C7(/Bb)|FM7(/A)|%|
+Fm7(/Ab)|Bb7(/Ab)|EbM7|A7(b9)|
+DM7(A)|Bbd7|Am7|D7(b9)|
+GM7|Gm6|F#13_F#7(b13)|B9_B7(b9)|
+E9|Bb7_A7|Dm7_G7|Dm7_G7|
+
+Yesterdays
+
+Jerome Kern
+D minor
+Dm(4/4)|Eh7_A7(b9)|Dm|Eh7_A7(b9)|
+Dm_Dn7(/C#)|Dm7(/C)|Bh7|E7|
+A7(#5)|D9|G13|C9|
+F13|BbM7|Eh7|A7(b9)|

@@ -119,7 +119,7 @@ public class Chord {
             } else if (firstPart.charAt(charsEaten) == '9') {
                 type = Global.DOMINANT9;
             }
-        } else {
+        } else if(firstPart.length() == charsEaten + 2) {
             if (firstPart.charAt(charsEaten) == 'M' && firstPart.charAt(charsEaten + 1) == '7') {
                 type = Global.MAJOR7;
             } else if (firstPart.charAt(charsEaten) == 'm' && firstPart.charAt(charsEaten + 1) == '7') {
@@ -136,6 +136,12 @@ public class Chord {
                 type = Global.AUGMENTED7;
             } else if (firstPart.charAt(charsEaten) == 'n' && firstPart.charAt(charsEaten + 1) == '7') {
                 type = Global.MINMAJ7;
+            } else if (firstPart.charAt(charsEaten) == '1' && firstPart.charAt(charsEaten + 1) == '3') {
+                type = Global.DOMINANT13;
+            }
+        } else {
+            if (firstPart.charAt(charsEaten) == 'm' && firstPart.charAt(charsEaten + 1) == '1' && firstPart.charAt(charsEaten + 2) == '1') {
+                type = Global.MINOR11;
             }
         }
         int[] toReturn = {key, type};
@@ -175,10 +181,12 @@ public class Chord {
         else if(type == Global.MINOR7) {lowerText = Character.toString((char) 0x2013) + "7";}
         else if(type == Global.MINOR6) {lowerText = Character.toString((char) 0x2013) + "6";}
         else if(type == Global.MINOR9) {lowerText = Character.toString((char) 0x2013) + "9";}
+        else if(type == Global.MINOR11) {lowerText = Character.toString((char) 0x2013) + "11";}
         else if(type == Global.HALFDIMINISHED7) {lowerText = Character.toString((char) 0x00f8) + "7";}
         else if(type == Global.DIMINISHED7) {lowerText = Character.toString((char) 0x006f) + "7";}
         else if(type == Global.DOMINANT) {lowerText = "7";}
         else if(type == Global.DOMINANT9) {lowerText = "9";}
+        else if(type == Global.DOMINANT13) {lowerText = "13";}
         else if(type == Global.AUGMENTED7) {lowerText = Character.toString((char) 0x002b) + "7";}
         else if(type == Global.MINMAJ7) {lowerText = Character.toString((char) 0x2013) + Character.toString((char) 0x25B3) + "7";}
         else if(type == Global.MAJOR) {lowerText = "";}

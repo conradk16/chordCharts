@@ -765,6 +765,24 @@ public class ChordDisplay extends AppCompatActivity {
                             0,0,0, 0, true, "Bravura.ttf");
                 }
 
+                if(bars[i].fine) {
+                    drawText(null, null, upperGuideline,
+                            verticalGuidelines[4*i + 4], "Fine", (int)(lineHeight * 0.35), false,Color.BLACK,
+                            0,(int)(lineHeight * 0.5),(int)(lineHeight * 0.1), 0, true, "Bravura.ttf");
+                }
+
+                if(bars[i].dcalfine) {
+                    drawText(null, null, upperGuideline,
+                            verticalGuidelines[4*i + 4], "D.C. al Fine", (int)(lineHeight * 0.35), false,Color.BLACK,
+                            0,(int)(lineHeight * 0.6),(int)(lineHeight * 0.1), 0, true, "Bravura.ttf");
+                }
+
+                if(bars[i].dcal2) {
+                    drawText(null, null, upperGuideline,
+                            verticalGuidelines[4*i + 4], "D.C. al 2nd ending", (int)(lineHeight * 0.35), false,Color.BLACK,
+                            0,(int)(lineHeight * 0.6),(int)(lineHeight * 0.1), 0, true, "Bravura.ttf");
+                }
+
                 if(bars[i].firstEnding) {
                     drawText(upperGuideline, verticalGuidelines[4*i],null,
                             null, "1.", (int)(lineHeight * 0.3), true,Color.BLACK,

@@ -16,6 +16,9 @@ public class Bar {
     public boolean rightRepeat = false;
     public boolean toCota = false;
     public boolean cota = false;
+    public boolean fine = false;
+    public boolean dcalfine = false;
+    public boolean dcal2 = false;
     public boolean firstEnding = false;
     public boolean secondEnding = false;
     public int section = NONE;
@@ -96,6 +99,12 @@ public class Bar {
                     toCota = true;
                 } else if (modifiers[i].equals("cota")) {
                     cota = true;
+                } else if (modifiers[i].equals("fine")) {
+                    fine = true;
+                } else if (modifiers[i].equals("dcalfine")) {
+                    dcalfine = true;
+                } else if (modifiers[i].equals("dcal2")) {
+                    dcal2 = true;
                 } else if (modifiers[i].equals("firstending")) {
                     firstEnding = true;
                 } else if (modifiers[i].equals("secondending")) {

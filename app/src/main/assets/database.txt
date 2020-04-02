@@ -498,7 +498,7 @@ Dm7|G7|CM7|Bh7_E7(b9)|
 
 The Girl From Ipanema
 
-Antonio-Carlos Jobim
+Antonio Carlos Jobim
 F Major
 FM7(4/4&A&{)|%|G7(#11)|%|
 Gm7|Gb7(#11)|FM7(firstending)|Gb7(})|
@@ -1367,3 +1367,110 @@ Abm7_Fm7-Bb7|Ch7_F7|Db9_B9|Abm7_Fm7-Bb7(dsal2)|
 Ch7(coda)_F7|Ch7_F7|F#m7_B7|F#m7_B7|
 Bm7_E7|Fm7_Bb7|EbM-AbM_DbM-GbM|Bb7(b9&b5)|
 EbM7(#9&#11)|empty|empty|empty|
+
+Bluesette
+
+Toots Thielemans
+C Major
+CM7(3/4)|%|Bh7|E7(b9)|
+Am7|D7(b9)|Gm7|C7|
+FM7|%|Fm7|Bb7|
+EbM7|%|Ebm7|Ab7|
+DbM7|%|Dm7|G7|
+Em7|A7|Dm7|G7|
+
+Corcovado (Quiet Nights Of Quiet Stars)
+
+Antonio Carlos Jobim
+C Major
+Am6(4/4&A)|%|Abd7|%|
+Gm7|C7|Fd7_FM7|FM7|
+Fm7(B)|Bb7|Em7|A7(b13)|
+D7|%|Dm7|G7|
+Am6(A)|%|Abd7|%|
+Gm7|C7|Fd7_FM7|FM7|
+Fm7(C)|Bb7|Em7|Am7|
+Dm7|G7|Em7|A7|
+Dm7|G7(tocoda)|empty|C6(coda)|
+
+Don't Get Around Much Anymore
+
+Duke Ellington
+C Major
+CM7(4/4&A&{)_Dm7-Ebd|Em7|CM7_B7-Bb7|A7|
+Dm7|G7|C6(firstending)|G7(})|
+empty|empty|C6(secondending)|Gm7_C7|
+FM7(B)|Bb7|CM7|C7|
+FM7|F#h7_B7(b9)|Em7_Ebd7|Dm7_G7|
+CM7(A)_Dm7-Ebd|Em7|CM7_B7-Bb7|A7|
+Dm7|G7|C6|G7|
+
+Ornithology
+
+Charlie Parker
+G Major
+GM7(4/4&A)|%|Gm7|C7|
+FM7|%|Fm7|Bb7|
+EbM7(B)|Ah7_D7(b9)|Gm7|Ah7_D7(b9)|
+Bm7|Em7|Am7|D7|
+GM7(A)|%|Gm7|C7|
+FM7|%|Fm7|Bb7|
+EbM7(C)|Ah7_D7(b9)|GM7|Am7_D7|
+Bm7_E7|Am7_D7|G6|Am7_D7|
+
+Tune Up
+
+Miles Davis
+Bb Major
+Em7(4/4&{)|A7|DM7|%|
+Dm7|G7|CM7|%|
+Cm7|F7|BbM7|Gm7|
+Em7(firstending)|F7|BbM7|A7(})|
+Em7(secondending)|A7|DM7|%|
+
+Anthropology
+
+Charlie Parker
+Bb Major
+BbM7(4/4&A&{)_G7|Cm7_F7|Dm7_G7|Cm7_F7|
+Fm7_Bb7|Eb7_Ab7|Dm7(firstending)_G7|Cm7_F7(})|
+empty|empty|Cm7(secondending)_F7|Bb6|
+D7(B)|%|G7|%|
+C7|%|F7|%|
+BbM7(A)_G7|Cm7_F7|Dm7_G7|Cm7_F7|
+Fm7_Bb7|Eb7_Ab7|Cm7_F7|Bb6|
+
+Beautiful Love
+
+Victor Young
+D minor
+Eh7(4/4&{&A)|A7(b9)|Dm|%|
+Gm7|C7|FM7|Eh7_A7(b9)|
+Dm(firstending&B)|Gm7|Bb7|A7(b9)|
+Dm|G7(#11)|Eh7|A7(b9&})|
+Dm(secondending&C)|Gm7|Bb7|A7(b9)|
+Dm_B7|Bb7(#11)_A7(b9)|Dm|%|
+
+Do Nothin' Til You Hear From Me
+
+Duke Ellington
+Bb Major
+BbM7(4/4&A&{)|Fm7_Bb7|EbM7|Ebm7_Ab7(#11)|
+BbM7_G7(#5)|C7_F7|BbM7(firstending)|Cm7_F7(})|
+empty|empty|Bb6(secondending)|Abm7_Db7|
+GbM7(B)|%|%|Gb7|
+BbM7|Dm7_G7|C7|F7|
+BbM7(A)|Fm7_Bb7|EbM7|Ebm7_Ab7(#11)|
+BbM7_G7(#5)|C7_F7|Bb6|Cm7_F7|
+
+Só Danço Samba
+
+Antonio Carlos Jobim
+C Major
+C6(4/4&A&{)|F7|D7|%|
+Dm7|G7|C6(firstending)|F7(})|
+empty|empty|C6(secondending)|%|
+Gm7(B)|C7|FM7|%|
+Am7|D7|G7|%|
+C6(A)|F7|D7|%|
+Dm7|G7|C6|F7|

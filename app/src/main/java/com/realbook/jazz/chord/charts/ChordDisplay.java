@@ -556,11 +556,11 @@ public class ChordDisplay extends AppCompatActivity {
 
         TextView lowerTextView = drawText(null, leftGuideline, centerGuideline, null,
                 lowerText, (int)(baseFontSize / 1.7), false, Color.BLACK,
-                0,0,0,0, false, "amodified.ttf");
+                0,0,0,0, false, "lettersAndSymbols.ttf");
 
         TextView upperTextView = drawText(centerGuideline, leftGuideline, null, null,
                 upperText, (int)(baseFontSize / 1.5), false, Color.BLACK,
-                0,0,0,0, false, "amodified.ttf");
+                0,0,0,0, false, "lettersAndSymbols.ttf");
 
         keyTextView.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         int keyTextWidth = keyTextView.getMeasuredWidth();
@@ -670,12 +670,12 @@ public class ChordDisplay extends AppCompatActivity {
         drawText(lowerGuideline, leftGuideline, null, null,
                 lowerText, textSize, false, Color.BLACK,
                 (int)(keyTextWidth * resizeFactor) + marginFromGuideline,0,
-                0,(int) (lineHeight / 2) - textSize, true, "amodified.ttf");
+                0,(int) (lineHeight / 2) - textSize, true, "lettersAndSymbols.ttf");
 
         drawText(centerGuideline, leftGuideline, null, null,
                 upperText, (int)(baseFontSize / 1.5 * resizeFactor), false, Color.BLACK,
                 (int)(keyTextWidth * resizeFactor) + marginFromGuideline,0,
-                0,0, true, "amodified.ttf");
+                0,0, true, "lettersAndSymbols.ttf");
 
     }
 
@@ -710,11 +710,11 @@ public class ChordDisplay extends AppCompatActivity {
                     else { topNum = "3";}
 
                     drawText(T, Left, lineTops[0],null,
-                            topNum, (int)(width * 0.04),
+                            topNum, (int)(width * 0.0375),
                             true, Color.BLACK,
                             (int)(width*0.007),0,0,0, true, "");
                     drawText(V, Left, T, null, "4",
-                            (int)(width * 0.04), true, Color.BLACK,
+                            (int)(width * 0.0375), true, Color.BLACK,
                             (int)(width*0.007),0,0,0, true, "");
                     drawText(lineBottoms[0], Left, lineTops[0], null, "-",
                             (int)(width * 0.08), true, Color.BLACK,

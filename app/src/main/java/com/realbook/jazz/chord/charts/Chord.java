@@ -139,10 +139,8 @@ public class Chord {
             } else if (firstPart.charAt(charsEaten) == '1' && firstPart.charAt(charsEaten + 1) == '3') {
                 type = Global.DOMINANT13;
             }
-        } else {
-            if (firstPart.charAt(charsEaten) == 'm' && firstPart.charAt(charsEaten + 1) == '1' && firstPart.charAt(charsEaten + 2) == '1') {
-                type = Global.MINOR11;
-            }
+        } else if (firstPart.charAt(charsEaten) == 'm' && firstPart.charAt(charsEaten + 1) == '1' && firstPart.charAt(charsEaten + 2) == '1') {
+            type = Global.MINOR11;
         }
         int[] toReturn = {key, type};
         return toReturn;

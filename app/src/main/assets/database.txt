@@ -7,8 +7,8 @@ Eb7|Dm|Eh7_A7(b9)|Dm(})|
 Ah7(B)|D7(b9)|Gm7|%|
 Gh7|C7(b9)|FM7|Eh7_A7(b9)|
 Eb7(A)|Dm|Eb7|Dm|
-Eb7|Dm|Eh7_A7(b9)|Dm(tocota)|
-Eh7(cota)|%|Eb7(#11)|%|
+Eb7|Dm|Eh7_A7(b9)|Dm(tocoda)|
+Eh7(coda)|%|Eb7(#11)|%|
 Dm7|%|G7(#11)|%|
 Gn7|Gm7|Gb7(#9)|%|
 FM7|%|Eh7|A7(b9)|
@@ -137,8 +137,8 @@ empty|empty|empty|Bb6(secondending)|
 D7(B)|%|G7|%|
 C7|%|F7|%|
 Bb6(A)_Gm7|Cm7_F7|Dm7_G7|Cm7_F7|
-Bb7_Bb7(/D)|Eb7_Ebd7(tocota)|Bb6(/F)_F7|Bb6_F7|
-Bb6(/F&cota)_Eb9|Dm7_G7|Cm7_F7|Bb6|
+Bb7_Bb7(/D)|Eb7_Ebd7(tocoda)|Bb6(/F)_F7|Bb6_F7|
+Bb6(/F&coda)_Eb9|Dm7_G7|Cm7_F7|Bb6|
 
 In A Mellow Tone
 
@@ -305,7 +305,7 @@ Sweet Georgia Brown
 
 Ben Bernie and Maceo Pinkard
 A minor
-F7(4/4&A&{)|%|%|%|
+F7(4/4&{)|%|%|%|
 Bb7|%|%|%|
 Eb7(firstending)|%|%|%|
 AbM7|Bbm7_Eb7|AbM7|Gh7(})_C7(b9)|
@@ -540,7 +540,7 @@ Gm(GM7&4/4&A)_Gn7(/F#)|Fm6(Bb7)_Bb7|EbM7|AbM7|
 Am7|D7|GM7|Dm7_G7|
 Cm7|F7|BbM7|EbM7|
 Am7|D7|GM7_Em7|Am7_D7|
-Gm(GM7&A)_Gn7(/F#)|Fm6(Bb7)_Bb7|EbM7|AbM7|
+Gm(GM7&B)_Gn7(/F#)|Fm6(Bb7)_Bb7|EbM7|AbM7|
 Am7|D7|GM7|Dm7_G7|
 CM7|Am7_D7|Bm7_Em7|A7|
 Am7|D7|G6_Em7|Am7_D7|
@@ -934,3 +934,436 @@ Dm(4/4)|Eh7_A7(b9)|Dm|Eh7_A7(b9)|
 Dm_Dn7(/C#)|Dm7(/C)|Bh7|E7|
 A7(#5)|D9|G13|C9|
 F13|BbM7|Eh7|A7(b9)|
+
+What's New
+
+Bob Haggard
+C Major
+C6(4/4&A&{)|Bbm7_Eb7|AbM7|Dh7_G7(b9)|
+Cm7_Ah7|Dh7_G7(b9)|C6(firstending)_Am7|Dm7_G7(})|
+empty|empty|C6(secondending)|Gm7_C7|
+F6(B)|Ebm7_Ab7|DbM7|Gh7_C7(b9)|
+Fm7_Dh7|Gh7_C7(b9)|Fm6|Dh7_G7(b9)|
+C6(A)|Bbm7_Eb7|AbM7|Dh7_G7(b9)|
+Cm7_Ah7|Dh7_G7(b9)|C6_Am7|Dm7_G7|
+
+Honeysuckle Rose
+
+Fats Waller
+F Major
+Gm7(4/4&{&A)_C7|Gm7_C7|Gm7_C7|Gm7_C7|
+F6_F7(/A)|Bb6_C7|F6(firstending)_Bb7|Am7_D7(})|
+empty|empty|F6(secondending)|%|
+F7(B)|%|Bb6|%|
+G7|%|C7|%|
+Gm7(A)_C7|Gm7_C7|Gm7_C7|Gm7_C7|
+F6_F7(/A)|Bb6_C7|F6_Bb7|Am7_D7|
+
+Caravan
+
+Duke Ellington
+F minor
+C7(b9&4/4&A&{)|%|%|%|
+C7(b9)|%|%|%|
+C7(b9)|%|%|%|
+Fm|%|%|%(}&fine)|
+F7(B)|%|%|%|
+Bb7|%|%|%|
+Eb7|%|%|%|
+Ab6|%|G7|Db7(dcalfine)|
+
+The Man I Love
+
+George Gershwin
+Eb Major
+Eb6(4/4&A&{)|Ebm7|Bbm7(Gh7)|C7(b9)|
+Fh7(/B)|Bb7(firstending)|G7(#5)_C7|F7(#5)_Bb7(})|
+empty|Bb7(secondending)|Eb6_Ab7|Eb6_D7-G7|
+Cm6(B)_Ah7|D7(#5)_G7(b9)|Cm6|G7(b9)|
+Cm6_Ah7|D7(#5)_G7(b9)|Cm7_Gb7|Fm7_Bb7|
+Eb6(A)|Ebm7|Bbm7(Gh7)|C7(b9)|
+Fh7(/B)|Bb7|Eb6_Ab7|Eb6_F7-Bb7|
+
+In A Sentimental Mood
+
+Duke Ellington
+D minor
+Dm(4/4&A&{)_Dn7|Dm7_Dm6|Gm_Gn7|Gm7_Gm7-A7|
+Dm|D9(#5)|Gm7_C7(b9)|F6(firstending)_Eh7-A7(})|
+empty|empty|empty|F6(secondending)_Ebm7-Ab7|
+DbM7(B)_Bbm7|Ebm7_Ab7|Db6_Bb7(#5)|Ebm7_Ab7|
+DbM7_Bbm7|Ebm7_Ab7|Gm7|C7|
+Dm(A)_Dn7|Dm7_Dm6|Gm_Gn7|Gm7_Gm7-A7|
+Dm|D9(#5)|Gm7_C7(b9)|F6_Eh7-A7|
+
+St. Louis Blues
+
+W.C. Handy
+G Major
+G7(4/4)|C7|G7|%|
+C7|%|G7|%|
+D7|C7|G7|D7|
+
+The Way You Look Tonight
+
+Jerome Kern
+F Major
+FM7(4/4&A&{)|Dm7|Gm7|C7|
+FM7|D7|Gm7|C7|
+Cm7|F7|BbM7|Gm7_C7|
+F6_Dm7|Gm7_C7|F6_Dm7|Gm7(firstending&tocoda&})_C7|
+empty|empty|empty|Bbm7(secondending)_Eb7|
+AbM7(B)|F7|Bbm7|Eb7|
+AbM7|F7|Bbm7|Eb7|
+AbM7|F7|Bbm7|Eb7|
+AbM7|DbM7|Gm7|C7(dcalcoda)|
+Gm7(coda)|C7|F6_Dm7|Gm7_C7|
+
+These Foolish Things
+
+Jack Strachey
+Eb Major
+EbM7(4/4&A&{)_Cm7|Fm7_Bb7|EbM7_Cm7|Fm7_Bb7|
+Bbm7_Eb7|AbM7_G7-C7|F7(firstending)|Fm7_Bb7(})|
+empty|empty|F7(secondending)_Bb7|Eb6_Ah7-D7|
+Gm7(B)_Eh7|Ah7_D7(b9)|Gm7|C7_F7|
+BbM7_Gm7|Cm7_F7|Bb7_Ed7|Fm7_Bb7|
+EbM7(A)_Cm7|Fm7_Bb7|EbM7_Cm7|Fm7_Bb7|
+Bbm7_Eb7|AbM7_G7-C7|F7_Bb7|Eb6_Fm7-Bb7|
+
+After You've Gone
+
+Henry Creamer
+Bb Major
+EbM7(4/4&A)|%|Ebm6|Ab7|
+BbM7|%|Dm7|G7|
+C7(B)|%|F7|%|
+Bb6|%|Fm7|Bb7|
+EbM7(A)|%|Ebm6|Ab7|
+BbM7|%|Dm7|G7|
+Cm7(C)|G7|Cm7|Ebn7_Ab7|
+BbM7|Am7_D7|Gm7_Gm7(/F)|Ed7|
+Bb6(/F)|G7|Cm7|F7|
+Bb6|%|Fm7|Bb7|
+
+Sweet Lorrain
+
+Cliff Burwell
+G Major
+G6(4/4&{&A)-F7_E7|Am7_D7-B7(/D#)|Em7-Eb7_Dm7-G7|C7_B7(b9)|
+E7_A7|Am7_D7|Bm7(firstending)_E7|Am7_D7(#5&})|
+empty|empty|G6(secondending)_C7-C#d|G6(/D)_Dm7-G7|
+C6(B)_E7|Am7-Ab7_Gm7-C7|FM7_E7|Am7-Ab7_Gm7-C7|
+FM7_E7|Eb7(#11)_D7|FM7_E7|Eb7(#11)_D7|
+G6(A)-F7_E7|Am7_D7-B7(/D#)|Em7-Eb7_Dm7-G7|C7_B7(b9)|
+E7_A7|Am7_D7|G6_C7-C#d|G6(/D)_D7|
+
+Don't Blame Me
+
+Jimmy McHugh
+C Major
+CM7(4/4&A&{)_Eh7|A9(#5)|Dh7_G13(b9)|CM7_Am7|
+Dh7_G13(b9)|Eh7_A7(b13)|Dm7_G7|CM7(firstending)_G7(})|
+empty|empty|empty|C6(secondending)_C7|
+FM7(B)|E7|Am7_E7(b13)|Am7|
+D7_Eb7(#11)|D7|G7_Ab7(#11)|G7|
+CM7(A)_Eh7|A9(#5)|Dh7_G13(b9)|CM7_Am7|
+Dh7_G13(b9)|Eh7_A7(b13)|Dm7_G7|CM7_G7|
+
+Straight No Chaser
+
+Thelonious Monk
+Bb Major
+Bb7(4/4)|Eb7|Bb7|%|
+Eb7|%|Bb7|%|
+F7|%|Bb7|F7|
+
+Oleo
+
+Sonny Rollins
+Bb Major
+BbM7(4/4&A&{)_G7|Cm7_F7|Dm7_G7|Cm7_F7|
+Fm7_Bb7|Eb7_Ab7|Dm7(firstending)_G7|Cm7_F7(})|
+empty|empty|Cm7(secondending)_F7|Bb6|
+D7(B)|%|G7|%|
+C7|%|F7|%|
+BbM7(A)_G7|Cm7_F7|Dm7_G7|Cm7_F7|
+Fm7_Bb7|Eb7_Ab7|Cm7_F7|Bb6|
+
+Mr. P.C.
+
+John Coltrane
+C minor
+Cm7(4/4)|%|%|%|
+Fm7|%|Cm7|%|
+Ab7|G7(b13)|Cm7|%|
+
+Someday My Prince Will Come
+
+Frank Churchill
+Bb Major
+BbM7(3/4&A)|D7(#5)|EbM7|G7(b9)|
+Cm7|G7(b9)|Cm7|F7|
+Dm7(B)|C#d7|Cm7|F7|
+Dm7|C#d7|Cm7|F7|
+BbM7(A)|D7(#5)|EbM7|G7(b9)|
+Cm7|G7(b9)|Cm7|F7|
+Fm7(C)|Bb7|EbM7|Ed7|
+BbM7(/F)|G7|Cm7|F7|
+
+Black Orpheus (Manha De Carnaval)
+
+Luiz Bonfa
+A minor
+Am(4/4&A)|Bh7_E7(b9)|Am|Bh7_E7(b9)|
+Am|Dm7_G7|CM7|A7(b9)|
+Dm7|G7|Cm7|FM7|
+Bh7|E7(b9)|Am|Bh7_E7(b9)|
+Am|Bh7_E7(b9)|Am|%|
+Eh7|A7(b9)|Dm|%|
+Dm7|Bh7_E7(b9)|Am_Am7(/G)|FM7|
+Bh7|E7(b9)|Am(tocoda)|Bh7_E7(b9)|
+Am(coda)|Dm7_Am7|Dm7_Em7|Am|
+
+Footprints
+
+Wayne Shorter
+C minor
+Cm11(3/4)|%|%|%|
+Cm11|%|%|%|
+Fm11|%|%|%|
+Cm11|%|%|%|
+F#h7|F7(#11)|E7(alt)|A7(alt)|
+Cm11|%|%|%|
+
+Confirmation
+
+Charlie Parker
+F Major
+FM7(4/4&{&A)|Eh7_A7(b9)|Dm7_G7|Cm7_F7|
+Bb7|Am7_D7|G7(firstending)|C7(b9&})|
+empty|empty|Gm7(secondending)_C7|FM7|
+Cm7(B)|F7|BbM7|%|
+Ebm7|Ab7|DbM7|Gm7_C7(alt)|
+FM7(A)|Eh7_A7(b9)|Dm7_G7|Cm7_F7|
+Bb7|Am7_D7|Gm7_C7|FM7_C7|
+
+On The Sunny Side Of The Street
+
+Jimmy McHugh
+C Major
+C6(4/4&A&{)|E7|FM7|C6(G)_E7(b9&/G#)|
+Am7|D7|Dm7(firstending)_G7|Em7-A7_Dm7-G7(})|
+empty|empty|Dm7(secondending)_G7|C6|
+Gm7(B)|C7|FM7|%|
+Am7|D7|Dm7|G7|
+C6(A)|E7|FM7|C6(G)_E7(b9&/G#)|
+Am7|D7|Dm7_G7|C6_G7|
+
+All Blues
+
+Miles Davis
+G Major
+G7(3/4)|%|%|%|
+G7|%|%|%|
+C7(/G)|%|%|%|
+G7|%|%|%|
+D7(#9)|%|Eb7(#9)|D7(#9)|
+G7|%|%|%|
+
+Watermelon Man
+
+Herbie Hancock
+F Major
+F7(#9&4/4)|%|%|%|
+Bb9|%|F7(#9)|%|
+C9|Bb9|C9|Bb9|
+C9|Bb9|F7(#9&Ab13)|%|
+
+Recordame
+
+Joe Henderson
+A minor
+Am(4/4)|%|%|%|
+Cm|%|%|Cm7_F7|
+BbM7|Bbm7_Eb7|AbM7|Abm7_Db7|
+GbM7|Gm7_C7|FM7|E7(#9)|
+
+Freddie Freeloader
+
+Miles Davis
+Bb Major
+Bb7(4/4&{)|%|%|%|
+Eb7|%|Bb7|%|
+F7|Eb7|Ab7(firstending)|%(})|
+empty|empty|Bb7(secondending)|%|
+
+Cantaloupe Island
+
+Herbie Hancock
+F minor
+Fm11(4/4)|%|%|%|
+Db7(#11)|%|%|%|
+Dm11|%|%|%|
+Fm11|%|%|%|
+
+Four
+
+Miles Davis
+Eb Major
+EbM7(4/4&A)|%|Ebm7|Ab7|
+Fm7|%|Abm7|Db7|
+EbM7(/G&B)|F#m7_B7|Fm7|Bb7|
+EbM7(/G)|F#m7_B7|Fm7|Bb7|
+EbM7(A)|%|Ebm7|Ab7|
+Fm7|%|Abm7|Db7|
+EbM7(C)|F#m7_B7|Fm7|Bb7|
+Gm7_Gbm7|Fm7_Bb7|EbM7|%|
+
+Milestones
+
+Miles Davis
+Bb Major
+FM7(4/4&in)|Bbm7_Eb7|AbM7|Dbm7_Gb7|
+Cm7|F7|BbM7|G7(b13)|
+Cm7({&A)|F7|BbM7_Eb7|Abm7_Db7|
+Cm7_C#m7|Bm7_E7|Cm7_F7|BbM7(})|
+AM7(B)|Am7_D7|GM7|Bm7_E7(b9)|
+Am7|D7|Bbm7_Eb7|Bm7_E7|
+Cm7(A)|F7|BbM7_Eb7|Abm7_Db7|
+Cm7_C#m7|Bm7_E7|Cm7_F7|BbM7|
+
+Doxy
+
+Sonny Rollins
+Bb Major
+Bb7(4/4)_A7|Ab7_G7|C7_F7|Bb7|
+Bb7_A7|Ab7_G7|C7|F7|
+Bb7|%|Eb7|Ed7|
+Bb7_A7|Ab7_G7|C7_F7|Bb7_F7|
+
+Now's The Time
+
+Charlie Parker
+F Major
+F7(4/4)|Bb7|F7|Cm7_F7|
+Bb7|Bd7|F7|Am7_D7|
+Gm7|C7|F7_D7|Gm7_C7|
+
+Lady Bird
+
+Tadd Dameron
+C Major
+CM7(4/4)|%|Fm7|Bb7|
+CM7|%|Bbm7|Eb7|
+AbM7|%|Am7|D7|
+Dm7|G7|CM7_EbM7|AbM7_DbM7|
+
+Maiden Voyage
+
+Herbie Hancock
+D Major
+D9(sus&4/4&A&{)|%|%|%|
+F9(sus)|%|%|%(})|
+Eb9(B&sus)|%|%|%|
+C#m9|%|%|%|
+D9(A&sus)|%|%|%|
+F9(sus)|%|%|%|
+
+Tenor Madness
+
+Sonny Rollins
+Bb Major
+Bb7(4/4)|Eb7|Bb7|%|
+Eb7|%|Bb7|%|
+Cm7|F7|Bb7|F7|
+
+Killer Joe
+
+Benny Golson
+C Major
+C9(4/4&{&A)|Bb9(#11)|%|%|
+%|%|%|%(})|
+Eh7(B)|A7(b9)|Ebm7|Ab7|
+A7|Ab7|Em7|A7|
+C9(A)|Bb9(#11)|%|%|
+%|%|%|%|
+
+Sugar
+
+Stanley Turrentine
+C minor
+Cm7(4/4)|Dh7_G7(b9&b13)|Cm7|G7(b9&b13)|
+Cm7|%|G7(sus)|G7(b9&b13)|
+Cm7|Gb7(#11)|Fm7|Eb7|
+Dh7|G7(b9&b13)|Ab7(#11)|G7(b9&b13)|
+
+Invitation
+
+Bronislau Kaper
+C minor
+Cm7(A&4/4)|%|%|%|
+Cm7|F7|Bb7|%|
+Ebm7|%(tocoda)|%|%|
+Ebm7|Ab7|Db7(#11)|%|
+C#m7(B)|F#7_F#7(alt)|Bm7|%|
+Bm7|E7_E7(alt)|Am7|%|
+Am7|D7_D7(alt)|Gm7|%|
+Eh7|Eb7|D7(alt)|G7(alt&dcalcoda)|
+empty|empty|B7(#11&coda)|%|
+F7(alt)|Bb7(alt)|Ebn7|%|
+
+Trane's Blues
+
+John Coltrane
+Bb Major
+Bb7(4/4)|Eb7|Bb7|%|
+Eb7|%|Bb7|%|
+Cm7|F7|Bb7|%|
+
+Giant Steps
+
+John Coltrane
+Eb Major
+BbM7(4/4)_D7|GM7_Bb7|Eb7|Am7_D7|
+GM7_Bb7|EbM7_F#7|BM7|Fm7_Bb7|
+EbM7|Am7_D7|GM7|C#m7_F#7|
+BM7|Fm7_Bb7|EbM7|C#m7_F#7|
+
+Little Sunflower
+
+Freddie Hubbard
+D minor
+Dm7(4/4&A&{)|%|%|%|
+%|%|%|%(})|
+EbM7({&B)|%|%|%|
+DM7|%|%|%(})|
+Dm7(A&{)|%|%|%|
+%|%|%|%(})|
+
+Moment's Notice
+
+John Coltrane
+Eb Major
+Em7(4/4&{)_A7|Fm7_Bb7|EbM7|Abm7_Db7|
+Dm7_G7|Ebm7_Ab7|DbM7|Dm7_G7|
+Cm7_B7|Bbm7_Eb7|AbM7|Abm7_Db7|
+Gm7(firstending)_C7|Abm7_Db7|Gb6|Fm7_Bb7(})|
+Gm7(secondending)_C7|Fm7_Bb7|Eb6(/Bb)|Fm7|
+Gm7(/Bb)|Fm7(/Bb)|Eb6(/Bb)_Fm7(/Bb)|Gm7(/Bb)_Fm7(/Bb)|
+Eb6|%|empty|empty|
+
+Round Midnight
+
+Thelonious Monk
+Eb minor
+Ah7(4/4&in)|D7(#9)|Gh7|C7(#9)|
+Fh7|Bb7(#9)|Ebm7_Ab7-Db7|Gb7-B7_Bb7(#5)|
+Ebm7(A&{&segno)_Ebm7(/Db)|Cd7_Abm7-Db7|Ebm6|Bm7-E7_Bbm7-Eb7|
+Abm7_Db7|Ebm7_Ab7|Ch7(firstending)_B7(#11)|Bb7(})|
+empty|empty|Ch7(secondending)-B7_Bb7(sus)|Eb6(fine)|
+Ch7(B)_B7(#11)|Bb7(#11)|Ch7_B7(#11)|Bb7(#11)|
+Abm7_Fm7-Bb7|Ch7_F7|Db9_B9|Abm7_Fm7-Bb7(dsal2)|
+Ch7(coda)_F7|Ch7_F7|F#m7_B7|F#m7_B7|
+Bm7_E7|Fm7_Bb7|EbM-AbM_DbM-GbM|Bb7(b9&b5)|
+EbM7(#9&#11)|empty|empty|empty|

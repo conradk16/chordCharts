@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Realbook Charts"
+        android:text="Real Book Charts"
         android:textColor="@color/white"
         android:textSize="24dp"/>
 </LinearLayout>

@@ -61,7 +61,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="$PROJECT_DIR$/appImage.png" />
+                                      <entry key="foregroundImage" value="$PROJECT_DIR$/chord_charts_icon.png" />
                                     </map>
                                   </option>
                                 </PersistentState>

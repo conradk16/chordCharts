@@ -733,8 +733,8 @@ public class ChordDisplay extends AppCompatActivity {
                     //draw main vertical bar
                     drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
                             verticalGuidelines[4*i],
-                            Character.toString((char) 0x2772), (int)(lineHeight*1.4), false,Color.BLACK,
-                            0,0,0,(int)(lineHeight*0.1), true, "");
+                            Character.toString((char) 0x2772), (int)(lineHeight*1.2), false,Color.BLACK,
+                            0,0,0,(int)(lineHeight*0.1), true, "leftAndRightRepeats.ttf");
 
 
                 }
@@ -749,26 +749,26 @@ public class ChordDisplay extends AppCompatActivity {
                     //draw main vertical bar
                     drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline,
                             verticalGuidelines[4*i + 4],
-                            Character.toString((char) 0x2773), (int)(lineHeight*1.4), false,Color.BLACK,
-                            0,0,0,(int)(lineHeight*0.1), true, "");
+                            Character.toString((char) 0x2773), (int)(lineHeight*1.2), false,Color.BLACK,
+                            0,0,0,(int)(lineHeight*0.1), true, "leftAndRightRepeats.ttf");
                 }
 
-                if(bars[i].toCota) {
+                if(bars[i].toCoda) {
                     drawText(lowerGuideline, null,null,
                             verticalGuidelines[4*i + 4], "\uD834\uDD0C", (int)(lineHeight * 0.5), false,Color.BLACK,
                             0,0,0, 0, true, "Bravura.ttf");
                 }
 
-                if(bars[i].cota) {
-                    drawText(lowerGuideline, verticalGuidelines[4*i],null,
-                           null, "\uD834\uDD0C", (int)(lineHeight * 0.5), false,Color.BLACK,
+                if(bars[i].coda) {
+                    drawText(lowerGuideline, null,null,
+                            verticalGuidelines[4*i], "\uD834\uDD0C", (int)(lineHeight * 0.5), false,Color.BLACK,
                             0,0,0, 0, true, "Bravura.ttf");
                 }
 
                 if(bars[i].fine) {
                     drawText(null, null, upperGuideline,
                             verticalGuidelines[4*i + 4], "Fine", (int)(lineHeight * 0.35), false,Color.BLACK,
-                            0,(int)(lineHeight * 0.5),(int)(lineHeight * 0.1), 0, true, "Bravura.ttf");
+                            0,(int)(lineHeight * 0.5),(int)(lineHeight * 0.15), 0, true, "Bravura.ttf");
                 }
 
                 if(bars[i].dcalfine) {
@@ -782,6 +782,26 @@ public class ChordDisplay extends AppCompatActivity {
                             verticalGuidelines[4*i + 4], "D.C. al 2nd ending", (int)(lineHeight * 0.35), false,Color.BLACK,
                             0,(int)(lineHeight * 0.6),(int)(lineHeight * 0.1), 0, true, "Bravura.ttf");
                 }
+
+                if(bars[i].dcalcoda) {
+                    drawText(null, null, upperGuideline,
+                            verticalGuidelines[4*i + 4], "D.C. al Coda", (int)(lineHeight * 0.35), false,Color.BLACK,
+                            0,(int)(lineHeight * 0.6),(int)(lineHeight * 0.1), 0, true, "Bravura.ttf");
+                }
+
+                if(bars[i].dsal2) {
+                    drawText(null, null, upperGuideline,
+                            verticalGuidelines[4*i + 4], "D.S. al 2nd ending", (int)(lineHeight * 0.35), false,Color.BLACK,
+                            0,(int)(lineHeight * 0.6),(int)(lineHeight * 0.1), 0, true, "Bravura.ttf");
+                }
+
+                if(bars[i].segno) {
+                    drawText(lowerGuideline, verticalGuidelines[4*i],null,
+                            null, "\uD834\uDD0B", (int)(lineHeight * 0.5), false,Color.BLACK,
+                            (int)(lineHeight * 0.1),0,0, 0, true, "Bravura.ttf");
+                }
+
+
 
                 if(bars[i].firstEnding) {
                     drawText(upperGuideline, verticalGuidelines[4*i],null,
@@ -816,6 +836,34 @@ public class ChordDisplay extends AppCompatActivity {
                             verticalGuidelines[4*i + 4], "\uD834\uDD0E", (int)(lineHeight * 0.7), false,Color.BLACK,
                             0,0,0, 0, true, "Bravura.ttf");
                 }
+
+                if(bars[i].section == Bar.A) {
+                    drawText(lowerGuideline, null,null,
+                            verticalGuidelines[4*i], "A", (int)(lineHeight * 0.45), false,Color.BLACK,
+                            0,0,0, (int)(lineHeight * 0.9), true, "sectionHeaders.ttf");
+                } else if(bars[i].section == Bar.B) {
+                    drawText(lowerGuideline, null,null,
+                            verticalGuidelines[4*i], "B", (int)(lineHeight * 0.45), false,Color.BLACK,
+                            0,0,0, (int)(lineHeight * 0.9), true, "sectionHeaders.ttf");
+                } else if(bars[i].section == Bar.C) {
+                    drawText(lowerGuideline, null,null,
+                            verticalGuidelines[4*i], "C", (int)(lineHeight * 0.45), false,Color.BLACK,
+                            0,0,0, (int)(lineHeight * 0.9), true, "sectionHeaders.ttf");
+                } else if(bars[i].section == Bar.D) {
+                    drawText(lowerGuideline, null,null,
+                            verticalGuidelines[4*i], "D", (int)(lineHeight * 0.45), false,Color.BLACK,
+                            0,0,0, (int)(lineHeight * 0.9), true, "sectionHeaders.ttf");
+                } else if(bars[i].section == Bar.IN) {
+                    drawText(lowerGuideline, null,null,
+                            verticalGuidelines[4*i], "i", (int)(lineHeight * 0.45), false,Color.BLACK,
+                            0,0,0, (int)(lineHeight * 0.9), true, "sectionHeaders.ttf");
+                } else if(bars[i].section == Bar.VAMP) {
+                    drawText(lowerGuideline, null,null,
+                            verticalGuidelines[4*i], "V", (int)(lineHeight * 0.45), false,Color.BLACK,
+                            0,0,0, (int)(lineHeight * 0.9), true, "sectionHeaders.ttf");
+                }
+
+
 
                 double smallestResizeFactor = 1.0;
                 for(int j = 0; j < bars[i].chords.size(); j++) {

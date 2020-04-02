@@ -3,22 +3,27 @@ package com.realbook.jazz.chord.charts;
 import java.util.ArrayList;
 
 public class Bar {
-    private static final int NONE = 0;
-    private static final int A = 1;
-    private static final int B = 2;
-    private static final int C = 3;
-    private static final int D = 4;
+    public static final int NONE = 0;
+    public static final int A = 1;
+    public static final int B = 2;
+    public static final int C = 3;
+    public static final int D = 4;
+    public static final int IN = 5;
+    public static final int VAMP = 6;
 
     public ArrayList<Chord> chords = new ArrayList<>();
     public boolean fourFour = false;
     public boolean threeFour = false;
     public boolean leftRepeat = false;
     public boolean rightRepeat = false;
-    public boolean toCota = false;
-    public boolean cota = false;
+    public boolean toCoda = false;
+    public boolean coda = false;
     public boolean fine = false;
     public boolean dcalfine = false;
     public boolean dcal2 = false;
+    public boolean dsal2 = false;
+    public boolean dcalcoda = false;
+    public boolean segno = false;
     public boolean firstEnding = false;
     public boolean secondEnding = false;
     public int section = NONE;
@@ -95,16 +100,22 @@ public class Bar {
                     leftRepeat = true;
                 } else if (modifiers[i].equals("}")) {
                     rightRepeat = true;
-                } else if (modifiers[i].equals("tocota")) {
-                    toCota = true;
-                } else if (modifiers[i].equals("cota")) {
-                    cota = true;
+                } else if (modifiers[i].equals("tocoda")) {
+                    toCoda = true;
+                } else if (modifiers[i].equals("coda")) {
+                    coda = true;
                 } else if (modifiers[i].equals("fine")) {
                     fine = true;
                 } else if (modifiers[i].equals("dcalfine")) {
                     dcalfine = true;
                 } else if (modifiers[i].equals("dcal2")) {
                     dcal2 = true;
+                } else if (modifiers[i].equals("dcalcoda")) {
+                    dcalcoda = true;
+                } else if (modifiers[i].equals("dsal2")) {
+                    dsal2 = true;
+                } else if (modifiers[i].equals("segno")) {
+                    segno = true;
                 } else if (modifiers[i].equals("firstending")) {
                     firstEnding = true;
                 } else if (modifiers[i].equals("secondending")) {
@@ -117,6 +128,10 @@ public class Bar {
                     section = C;
                 } else if (modifiers[i].equals("D")) {
                     section = D;
+                } else if (modifiers[i].equals("in")) {
+                    section = IN;
+                } else if (modifiers[i].equals("V")) {
+                    section = VAMP;
                 } else {
                     remainingModifiers.add(modifiers[i]);
                 }

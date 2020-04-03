@@ -10,6 +10,8 @@ import android.graphics.Typeface;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
+import androidx.core.content.ContextCompat;
+
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -21,6 +23,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import android.view.Window;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -174,6 +177,7 @@ public class ChordDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chord_display);
+
 
         global = (Global) getApplication();
         global.reviewPoints += global.pointsForViewingSong;

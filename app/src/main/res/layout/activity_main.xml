@@ -14,7 +14,7 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:background="@color/colorPrimary"
-        android:text="Real Book Charts"
+        android:text="Jazz Chord Charts"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"

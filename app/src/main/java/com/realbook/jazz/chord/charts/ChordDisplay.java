@@ -535,6 +535,13 @@ public class ChordDisplay extends AppCompatActivity {
         }
     }
 
+    public void drawBar(Guideline lowerGuideline, Guideline upperGuideline,
+                        int verticalGuidelineIndex) {
+        drawText(lowerGuideline, verticalGuidelines[verticalGuidelineIndex], upperGuideline, verticalGuidelines[verticalGuidelineIndex],
+                Character.toString((char) 0xFF5C), lineHeight,
+                false, Color.BLACK, 0,0,0,0, true, "");
+    }
+
     //arg: String[0] is the main symbol, String[1] is the lower text, String[2] is the upper text
     //return: double[0] is the resize Factor, double[1] is the unresized width of the keyText
     public double[] getResizeFactor(Chord chord, int leftBarGuidelineIndex, int rightBarGuidelineIndex) {
@@ -711,7 +718,7 @@ public class ChordDisplay extends AppCompatActivity {
         if(!eightBars) {
             Guideline[] leftGuidelineArray = {verticalGuidelines[0], verticalGuidelines[4],
                     verticalGuidelines[8], verticalGuidelines[12], verticalGuidelines[16]};
-            drawALineOfBars(lowerGuideline, upperGuideline, leftGuidelineArray);
+            //drawALineOfBars(lowerGuideline, upperGuideline, leftGuidelineArray);
 
             for(int i = 0; i < 4; i++) {
                 if(bars[i].fourFour || bars[i].threeFour) {
@@ -734,27 +741,15 @@ public class ChordDisplay extends AppCompatActivity {
                 if(bars[i].leftRepeat) {
                     int barWidth = guidelineMarginE - guidelineMarginA;
 
-                    //erases the old bar
-                    drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline, verticalGuidelines[4*i],
-                            Character.toString((char) 0xFF5C), lineHeight,
-                            false, Color.WHITE, 0,0,0,0, true, "");
-
-
                     //draw main vertical bar
                     drawText(lowerGuideline, verticalGuidelines[4*i], upperGuideline,
                             verticalGuidelines[4*i],
                             Character.toString((char) 0x2772), (int)(lineHeight*1.2), false,Color.BLACK,
                             0,0,0,(int)(lineHeight*0.1), true, "leftAndRightRepeats.ttf");
-
-
                 }
 
                 if(bars[i].rightRepeat) {
                     int barWidth = guidelineMarginE - guidelineMarginA;
-                    //erases the old bar
-                    drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline, verticalGuidelines[4*i + 4],
-                            Character.toString((char) 0xFF5C), lineHeight,
-                            false, Color.WHITE, 0,0,0,0, true, "");
 
                     //draw main vertical bar
                     drawText(lowerGuideline, verticalGuidelines[4*i + 4], upperGuideline,
@@ -890,26 +885,16 @@ public class ChordDisplay extends AppCompatActivity {
                 }
             }
 
-            if(bars[0].isEmpty)
-                drawText(lowerGuideline, verticalGuidelines[0], upperGuideline, verticalGuidelines[0],
-                        Character.toString((char) 0xFF5C), lineHeight,
-                        false, Color.WHITE, 0,0,0,0, true, "");
-            if(bars[0].isEmpty && bars[1].isEmpty)
-                drawText(lowerGuideline, verticalGuidelines[4], upperGuideline, verticalGuidelines[4],
-                        Character.toString((char) 0xFF5C), lineHeight,
-                        false, Color.WHITE, 0,0,0,0, true, "");
-            if(bars[1].isEmpty && bars[2].isEmpty)
-                drawText(lowerGuideline, verticalGuidelines[8], upperGuideline, verticalGuidelines[8],
-                        Character.toString((char) 0xFF5C), lineHeight,
-                        false, Color.WHITE, 0,0,0,0, true, "");
-            if(bars[2].isEmpty && bars[3].isEmpty)
-                drawText(lowerGuideline, verticalGuidelines[12], upperGuideline, verticalGuidelines[12],
-                        Character.toString((char) 0xFF5C), lineHeight,
-                        false, Color.WHITE, 0,0,0,0, true, "");
-            if(bars[3].isEmpty)
-                drawText(lowerGuideline, verticalGuidelines[16], upperGuideline, verticalGuidelines[16],
-                        Character.toString((char) 0xFF5C), lineHeight,
-                        false, Color.WHITE, 0,0,0,0, true, "");
+            if(!bars[0].isEmpty && !bars[0].leftRepeat)
+                drawBar(lowerGuideline, upperGuideline, 0);
+            if(!(bars[0].isEmpty && bars[1].isEmpty) && !bars[0].rightRepeat && !bars[1].leftRepeat)
+                drawBar(lowerGuideline, upperGuideline, 4);
+            if(!(bars[1].isEmpty && bars[2].isEmpty) && !bars[1].rightRepeat && !bars[2].leftRepeat)
+                drawBar(lowerGuideline, upperGuideline, 8);
+            if(!(bars[2].isEmpty && bars[3].isEmpty) && !bars[2].rightRepeat && !bars[3].leftRepeat)
+                drawBar(lowerGuideline, upperGuideline, 12);
+            if(!bars[3].isEmpty && !bars[3].rightRepeat)
+                drawBar(lowerGuideline, upperGuideline, 16);
         }
 
         else if(eightBars) {

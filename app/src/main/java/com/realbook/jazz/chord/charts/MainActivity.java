@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         }
         global.timeLastAd = System.currentTimeMillis()/1000;
 
+        if (global.hasFullVersion) {
+            upgradeButton.setVisibility(View.INVISIBLE);
+        }
+
         InputStream input = null;
         AssetManager manager = getAssets();
         try {
@@ -367,6 +371,11 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
     @Override
     public void onProductPurchased(String productId, TransactionDetails details) {
         global.giveProduct();
+        for (int i = 0; i < titles.size(); i++) {
+            isTitleLocked.put(titles.get(i), false);
+        }
+        upgradeButton.setVisibility(View.INVISIBLE);
+
         populateList();
         openPurchasedDialogue();
     }

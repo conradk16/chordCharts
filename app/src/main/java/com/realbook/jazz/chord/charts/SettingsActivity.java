@@ -128,6 +128,8 @@ public class SettingsActivity extends AppCompatActivity implements BillingProces
     @Override
     public void onProductPurchased(String productId, TransactionDetails details) {
         g.giveProduct();
+        upgradeButton.setVisibility(View.INVISIBLE);
+        restoreButton.setVisibility(View.INVISIBLE);
         openPurchasedDialogue();
     }
     @Override

@@ -12,6 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5832806412707632~5420463749" />
+
+
         <activity android:name=".SettingsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity

@@ -2,7 +2,13 @@ package com.realbook.jazz.chord.charts;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 
+import com.google.ads.consent.ConsentInformation;
+import com.google.ads.mediation.admob.AdMobAdapter;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -13,6 +19,11 @@ public class Global extends Application {
     String productID = "com.realbook.jazz.chord.charts.fullversion";
     Boolean hasFullVersion = false;
     int LOCK_FREQUENCY = 5;
+
+    long timeLastAd;
+    public InterstitialAd mInterstitialAd;
+    public String personalizedAdsStatus = "not chosen";
+    int MIN_TIME_BETWEEN_ADS = 120; // in seconds
 
     int reviewPoints = 0;
     int reviewPointsThreshold = 30;
@@ -54,6 +65,95 @@ public class Global extends Application {
     public static final int ASHARP = 14;
     public static final int BFLAT = 15;
     public static final int B = 16;
+
+    public void loadFirstInterstitialAd() {
+        mInterstitialAd = new InterstitialAd(this);
+
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_test_ad_id)); // TEST AD ID
+
+        boolean isInEEA = ConsentInformation.getInstance(getApplicationContext()).isRequestLocationInEeaOrUnknown();
+        if (isInEEA && !personalizedAdsStatus.equals("true")) {
+            Bundle extras = new Bundle();
+            extras.putString("npa", "1");
+            mInterstitialAd.loadAd(new AdRequest.Builder()
+                    .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                    .build());
+        } else {
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        }
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Load the next interstitial.
+                timeLastAd = System.currentTimeMillis()/1000;
+                boolean isInEEA = ConsentInformation.getInstance(getApplicationContext()).isRequestLocationInEeaOrUnknown();
+                if (isInEEA && !personalizedAdsStatus.equals("true")) {
+                    Bundle extras = new Bundle();
+                    extras.putString("npa", "1");
+                    mInterstitialAd.loadAd(new AdRequest.Builder()
+                            .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                            .build());
+                } else {
+                    mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                }
+            }
+
+        });
+    }
+
+    public void showInterstitialAd() {
+        if (mInterstitialAd == null) {
+            loadFirstInterstitialAd();
+        }
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+            // reloading happens when onAdClosed() is called
+        } else {
+            System.out.println("Interstitial not loaded");
+        }
+    }
+
+    public boolean timeToShowInterstitialAd() {
+        if (hasFullVersion || timeToAskForReview()) {
+            return false;
+        }
+
+        long timeSinceLastAd = (System.currentTimeMillis()/1000) - timeLastAd;
+        return (timeSinceLastAd > MIN_TIME_BETWEEN_ADS);
+    }
+
+    public void loadAdsPreference() {
+        SharedPreferences sp = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sp.getString("adPersonalizationStatus", null);
+        Type type = new TypeToken<String>() {}.getType();
+        String storedValue = gson.fromJson(json, type);
+        if (storedValue != null) {
+            if (storedValue.equals("true")) {
+                personalizedAdsStatus = "true";
+            } else {
+                personalizedAdsStatus = "false";
+            }
+        }
+    }
+
+    public void saveAdsPreference(Boolean personalized) {
+        String saveState;
+        if (personalized) {
+            saveState = "true";
+            personalizedAdsStatus = "true";
+        } else {
+            saveState = "false";
+            personalizedAdsStatus = "false";
+        }
+        SharedPreferences sp = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(saveState);
+        editor.putString("adPersonalizationStatus", json);
+        editor.apply();
+    }
 
     public void giveProduct() {
         savePurchasedStatus(true);

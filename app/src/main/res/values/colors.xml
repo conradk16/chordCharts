@@ -8,5 +8,6 @@
     <color name="keyBtnColor">#7A9FFF</color>
     <color name="keyBtnColorDepressed">#517BE9</color>
     <color name="backBtnColor">#C2B9B9</color>
+    <color name="black">#000000</color>
 
 </resources>

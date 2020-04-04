@@ -4,21 +4,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,32 +30,61 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
+public class MainActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler { // IAP
 
-    HashMap<String, ArrayList<String>> titlesToChords = new HashMap<>();
-    HashMap<String, Boolean> titleIsAllowedOnFreeVersion = new HashMap<>();
     ArrayList<String> titles = new ArrayList<>();
     ArrayList<String> authors = new ArrayList<>();
+    HashMap<String, ArrayList<String>> titlesToChords = new HashMap<>();
+    HashMap<String, Boolean> isTitleLocked = new HashMap<>();
+    List<ListEntry> rowEntries = new ArrayList<>();
+
     Global global;
-    BillingProcessor bp;
+    ListView resultsListView;
+    Button upgradeButton;
+
+    BillingProcessor bp; // IAP
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //IAP
+        bp = BillingProcessor.newBillingProcessor(this, getString(R.string.license_key), this);
+        bp.initialize();
+        //IAP
 
-        getSupportActionBar().setDisplayOptions(androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.main_banner);
+        resultsListView = findViewById(R.id.resultsListView);
+        ImageView settingsImgView = findViewById(R.id.settingsImgView);
+        upgradeButton = findViewById(R.id.upgradeButton);
+
+        upgradeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUpgradeDialogue();
+            }
+        });
+
+        settingsImgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSettingsActivity();
+            }
+        });
+
+        resultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listEntryClicked(position);
+            }
+        });
 
         global = (Global) getApplication();
         global.loadPurchasedStatus();
         global.loadReviewPoints();
         global.loadReviewPointsThreshold();
-
-        bp = BillingProcessor.newBillingProcessor(this, "", null); //optionally add license key found in play console
-        bp.initialize();
 
         InputStream input = null;
         AssetManager manager = getAssets();
@@ -87,15 +113,13 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
 
         Collections.sort(titles, new AlphabeticalComparator());
 
-        Boolean isAllowed = true;
-        for (String title : titles) {
-            System.out.println(title);
-            titleIsAllowedOnFreeVersion.put(title, isAllowed);
-            isAllowed = !isAllowed;
-        }
-
-        for (String t : titles) {
-            authors.add(titlesToChords.get(t).get(0));
+        for (int i = 0; i < titles.size(); i++) {
+            authors.add(titlesToChords.get(titles.get(i)).get(0));
+            if (global.hasFullVersion) {
+                isTitleLocked.put(titles.get(i), false);
+            } else {
+                isTitleLocked.put(titles.get(i), (i % global.LOCK_FREQUENCY == 0));
+            }
         }
 
 
@@ -116,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                reloadData();
+                populateList();
             }
         });
 
@@ -147,14 +171,14 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             @Override
             public void onClick(View view) {
                 searchBar.setText("");
-                reloadData();
+                populateList();
                 searchBar.setCursorVisible(true);
                 showKeyboard(MainActivity.this);
             }
         });
 
         searchBar.setCursorVisible(false);
-        reloadData();
+        populateList();
 
 
     }
@@ -167,62 +191,54 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         startActivity(intent);
     }
 
-    public void reloadData() {
+    public void openSettingsActivity() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 
-        ListView listView = (ListView) findViewById(R.id.resultsListView);
-        EditText searchBar = (EditText) findViewById(R.id.search_bar);
-        final ArrayList<String> titlesToShow = new ArrayList<>();
-        final ArrayList<String> authorsToShow = new ArrayList<>();
 
+    public void populateList() {
+        rowEntries = new ArrayList<>();
+        EditText searchBar = findViewById(R.id.search_bar);
         String currentText = searchBar.getText().toString();
 
         for (int i = 0; i < titles.size(); i++) {
+            Integer img;
+            if (isTitleLocked.get(titles.get(i))) {
+                img = R.drawable.lock_icon;
+            } else {
+                img = null;
+            }
+
             if (titles.get(i).toLowerCase().contains(currentText.toLowerCase()) || authors.get(i).toLowerCase().contains(currentText.toLowerCase())) {
-                titlesToShow.add(titles.get(i));
-                authorsToShow.add(authors.get(i));
+                rowEntries.add(new ListEntry(titles.get(i), authors.get(i), img));
             }
         }
 
-        if (titlesToShow.size() == 0) {
-            titlesToShow.add("No results");
-            authorsToShow.add("");
+        if (rowEntries.size() == 0) {
+            rowEntries.add(new ListEntry("No results", "", null));
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_2, android.R.id.text1, titlesToShow) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+        CustomListAdapter customAdapter = new CustomListAdapter(this, R.layout.custom_list_entry, rowEntries);
+        resultsListView.setAdapter(customAdapter);
+    }
 
-                text1.setText(titlesToShow.get(position));
-                text1.setTextColor(Color.BLACK);
-                text2.setText(authorsToShow.get(position));
-                text2.setTextColor(Color.BLACK);
-                return view;
+    public void listEntryClicked(int position) {
+        if (!rowEntries.get(position).t1.equals("No results")) {
+            ListEntry e = rowEntries.get(position);
+            if (e.image == null) {
+                openChordDisplayAcivity(e.t1, e.t2, titlesToChords.get(e.t1));
+            } else {
+                openUpgradeDialogue();
             }
-        };
-
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (!global.hasFullVersion && !titleIsAllowedOnFreeVersion.get(titlesToShow.get(position))) { // free version only allows access to every other song
-                    openUpgradeDialogue();
-                }
-                else {
-                    openChordDisplayAcivity(titlesToShow.get(position), authorsToShow.get(position), titlesToChords.get(titlesToShow.get(position)));
-                }
-            }
-        });
+        }
     }
 
     public void openUpgradeDialogue() {
-        Dialogues dialogue = new Dialogues();
-        String title = getResources().getString(R.string.upgrade_title);
-        String message = getResources().getString(R.string.upgrade_message);
-        dialogue.showUpgradeDialogue(title, message, MainActivity.this, bp, global);
+        UpgradeDialogue dialogue = new UpgradeDialogue(bp, global, MainActivity.this, getSupportFragmentManager());
+        dialogue.dialogueTitle = "Upgrade to Full Version?";
+        dialogue.dialogueMessage = "Upgrade to the Full Version to remove ads and unlock all content.";
+        dialogue.showUpgradeDialogue();
     }
 
     // Screen tapped anywhere
@@ -259,38 +275,28 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         imm.showSoftInput(view, 0);
     }
 
-    // IAP START
-
+    // IAP
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // Need this method otherwise always crashes after purchase (purchase goes through, everything works, but it crashes once)
+    protected void onSaveInstanceState(Bundle outState) { // Need this otherwise always crashes after purchase (purchase goes through, everything works, but it crashes once)
         //No call for super(). Bug on API Level > 11.
         //On purchase, this is called to refresh activity, and I need to indicate that I can release the activity without saving state
     }
     @Override
     public void onProductPurchased(String productId, TransactionDetails details) {
         global.giveProduct();
-        Dialogues dialogue = new Dialogues();
-        String title = getResources().getString(R.string.already_purchased_title);
-        String message = getResources().getString(R.string.already_purchased_message);
-        dialogue.showNotificationDialogue(title, message, MainActivity.this);
+        populateList();
+        openPurchasedDialogue();
     }
     @Override
-    public void onPurchaseHistoryRestored() {
-
-    }
+    public void onPurchaseHistoryRestored() {}
     @Override
     public void onBillingError(int errorCode, Throwable error) {
         if (errorCode != Constants.BILLING_RESPONSE_RESULT_USER_CANCELED) { // Cancelled not because user hit cancel
-            Dialogues dialogue = new Dialogues();
-            String title = getResources().getString(R.string.error_purchasing_title);
-            String message = getResources().getString(R.string.error_purchasing_message);
-            dialogue.showNotificationDialogue(title, message, MainActivity.this);
+            openErrorDialogue();
         }
     }
     @Override
-    public void onBillingInitialized() {
-    }
+    public void onBillingInitialized() {}
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (!bp.handleActivityResult(requestCode, resultCode, data)) {
@@ -304,7 +310,18 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         }
         super.onDestroy();
     }
-
-    // IAP END
+    public void openPurchasedDialogue() {
+        SimpleDialogue dialogue = new SimpleDialogue(MainActivity.this, getSupportFragmentManager());
+        dialogue.dialogueTitle = "Purchase Successful";
+        dialogue.dialogueMessage = "";
+        dialogue.showSimpleDialogue();
+    }
+    public void openErrorDialogue() {
+        SimpleDialogue dialogue = new SimpleDialogue(MainActivity.this, getSupportFragmentManager());
+        dialogue.dialogueTitle = "Error Purchasing";
+        dialogue.dialogueMessage = "You have not been charged. Please try again.";
+        dialogue.showSimpleDialogue();
+    }
+    //IAP
 
 }

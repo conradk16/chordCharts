@@ -2,7 +2,9 @@ package com.realbook.jazz.chord.charts;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -12,9 +14,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.core.content.ContextCompat;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -183,16 +188,17 @@ public class ChordDisplay extends AppCompatActivity {
         global.reviewPoints += global.pointsForViewingSong;
         global.saveReviewPoints(global.reviewPoints);
         if (global.timeToAskForReview()) {
-            Dialogues dialogue = new Dialogues();
-            String title = getResources().getString(R.string.rate_title);
-            String message = getResources().getString(R.string.rate_message);
-            dialogue.showRateDialogue(title, message, ChordDisplay.this, global);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    openRateDialogue();
+                }
+            }, 500);
         }
 
         setupEnumsMap();
 
-        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        //getSupportActionBar().setCustomView(R.layout.chord_display_banner);
 
         title = getIntent().getStringExtra("title");
         author = getIntent().getStringExtra("author");
@@ -1546,6 +1552,87 @@ public class ChordDisplay extends AppCompatActivity {
         if(newMusicalKey == MusicalKeyEnum.B_MAJOR || newMusicalKey == MusicalKeyEnum.G_SHARP_MINOR)
             return BMajorNotes[noteNumber];
         else return null;
+    }
+
+    public void openRateDialogue() {
+        TextView title = new TextView(ChordDisplay.this);
+        title.setPadding(10, 20, 10, 20);
+        title.setTextColor(Color.BLACK);
+        title.setTypeface(title.getTypeface(), Typeface.BOLD);
+        title.setTextSize(20);
+        title.setText("Enjoying the app?");
+        title.setGravity(Gravity.CENTER);
+
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(ChordDisplay.this);
+        builder.setCustomTitle(title);
+        builder.setNeutralButton("Never ask again", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                neverAskAgain();
+            }
+        });
+        builder.setNegativeButton("Later", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                remindMeLater();
+            }
+        });
+        builder.setPositiveButton("Rate", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                rateAction();
+            }
+        });
+        builder.setMessage("Please take a moment to rate it and leave a comment.");
+        androidx.appcompat.app.AlertDialog dialog = builder.show();
+
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialogue);
+
+
+        TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
+        messageView.setGravity(Gravity.CENTER);
+        messageView.setPadding(10, 10, 10, 10);
+        messageView.setTextColor(Color.BLACK);
+        messageView.setTextSize(16);
+
+        // button1 = positive, button2 = negative, button3 = neutral
+        TextView positiveButton = (TextView)dialog.findViewById(android.R.id.button1);
+        positiveButton.setTextColor(Color.parseColor("#324CCF"));
+        positiveButton.setAllCaps(false);
+        positiveButton.setTextSize(18);
+
+
+        TextView negativeButton = (TextView)dialog.findViewById(android.R.id.button2);
+        negativeButton.setTextColor(Color.parseColor("#324CCF"));
+        negativeButton.setAllCaps(false);
+        negativeButton.setTextSize(18);
+
+        TextView neutralButton = (TextView)dialog.findViewById(android.R.id.button3);
+        neutralButton.setTextColor(Color.parseColor("#324CCF"));
+        neutralButton.setAllCaps(false);
+        neutralButton.setTextSize(18);
+    }
+
+    public void rateAction() {
+        global.saveReviewPointsThreshold(1000000); // never ask again once rate button has been clicked
+        try {
+            String url = "market://details?id=" + ChordDisplay.this.getPackageName();
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            String url = "http:play.google.com/store/apps/details?id=" + ChordDisplay.this.getPackageName();
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
+        }
+    }
+    public void remindMeLater() {
+        global.loadReviewPointsThreshold();
+        global.saveReviewPointsThreshold(global.reviewPointsThreshold*2); // double review threshold
+    }
+    public void neverAskAgain() {
+        global.saveReviewPointsThreshold(1000000);
     }
 
 }

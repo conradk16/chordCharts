@@ -11,7 +11,8 @@ import java.lang.reflect.Type;
 public class Global extends Application {
 
     String productID = "com.realbook.jazz.chord.charts.fullversion";
-    Boolean hasFullVersion = true;
+    Boolean hasFullVersion = false;
+    int LOCK_FREQUENCY = 5;
 
     int reviewPoints = 0;
     int reviewPointsThreshold = 30;

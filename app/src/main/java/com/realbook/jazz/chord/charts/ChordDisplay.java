@@ -1051,6 +1051,13 @@ public class ChordDisplay extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (clickCount > 1) { // user needs to have already clicked twice for button to work. Once to show buttons, and once for the actual click
+                    if (global.timeToShowInterstitialAd()) {
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() { global.showInterstitialAd();}
+                        }, 300);
+                    }
                     finish();
                 }
             }
@@ -1292,6 +1299,15 @@ public class ChordDisplay extends AppCompatActivity {
         intent.putStringArrayListExtra("list", list);
         intent.putExtra("newMusicalKey", enumKeyToStringKey.get(newMusicalKey));
         startActivity(intent);
+
+        if (global.timeToShowInterstitialAd()) {
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() { global.showInterstitialAd();}
+            }, 300);
+        }
+
     }
 
     public void setupEnumsMap() {

@@ -2,11 +2,15 @@ package com.realbook.jazz.chord.charts;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,12 +20,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.Constants;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.google.ads.consent.ConsentInformation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,6 +62,11 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         bp.initialize();
         //IAP
 
+        global = (Global) getApplication();
+        global.loadPurchasedStatus();
+        global.loadReviewPoints();
+        global.loadReviewPointsThreshold();
+
         resultsListView = findViewById(R.id.resultsListView);
         ImageView settingsImgView = findViewById(R.id.settingsImgView);
         upgradeButton = findViewById(R.id.upgradeButton);
@@ -81,10 +92,15 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             }
         });
 
-        global = (Global) getApplication();
-        global.loadPurchasedStatus();
-        global.loadReviewPoints();
-        global.loadReviewPointsThreshold();
+        if (!global.hasFullVersion) {
+            global.loadAdsPreference();
+            boolean isInEEAOrUnknown = ConsentInformation.getInstance(getApplicationContext()).isRequestLocationInEeaOrUnknown();
+            if (isInEEAOrUnknown && global.personalizedAdsStatus.equals("not chosen")) {
+                requestPersonalizedAdConsent();
+            }
+            global.loadFirstInterstitialAd();
+        }
+        global.timeLastAd = System.currentTimeMillis()/1000;
 
         InputStream input = null;
         AssetManager manager = getAssets();
@@ -239,6 +255,66 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         dialogue.dialogueTitle = "Upgrade to Full Version?";
         dialogue.dialogueMessage = "Upgrade to the Full Version to remove ads and unlock all content.";
         dialogue.showUpgradeDialogue();
+    }
+
+    public void requestPersonalizedAdConsent() {
+        TextView title = new TextView(MainActivity.this);
+        title.setPadding(10, 20, 10, 20);
+        title.setTextColor(Color.BLACK);
+        title.setTypeface(title.getTypeface(), Typeface.BOLD);
+        title.setTextSize(20);
+        title.setText("This app shows ads. Can we use your data to show ads that are more relevant?");
+        title.setGravity(Gravity.CENTER);
+
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this);
+        builder.setCustomTitle(title);
+        builder.setPositiveButton("Yes, see relevant ads", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                global.saveAdsPreference(true);
+
+            }
+        });
+        builder.setNegativeButton("No, see ads that are less relevant", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                global.saveAdsPreference(false);
+            }
+        });
+        builder.setNeutralButton("Upgrade to the ad-free version", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                openUpgradeDialogue();
+            }
+        });
+        builder.setMessage("");
+        androidx.appcompat.app.AlertDialog dialog = builder.show();
+
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialogue);
+
+
+        TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
+        messageView.setGravity(Gravity.CENTER);
+        messageView.setPadding(10, 10, 10, 10);
+        messageView.setTextColor(Color.BLACK);
+        messageView.setTextSize(16);
+
+        // button1 = positive, button2 = negative, button3 = neutral
+        TextView positiveButton = (TextView)dialog.findViewById(android.R.id.button1);
+        positiveButton.setTextColor(Color.parseColor("#324CCF"));
+        positiveButton.setAllCaps(false);
+        positiveButton.setTextSize(18);
+
+
+        TextView negativeButton = (TextView)dialog.findViewById(android.R.id.button2);
+        negativeButton.setTextColor(Color.parseColor("#324CCF"));
+        negativeButton.setAllCaps(false);
+        negativeButton.setTextSize(18);
+
+        TextView neutralButton = (TextView)dialog.findViewById(android.R.id.button3);
+        neutralButton.setTextColor(Color.parseColor("#324CCF"));
+        neutralButton.setAllCaps(false);
+        neutralButton.setTextSize(18);
     }
 
     // Screen tapped anywhere

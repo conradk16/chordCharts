@@ -23,7 +23,7 @@ public class Global extends Application {
     long timeLastAd;
     public InterstitialAd mInterstitialAd;
     public String personalizedAdsStatus = "not chosen";
-    int MIN_TIME_BETWEEN_ADS = 120; // in seconds
+    int MIN_TIME_BETWEEN_ADS = 60; // in seconds
 
     int reviewPoints = 0;
     int reviewPointsThreshold = 30;
@@ -115,7 +115,7 @@ public class Global extends Application {
     }
 
     public boolean timeToShowInterstitialAd() {
-        if (hasFullVersion || timeToAskForReview()) {
+        if (hasFullVersion) {
             return false;
         }
 

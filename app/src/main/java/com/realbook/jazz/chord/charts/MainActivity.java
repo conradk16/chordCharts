@@ -134,7 +134,14 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             if (global.hasFullVersion) {
                 isTitleLocked.put(titles.get(i), false);
             } else {
-                isTitleLocked.put(titles.get(i), (i % global.LOCK_FREQUENCY == 0));
+                if(titles.get(i).equals("I Got Rhythm") || titles.get(i).equals("Autumn Leaves")
+                        || titles.get(i).equals("Jazz Blues") || titles.get(i).equals("All The Things You Are") ||
+                        titles.get(i).equals("All Of Me") || titles.get(i).equals("Fly Me To The Moon") ||
+                        titles.get(i).equals("Take The A Train") || titles.get(i).equals("Summertime") ||
+                        titles.get(i).equals("The Girl From Ipanema"))
+                    isTitleLocked.put(titles.get(i), false);
+                else
+                    isTitleLocked.put(titles.get(i), (i % global.LOCK_FREQUENCY == 0));
             }
         }
 

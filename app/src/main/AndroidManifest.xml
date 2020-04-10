@@ -15,7 +15,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5832806412707632~5420463749" />
+            android:value="ca-app-pub-6860445609360439~4077631918" />
 
 
         <activity android:name=".SettingsActivity"

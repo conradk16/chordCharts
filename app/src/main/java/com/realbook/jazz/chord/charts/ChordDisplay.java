@@ -726,13 +726,16 @@ public class ChordDisplay extends AppCompatActivity {
                     if(bars[i].fourFour) { topNum = "4";}
                     else { topNum = "3";}
 
+
                     drawText(T, Left, lineTops[0],null,
                             topNum, (int)(width * 0.0375),
                             true, Color.BLACK,
                             (int)(width*0.007),0,0,0, true, "");
+
                     drawText(V, Left, T, null, "4",
                             (int)(width * 0.0375), true, Color.BLACK,
                             (int)(width*0.007),0,0,0, true, "");
+
                     drawText(lineBottoms[0], Left, lineTops[0], null, "-",
                             (int)(width * 0.08), true, Color.BLACK,
                             (int)(width*0.003),0,0,(int)(lineHeight*0.1), true, "");
